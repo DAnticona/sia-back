@@ -1,0 +1,27 @@
+server:
+  port: 9091
+  servlet:
+    context-path: /core-aldesa
+logging:
+  level:
+    root: info
+    org.hibernate: warn
+    pe.com.aldesa.aduanero: debug
+spring:
+  datasource:
+    username: root
+    password: samanthafox
+    url: "jdbc:mysql://localhost:3306/usersdb?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+web:
+  security:
+    jwt:
+      tokenExpirationTime: 60 # Number of minutes 
+      refreshTokenExpTime: 180 # Minutes 
+      tokenIssuer: http://aldesa.com.pe 
+      tokenSigningKey: 1DA35CB99506F169DEAE836559F85CD3
