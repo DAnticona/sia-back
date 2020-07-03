@@ -9,7 +9,8 @@ import pe.com.aldesa.aduanero.security.model.UserContext;
 import pe.com.aldesa.aduanero.security.model.token.RawAccessJwtToken;
 
 /**
- * Esta clase establece la autenticación mediante el token
+ * Esta clase establece la autenticación mediante una colección de objetos GrantedAuthority
+ * 
  * @author Juan Pablo Canepa Alvarez
  *
  */
