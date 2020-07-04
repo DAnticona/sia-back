@@ -25,7 +25,7 @@ import pe.com.aldesa.aduanero.security.model.token.JwtTokenFactory;
 
 /**
  * Esta clase es lamada cuando se ha producido una autenticación.
- * Esta clase se encarga de agregar el token y el tokenRefresh al JSON payload que va en el cuerpo de la respuesta HTTP
+ * Esta clase se encarga de agregar el token al JSON payload que va en el cuerpo de la respuesta HTTP
  * 
  * @author Juan Pablo Canepa Alvarez
  *
@@ -49,11 +49,9 @@ public class WebAwareAuthenticationSuccessHandler implements AuthenticationSucce
 		UserContext userContext = (UserContext) authentication.getPrincipal();
 
 		JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
-        JwtToken refreshToken = tokenFactory.createRefreshToken(userContext);
         
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("token", accessToken.getToken());
-        tokenMap.put("refreshToken", refreshToken.getToken());
         
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
