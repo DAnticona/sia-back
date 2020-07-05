@@ -24,7 +24,7 @@ import pe.com.aldesa.aduanero.security.model.token.RawAccessJwtToken;
  * <ol>
  * <li>Verifica la firma del token.</li>
  * <li>Extrae el <tt>sub</tt> y los <tt>claims</tt> del token y los usa para crear un objeto {@link UserContext}.</li>
- * <li>Si el token está mal formado, expira o si no está firmado inapropiadamente con la clave de autenticación se lanzará una exception.</li>
+ * <li>Si el token está mal formado, expira o si está firmado inapropiadamente con la clave de autenticación se lanzará una exception.</li>
  * </ol>
  *  
  * @author Juan Pablo Cánepa Alvarez
