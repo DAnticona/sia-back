@@ -19,7 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.security.CustomCorsFilter;
-import pe.com.aldesa.aduanero.security.RestAuthenticationEntryPoint;
 import pe.com.aldesa.aduanero.security.auth.jwt.JwtAuthenticationProvider;
 import pe.com.aldesa.aduanero.security.auth.jwt.JwtTokenAuthenticationProcessingFilter;
 import pe.com.aldesa.aduanero.security.auth.jwt.SkipPathRequestMatcher;
@@ -43,8 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/**";
     public static final String TOKEN_REFRESH_ENTRY_POINT = "/core-adesa/auth/token";
     
-    @Autowired 
-    private RestAuthenticationEntryPoint authenticationEntryPoint;
     @Autowired 
     private AuthenticationSuccessHandler successHandler;
     @Autowired 
@@ -91,8 +88,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .csrf().disable()
         .exceptionHandling()
-        .authenticationEntryPoint(this.authenticationEntryPoint)
-        
         .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

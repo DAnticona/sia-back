@@ -4,7 +4,7 @@ server:
     context-path: /core-aldesa
 logging:
   level:
-    root: info
+    root: warn
     org.hibernate: warn
     pe.com.aldesa.aduanero: debug
 spring:
