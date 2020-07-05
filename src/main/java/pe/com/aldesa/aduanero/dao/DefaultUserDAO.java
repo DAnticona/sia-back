@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import pe.com.aldesa.aduanero.entity.User;
 
+/**
+ * Implementación por defecto de {@link UserDAO}
+ * 
+ * @author Juan Pablo Canepa Alvarez
+ *
+ */
 @Repository
 public class DefaultUserDAO implements UserDAO {
 

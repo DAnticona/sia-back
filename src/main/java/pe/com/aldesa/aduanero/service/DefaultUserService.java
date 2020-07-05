@@ -12,6 +12,12 @@ import pe.com.aldesa.aduanero.dao.UserDAO;
 import pe.com.aldesa.aduanero.entity.Authority;
 import pe.com.aldesa.aduanero.entity.User;
 
+/**
+ * Implementación por defecto de {@link UserService}
+ * 
+ * @author Juan Pablo Canepa Alvarez
+ *
+ */
 @Service
 public class DefaultUserService implements UserService {
 
@@ -33,7 +39,7 @@ public class DefaultUserService implements UserService {
 			String[] authorities = user.getAuthorities().stream().map(Authority::getAuthority).toArray(String[]::new);
 			builder.authorities(authorities);
 		} else {
-			throw new UsernameNotFoundException("User not found");
+			throw new UsernameNotFoundException("Usuario no encontrado");
 		}
 		return builder.build();
 	}

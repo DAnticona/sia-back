@@ -3,6 +3,11 @@ package pe.com.aldesa.aduanero.security.auth.web;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * 
+ * @author Juan Pablo Canepa Alvarez
+ *
+ */
 public class LoginRequest {
 
 	private String username;
