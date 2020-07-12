@@ -8,9 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import pe.com.aldesa.aduanero.dao.UserDAO;
-import pe.com.aldesa.aduanero.entity.Authority;
-import pe.com.aldesa.aduanero.entity.User;
+import pe.com.aldesa.aduanero.entity.Usuario;
+import pe.com.aldesa.aduanero.repository.UsuarioRepository;
 
 /**
  * Implementación por defecto de {@link UserService}
@@ -22,21 +21,20 @@ import pe.com.aldesa.aduanero.entity.User;
 public class DefaultUserService implements UserService {
 
 	@Autowired
-	private UserDAO userDAO;
+	private UsuarioRepository userDAO;
 
 	@Transactional
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		
-		User user = userDAO.findUserByUsername(username);
+		Usuario user = userDAO.findUserByUsername(username);
 
 		UserBuilder builder = null;
 		if (user != null) {
 			builder = org.springframework.security.core.userdetails.User.withUsername(username);
-			builder.disabled(!user.isEnabled());
 			builder.password(user.getPassword());
 			
-			String[] authorities = user.getAuthorities().stream().map(Authority::getAuthority).toArray(String[]::new);
+			String authorities = user.getIdRol().getNombre();
 			builder.authorities(authorities);
 		} else {
 			throw new UsernameNotFoundException("Usuario no encontrado");

@@ -2,8 +2,6 @@ package pe.com.aldesa.aduanero;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
 /**
  * Inicializa la aplicación
@@ -11,8 +9,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
  * @author Juan Pablo Canepa Alvarez
  *
  */
-@SpringBootApplication(scanBasePackages = { "pe.com.aldesa.aduanero" }, exclude = {
-		DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class })
+@SpringBootApplication
 public class CoreAldesaApplication {
 
 	public static void main(String[] args) {
