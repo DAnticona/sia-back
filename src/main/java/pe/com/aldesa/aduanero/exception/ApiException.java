@@ -1,4 +1,4 @@
-package pe.com.aldesa.aduanero.service;
+package pe.com.aldesa.aduanero.exception;
 
 public class ApiException extends Exception {
 

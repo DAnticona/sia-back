@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import pe.com.aldesa.aduanero.security.model.UserContext;
-import pe.com.aldesa.aduanero.service.UserService;
+import pe.com.aldesa.aduanero.service.UsuarioService;
 
 /**
  * Esta clase tiene las siguientes responsabilidades:
@@ -40,10 +40,10 @@ public class WebAuthenticationProvider implements AuthenticationProvider {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebAuthenticationProvider.class);
 	
 	private final BCryptPasswordEncoder encoder;
-    private final UserService userService;
+    private final UsuarioService userService;
     
     @Autowired
-    public WebAuthenticationProvider(final UserService userService, final BCryptPasswordEncoder encoder) {
+    public WebAuthenticationProvider(final UsuarioService userService, final BCryptPasswordEncoder encoder) {
         this.userService = userService;
         this.encoder = encoder;
     }

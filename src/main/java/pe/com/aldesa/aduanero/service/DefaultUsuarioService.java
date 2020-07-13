@@ -1,6 +1,6 @@
 package pe.com.aldesa.aduanero.service;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -12,22 +12,21 @@ import pe.com.aldesa.aduanero.entity.Usuario;
 import pe.com.aldesa.aduanero.repository.UsuarioRepository;
 
 /**
- * Implementación por defecto de {@link UserService}
+ * Implementación por defecto de {@link UsuarioService}
  * 
  * @author Juan Pablo Canepa Alvarez
  *
  */
 @Service
-public class DefaultUserService implements UserService {
+public class DefaultUsuarioService implements UsuarioService {
 
 	@Autowired
-	private UsuarioRepository userDAO;
+	private UsuarioRepository usuarioRepository;
 
-	@Transactional
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		
-		Usuario user = userDAO.findUserByUsername(username);
+		Usuario user = usuarioRepository.findUserByUsername(username);
 
 		UserBuilder builder = null;
 		if (user != null) {
@@ -40,6 +39,36 @@ public class DefaultUserService implements UserService {
 			throw new UsernameNotFoundException("Usuario no encontrado");
 		}
 		return builder.build();
+	}
+
+	@Override
+	public List<Usuario> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Usuario findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Usuario save(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Usuario update(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

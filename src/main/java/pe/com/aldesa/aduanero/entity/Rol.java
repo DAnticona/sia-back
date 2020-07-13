@@ -1,7 +1,6 @@
 package pe.com.aldesa.aduanero.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-
 @Entity
 @Table(name = "rol")
-public class Rol implements Serializable {
+public class Rol extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = -8967563214360660914L;
 
@@ -32,22 +26,6 @@ public class Rol implements Serializable {
 
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
-
-	@CreatedBy
-	@Column(name = "us_crea")
-	private String usuarioCreador;
-
-	@LastModifiedBy
-	@Column(name = "us_modi")
-	private String usuarioModificador;
-
-	@CreatedDate
-	@Column(name = "fe_crea")
-	private LocalDateTime fechaCreacion;
-
-	@LastModifiedDate
-	@Column(name = "fe_modi")
-	private LocalDateTime fechaModificacion;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idRol")
 	private List<Usuario> usuarios = new ArrayList<>();
@@ -66,38 +44,6 @@ public class Rol implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getUsuarioCreador() {
-		return usuarioCreador;
-	}
-
-	public void setUsuarioCreador(String usuarioCreador) {
-		this.usuarioCreador = usuarioCreador;
-	}
-
-	public String getUsuarioModificador() {
-		return usuarioModificador;
-	}
-
-	public void setUsuarioModificador(String usuarioModificador) {
-		this.usuarioModificador = usuarioModificador;
-	}
-
-	public LocalDateTime getFechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setFechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public LocalDateTime getFechaModificacion() {
-		return fechaModificacion;
-	}
-
-	public void setFechaModificacion(LocalDateTime fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
 	}
 
 }

@@ -3,7 +3,7 @@ package pe.com.aldesa.aduanero.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.com.aldesa.aduanero.entity.Rol;
-import pe.com.aldesa.aduanero.service.ApiException;
 import pe.com.aldesa.aduanero.service.RolService;
 
 @RestController
@@ -32,16 +31,12 @@ public class RolRestController {
 		return rolService.findAll();
 	}
 	
-//	@GetMapping("/rol/{id}")
-//	public ResponseEntity<?> findById(@PathVariable Integer id) {
-//		try {
-//			rolService.findById(id);
-//		} catch (ApiException e) {
-//			throw e;
-//		}
-//	}
+	@GetMapping("/rol/{id}")
+	public Rol findById(@PathVariable Integer id) {
+		return rolService.findById(id);
+	}
 	
-	@GetMapping("/rol")
+	@PostMapping("/rol")
 	public Rol create(@RequestBody Rol rol) {
 		return rolService.save(rol);
 	}
@@ -49,6 +44,12 @@ public class RolRestController {
 	@PutMapping("/rol")
 	public Rol update(@RequestBody Rol rol) {
 		return rolService.save(rol);
+	}
+	
+	@DeleteMapping("/rol/{id}")
+	public String delete(@PathVariable Integer id) {
+		rolService.delete(id);
+		return "Rol " + id + " eliminado";
 	}
 
 }

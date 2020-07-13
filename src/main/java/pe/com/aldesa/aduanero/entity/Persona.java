@@ -2,7 +2,6 @@ package pe.com.aldesa.aduanero.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,17 +15,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "persona")
 @EntityListeners(AuditingEntityListener.class)
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Persona implements Serializable {
+public class Persona extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = 4955788495130287463L;
 
@@ -59,26 +54,10 @@ public class Persona implements Serializable {
 	@Column(name = "imagen")
 	private String imagen;
 
-	@CreatedBy
-	@Column(name = "us_crea")
-	private String usuarioCreador;
-
-	@LastModifiedBy
-	@Column(name = "us_modi")
-	private String usuarioModificador;
-
-	@CreatedDate
-	@Column(name = "fe_crea")
-	private LocalDateTime fechaCreacion;
-
-	@LastModifiedDate
-	@Column(name = "fe_modi")
-	private LocalDateTime fechaModificacion;
-	
 	@ManyToOne
 	@JoinColumn(name = "id_tidoc")
 	private TipoDocumento tipoDocumento;
-	
+
 	public Long getIdPersona() {
 		return idPersona;
 	}
@@ -151,45 +130,12 @@ public class Persona implements Serializable {
 		this.imagen = imagen;
 	}
 
-	public String getUsuarioCreador() {
-		return usuarioCreador;
-	}
-
-	public void setUsuarioCreador(String usuarioCreador) {
-		this.usuarioCreador = usuarioCreador;
-	}
-
-	public String getUsuarioModificador() {
-		return usuarioModificador;
-	}
-
-	public void setUsuarioModificador(String usuarioModificador) {
-		this.usuarioModificador = usuarioModificador;
-	}
-
-	public LocalDateTime getFechaCreacion() {
-		return fechaCreacion;
-	}
-
-	public void setFechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public LocalDateTime getFechaModificacion() {
-		return fechaModificacion;
-	}
-
-	public void setFechaModificacion(LocalDateTime fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
-	}
-
 	@Override
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", numeroDocumento=" + numeroDocumento + ", nombres=" + nombres
 				+ ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", sexo=" + sexo
 				+ ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", imagen=" + imagen
-				+ ", usuarioCreador=" + usuarioCreador + ", usuarioModificador=" + usuarioModificador
-				+ ", fechaCreacion=" + fechaCreacion + ", fechaModificacion=" + fechaModificacion + "]";
+				+ ", tipoDocumento=" + tipoDocumento + "]";
 	}
 
 }

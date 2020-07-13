@@ -8,13 +8,15 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import pe.com.aldesa.aduanero.security.model.UserContext;
+
 @Configuration
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
-public class AuditorConfig {
+public class JpaAuditorConfig {
 
 	@Bean
 	public AuditorAware<String> auditorAware() {
-		return () -> Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication().getName());
+		return () -> Optional.ofNullable(((UserContext) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
 	}
 
 }
