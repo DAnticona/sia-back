@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.com.aldesa.aduanero.entity.Usuario;
-import pe.com.aldesa.aduanero.repository.UsuarioRepository;
+import pe.com.aldesa.aduanero.repository.AuthorizationRepository;
 
 /**
  * Implementación por defecto de {@link AuthorizationService}
@@ -18,12 +18,12 @@ import pe.com.aldesa.aduanero.repository.UsuarioRepository;
 public class DefaultAuthorizationUsuarioService implements AuthorizationService {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private AuthorizationRepository authorizationRepository;
 
 	@Override
 	public Optional<Usuario> loadUserByUsername(String username) {
 
-		Usuario user = usuarioRepository.findUserByUsername(username);
+		Usuario user = authorizationRepository.findUserByUsername(username);
 		return Optional.ofNullable(user);
 	}
 

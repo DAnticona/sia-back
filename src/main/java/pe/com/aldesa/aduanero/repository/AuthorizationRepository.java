@@ -12,7 +12,7 @@ import pe.com.aldesa.aduanero.entity.Usuario;
  *
  */
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
+public interface AuthorizationRepository extends JpaRepository<Usuario, Integer>{
 	
 	/**
 	 * Encuentra un usuario a través de su username
