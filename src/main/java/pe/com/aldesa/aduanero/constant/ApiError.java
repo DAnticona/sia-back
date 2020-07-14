@@ -3,8 +3,9 @@ package pe.com.aldesa.aduanero.constant;
 public enum ApiError {
 
 	SUCCESS("0", "Ok"), 
-	NO_APPLICATION_PROCESSED("9000", "El sistema no pudo procesar su solicitid"),
-	RESOURCE_NOT_FOUND("9001", "Recurso no encontrado")
+	NO_APPLICATION_PROCESSED("9000", "El sistema no pudo procesar su solicitud"),
+	RESOURCE_NOT_FOUND("9001", "Recurso no encontrado"),
+	EMPTY_OR_NULL_PARAMETER("9002", "Uno o más parámetros están vacíos o nulos"),
 	;
 
 	private final String code;
