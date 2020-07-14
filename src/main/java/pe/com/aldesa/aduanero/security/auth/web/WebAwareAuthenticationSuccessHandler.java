@@ -1,8 +1,6 @@
 package pe.com.aldesa.aduanero.security.auth.web;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +15,9 @@ import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import pe.com.aldesa.aduanero.security.model.UserContext;
 import pe.com.aldesa.aduanero.security.model.token.JwtToken;
@@ -47,15 +47,19 @@ public class WebAwareAuthenticationSuccessHandler implements AuthenticationSucce
 			Authentication authentication) throws IOException, ServletException {
 		
 		UserContext userContext = (UserContext) authentication.getPrincipal();
+		AuthUserData authUser = userContext.getAuthUser();
+		String userContent = mapper.writeValueAsString(authUser);
+		JsonNode userNode = mapper.readTree(userContent);
 
 		JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
         
-        Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", accessToken.getToken());
+		JsonNode token = mapper.createObjectNode();
+		((ObjectNode)token).put("AccessToken", accessToken.getToken());
+        ((ObjectNode)userNode).set("TOKEN", token);
         
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        mapper.writeValue(response.getWriter(), tokenMap);
+        mapper.writeValue(response.getWriter(), userNode);
 
         clearAuthenticationAttributes(request);
 	}

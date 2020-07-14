@@ -1,5 +1,6 @@
 package pe.com.aldesa.aduanero.security.auth.web;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,13 +15,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import pe.com.aldesa.aduanero.entity.Usuario;
 import pe.com.aldesa.aduanero.security.model.UserContext;
-import pe.com.aldesa.aduanero.service.UsuarioService;
+import pe.com.aldesa.aduanero.service.AuthorizationService;
+import pe.com.aldesa.aduanero.util.WebUtil;
 
 /**
  * Esta clase tiene las siguientes responsabilidades:
@@ -40,10 +43,10 @@ public class WebAuthenticationProvider implements AuthenticationProvider {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebAuthenticationProvider.class);
 	
 	private final BCryptPasswordEncoder encoder;
-    private final UsuarioService userService;
+    private final AuthorizationService userService;
     
     @Autowired
-    public WebAuthenticationProvider(final UsuarioService userService, final BCryptPasswordEncoder encoder) {
+    public WebAuthenticationProvider(final AuthorizationService userService, final BCryptPasswordEncoder encoder) {
         this.userService = userService;
         this.encoder = encoder;
     }
@@ -57,20 +60,21 @@ public class WebAuthenticationProvider implements AuthenticationProvider {
         
         LOGGER.info("Username: {}", username);
 
-        UserDetails user = userService.loadUserByUsername(username);
+        Usuario usuario = userService.loadUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
+        AuthUserData authUser = WebUtil.getAuthUser(usuario);
         
-        if (!encoder.matches(password, user.getPassword())) {
+        if (!encoder.matches(password, usuario.getPassword())) {
             throw new BadCredentialsException("Autenticación falló. Username o Password no válido.");
         }
 
-        if (user.getAuthorities() == null) 
-        	throw new InsufficientAuthenticationException("User no tiene roles asignados");
+        if (authUser.getRol() == null) 
+        	throw new InsufficientAuthenticationException("User no tiene rol asignados");
         
-        List<GrantedAuthority> authorities = user.getAuthorities().stream()
-                .map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
+        List<GrantedAuthority> authorities = Arrays.asList(authUser.getRol()).stream()
+                .map(authority -> new SimpleGrantedAuthority(authUser.getRol()))
                 .collect(Collectors.toList());
         
-        UserContext userContext = UserContext.create(user.getUsername(), authorities);
+        UserContext userContext = UserContext.create(usuario.getUsername(), authorities, authUser);
         
         return new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
 	}

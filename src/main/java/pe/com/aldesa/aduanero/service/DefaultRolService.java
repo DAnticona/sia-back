@@ -14,87 +14,81 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
-import pe.com.aldesa.aduanero.entity.TipoDocumento;
+import pe.com.aldesa.aduanero.entity.Rol;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.repository.TipoDocumentoRepository;
+import pe.com.aldesa.aduanero.repository.RolRepository;
 
 @Service
-public class DefaultTipoDocumentoService implements TipoDocumentoService {
+public class DefaultRolService implements RolService {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private TipoDocumentoRepository tipoDocumentoRepository;
+	private RolRepository rolRepository;
 	
 	@Autowired
-	public DefaultTipoDocumentoService(TipoDocumentoRepository tipoDocumentoRepository) {
-		this.tipoDocumentoRepository = tipoDocumentoRepository;
+	public DefaultRolService(RolRepository rolRepository) {
+		this.rolRepository = rolRepository;
 	}
-	
+
 	@Override
 	public ApiResponse findAll() throws ApiException {
-		List<TipoDocumento> listTypeDocuments = tipoDocumentoRepository.findAll();
-		int total = listTypeDocuments.size();
-		logger.debug("Total Tipo de documentos: {}", total);
-		if (listTypeDocuments.isEmpty()) {
+		List<Rol> roles = rolRepository.findAll();
+		int total = roles.size();
+		logger.debug("Total Roles: {}", total);
+		if (roles.isEmpty()) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), listTypeDocuments, total);
+		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), roles, total);
 	}
-	
+
 	@Override
 	public ApiResponse findById(Integer id) throws ApiException {
-		TipoDocumento tmpTypeDocument = tipoDocumentoRepository.findById(id).orElse(null);
-		logger.debug("Tipo documento: {}", tmpTypeDocument);
-		if (null == tmpTypeDocument) {
+		Rol tmpRol = rolRepository.findById(id).orElse(null);
+		logger.debug("Rol: {}", tmpRol);
+		if (null == tmpRol) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpTypeDocument);
+		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpRol);
 	}
-	
+
 	@Override
 	public ApiResponse save(String request) throws ApiException {
-		TipoDocumento responseTipDoc;
+		Rol responseRol;
 		
 		JsonNode root;
 		String	nombre = null;
-		String	abreviatura = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 			
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
 			
-			abreviatura = root.path("abreviatura").asText();
-			logger.debug("abreviatura: {}", abreviatura);
-			
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+		if (StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
 		try {
-			TipoDocumento tipoDocumento = new TipoDocumento();
-			tipoDocumento.setNombre(nombre);
-			tipoDocumento.setAbreviatura(abreviatura.toUpperCase());
+			Rol rol = new Rol();
+			rol.setNombre(nombre.toUpperCase());
 			
-			responseTipDoc = tipoDocumentoRepository.save(tipoDocumento);
+			responseRol = rolRepository.save(rol);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipDoc);
+		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseRol);
 	}
-	
+
 	@Override
 	public ApiResponse update(String request) throws ApiException {
-		TipoDocumento responseTipDoc;
+		Rol responseRol;
 		
 		JsonNode root;
 		Integer	id = null;
 		String	nombre = null;
-		String	abreviatura = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 			
@@ -104,37 +98,33 @@ public class DefaultTipoDocumentoService implements TipoDocumentoService {
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
 			
-			abreviatura = root.path("abreviatura").asText();
-			logger.debug("abreviatura: {}", abreviatura);
-			
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (id == null || id == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+		if (id == null || id == 0 || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
 		try {
-			TipoDocumento tipoDocumento = new TipoDocumento();
-			tipoDocumento.setIdTipoDocumento(id);
-			tipoDocumento.setNombre(nombre);
-			tipoDocumento.setAbreviatura(abreviatura.toUpperCase());
+			Rol rol = new Rol();
+			rol.setIdRol(id);
+			rol.setNombre(nombre.toUpperCase());
 			
-			responseTipDoc = tipoDocumentoRepository.save(tipoDocumento);
+			responseRol = rolRepository.save(rol);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipDoc);
+		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseRol);
 	}
-	
+
 	@Override
 	public ApiResponse delete(Integer id) throws ApiException {
-		TipoDocumento tmpTypeDocument = tipoDocumentoRepository.findById(id).orElse(null);
-		logger.debug("Tipo documento: {}", tmpTypeDocument);
-		if (null != tmpTypeDocument) {
-			tipoDocumentoRepository.deleteById(id);
-			return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Tipo Documento " + id + " eliminado");
+		Rol tmpRol = rolRepository.findById(id).orElse(null);
+		logger.debug("Tipo documento: {}", tmpRol);
+		if (null != tmpRol) {
+			rolRepository.deleteById(id);
+			return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Rol " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 	}
