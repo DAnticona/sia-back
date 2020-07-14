@@ -38,7 +38,7 @@ public class DefaultRolService implements RolService {
 		if (roles.isEmpty()) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), roles, total);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), roles, total);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class DefaultRolService implements RolService {
 		if (null == tmpRol) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpRol);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpRol);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class DefaultRolService implements RolService {
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseRol);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseRol);
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public class DefaultRolService implements RolService {
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseRol);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseRol);
 	}
 
 	@Override
@@ -124,7 +124,7 @@ public class DefaultRolService implements RolService {
 		logger.debug("Tipo documento: {}", tmpRol);
 		if (null != tmpRol) {
 			rolRepository.deleteById(id);
-			return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Rol " + id + " eliminado");
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Rol " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 	}

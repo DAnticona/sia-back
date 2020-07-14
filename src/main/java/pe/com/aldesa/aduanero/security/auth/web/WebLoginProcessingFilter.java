@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class WebLoginProcessingFilter extends AbstractAuthenticationProcessingFilter {
 
-	private static final Logger logger = LoggerFactory.getLogger(WebLoginProcessingFilter.class);
+	private static final Logger log = LoggerFactory.getLogger(WebLoginProcessingFilter.class);
 
 	private final AuthenticationSuccessHandler successHandler;
 	private final AuthenticationFailureHandler failureHandler;
@@ -47,11 +47,11 @@ public class WebLoginProcessingFilter extends AbstractAuthenticationProcessingFi
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-			throws AuthenticationException, IOException, ServletException {
+			throws IOException, ServletException {
 		
 		if (!HttpMethod.POST.name().equals(request.getMethod())) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Método de autenticación no compatible. Método de solicitud: {}", request.getMethod());
+			if (log.isDebugEnabled()) {
+				log.debug("Método de autenticación no compatible. Método de solicitud: {}", request.getMethod());
 			}
 			throw new AuthenticationServiceException("Método de autenticación no compatible");
 		}

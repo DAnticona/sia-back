@@ -6,17 +6,25 @@ public class ErrorResponse {
 	private String message;
 	private String detailMessage;
 
-	public ErrorResponse(String code, String message) {
+	private ErrorResponse(String code, String message) {
 		super();
 		this.code = code;
 		this.message = message;
 	}
 
-	public ErrorResponse(String code, String message, String detailMessage) {
+	private ErrorResponse(String code, String message, String detailMessage) {
 		super();
 		this.code = code;
 		this.message = message;
 		this.detailMessage = detailMessage;
+	}
+	
+	public static ErrorResponse of(String code, String message, String detailMessage) {
+		return new ErrorResponse(code, message, detailMessage);
+	}
+	
+	public static ErrorResponse of(String code, String message) {
+		return new ErrorResponse(code, message);
 	}
 
 	public String getCode() {

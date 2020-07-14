@@ -24,6 +24,7 @@ public class ApiException extends Exception {
 		return code;
 	}
 
+	@Override
 	public String getMessage() {
 		return message;
 	}

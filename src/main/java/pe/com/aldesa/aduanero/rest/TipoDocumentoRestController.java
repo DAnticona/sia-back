@@ -39,9 +39,9 @@ public class TipoDocumentoRestController {
 			response = tipoDocumentoService.findAll();
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return ResponseEntity.ok(response);
 	}
 	
 	@GetMapping("/tipoDocumento/{id}")
@@ -51,9 +51,9 @@ public class TipoDocumentoRestController {
 			response = tipoDocumentoService.findById(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return ResponseEntity.ok(response);
 	}
 	
 	@PostMapping("/tipoDocumento")
@@ -63,9 +63,9 @@ public class TipoDocumentoRestController {
 			response = tipoDocumentoService.save(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
 		}
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		return ResponseEntity.ok(response);
 	}
 	
 	@PutMapping("/tipoDocumento")
@@ -75,9 +75,9 @@ public class TipoDocumentoRestController {
 			response = tipoDocumentoService.update(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
 		}
-		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+		return ResponseEntity.ok(response);
 	}
 	
 	@DeleteMapping("/tipoDocumento/{id}")
@@ -87,9 +87,9 @@ public class TipoDocumentoRestController {
 			response = tipoDocumentoService.delete(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return ResponseEntity.ok(response);
 	}
 
 }

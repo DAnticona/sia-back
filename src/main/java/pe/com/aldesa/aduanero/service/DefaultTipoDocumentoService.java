@@ -38,7 +38,7 @@ public class DefaultTipoDocumentoService implements TipoDocumentoService {
 		if (listTypeDocuments.isEmpty()) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), listTypeDocuments, total);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), listTypeDocuments, total);
 	}
 	
 	@Override
@@ -48,7 +48,7 @@ public class DefaultTipoDocumentoService implements TipoDocumentoService {
 		if (null == tmpTypeDocument) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpTypeDocument);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpTypeDocument);
 	}
 	
 	@Override
@@ -84,7 +84,7 @@ public class DefaultTipoDocumentoService implements TipoDocumentoService {
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipDoc);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipDoc);
 	}
 	
 	@Override
@@ -125,7 +125,7 @@ public class DefaultTipoDocumentoService implements TipoDocumentoService {
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipDoc);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipDoc);
 	}
 	
 	@Override
@@ -134,7 +134,7 @@ public class DefaultTipoDocumentoService implements TipoDocumentoService {
 		logger.debug("Tipo documento: {}", tmpTypeDocument);
 		if (null != tmpTypeDocument) {
 			tipoDocumentoRepository.deleteById(id);
-			return new ApiResponse(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Tipo Documento " + id + " eliminado");
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Tipo Documento " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 	}

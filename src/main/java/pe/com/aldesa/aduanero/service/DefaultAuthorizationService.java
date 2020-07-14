@@ -15,7 +15,7 @@ import pe.com.aldesa.aduanero.repository.AuthorizationRepository;
  *
  */
 @Service
-public class DefaultAuthorizationUsuarioService implements AuthorizationService {
+public class DefaultAuthorizationService implements AuthorizationService {
 
 	@Autowired
 	private AuthorizationRepository authorizationRepository;

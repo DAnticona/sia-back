@@ -39,9 +39,9 @@ public class RolRestController {
 			response = rolService.findAll();
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return ResponseEntity.ok(response);
 	}
 	
 	@GetMapping("/rol/{id}")
@@ -51,9 +51,9 @@ public class RolRestController {
 			response = rolService.findById(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return ResponseEntity.ok(response);
 	}
 	
 	@PostMapping("/rol")
@@ -63,9 +63,9 @@ public class RolRestController {
 			response = rolService.save(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
 		}
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		return ResponseEntity.ok(response);
 	}
 	
 	@PutMapping("/rol")
@@ -75,9 +75,9 @@ public class RolRestController {
 			response = rolService.update(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
 		}
-		return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+		return ResponseEntity.ok(response);
 	}
 	
 	@DeleteMapping("/rol/{id}")
@@ -87,9 +87,9 @@ public class RolRestController {
 			response = rolService.delete(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return ResponseEntity.ok(response);
 	}
 
 }
