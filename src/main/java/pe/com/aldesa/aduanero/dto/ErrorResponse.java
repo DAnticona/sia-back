@@ -7,13 +7,11 @@ public class ErrorResponse {
 	private String detailMessage;
 
 	private ErrorResponse(String code, String message) {
-		super();
 		this.code = code;
 		this.message = message;
 	}
 
 	private ErrorResponse(String code, String message, String detailMessage) {
-		super();
 		this.code = code;
 		this.message = message;
 		this.detailMessage = detailMessage;
