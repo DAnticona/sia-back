@@ -9,9 +9,7 @@ public class ApiException extends Exception {
 	private final String detailMessage;
 
 	public ApiException(String code, String message) {
-		this.code = code;
-		this.message = message;
-		this.detailMessage = null;
+		this(code, message, null);
 	}
 
 	public ApiException(String code, String message, String detailMessage) {
