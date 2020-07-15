@@ -1,5 +1,12 @@
 package pe.com.aldesa.aduanero.security.auth.web;
 
+/**
+ * Esta clase contiene todos los campos de un usuario autorizado y serán parte
+ * de la respuesta Http durante el proceso de autenticación
+ * 
+ * @author Juan Pablo Canepa Alvarez
+ *
+ */
 public class AuthUserData {
 
 	private Long id;

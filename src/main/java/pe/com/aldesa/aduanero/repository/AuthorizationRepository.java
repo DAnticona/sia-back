@@ -6,13 +6,13 @@ import org.springframework.stereotype.Repository;
 import pe.com.aldesa.aduanero.entity.Usuario;
 
 /**
- * Esta clase permite realizar las sentencias en base de datos sobre la tabla users
+ * Esta clase solo se emplea para el proceso de autenticación y autorización de usuarios
  * 
  * @author Juan Pablo Canepa Alvarez
  *
  */
 @Repository
-public interface AuthorizationRepository extends JpaRepository<Usuario, Integer>{
+public interface AuthorizationRepository extends JpaRepository<Usuario, Integer> {
 	
 	/**
 	 * Encuentra un usuario a través de su username

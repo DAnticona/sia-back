@@ -1,5 +1,10 @@
 package pe.com.aldesa.aduanero.dto;
 
+/**
+ * Esta clase contiene la estructura de una respuesta errónea del API
+ * @author Juan Pablo Canepa Alvarez
+ *
+ */
 public class ErrorResponse {
 
 	private String code;
@@ -7,8 +12,7 @@ public class ErrorResponse {
 	private String detailMessage;
 
 	private ErrorResponse(String code, String message) {
-		this.code = code;
-		this.message = message;
+		this(code, message, null);
 	}
 
 	private ErrorResponse(String code, String message, String detailMessage) {

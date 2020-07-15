@@ -1,5 +1,11 @@
 package pe.com.aldesa.aduanero.dto;
 
+/**
+ * Esta clase contiene la estructura de una respuesta del API
+ * 
+ * @author Juan Pablo Canepa Alvarez
+ *
+ */
 public class ApiResponse {
 
 	private String code;
