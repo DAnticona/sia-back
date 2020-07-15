@@ -9,6 +9,11 @@ public class WebUtil {
 		throw new IllegalStateException();
 	}
 	
+	/**
+	 * Este metodo crea un objeto que contiene los datos que enviarán junto
+	 * con el token en la respuesta Http
+	 *
+	 */
 	public static AuthUserData getAuthUser(Usuario usuario) {
 		AuthUserData authUser = new AuthUserData();
 		authUser.setId(usuario.getIdPersona());
