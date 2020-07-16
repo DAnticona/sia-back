@@ -14,8 +14,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "usuario", uniqueConstraints = { @UniqueConstraint(columnNames = "username") })
-//@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-//@JsonIgnoreProperties(ignoreUnknown = true)
 @EntityListeners(AuditingEntityListener.class)
 public class Usuario extends Persona implements Serializable {
 

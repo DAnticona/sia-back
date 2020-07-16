@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.dto.ErrorResponse;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.service.DefaultRolService;
+import pe.com.aldesa.aduanero.service.RolService;
 
 @RestController
 @RequestMapping("/v1")
@@ -25,10 +25,10 @@ public class RolRestController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private DefaultRolService rolService;
+	private RolService rolService;
 	
 	@Autowired
-	public RolRestController(DefaultRolService rolService) {
+	public RolRestController(RolService rolService) {
 		this.rolService = rolService;
 	}
 	

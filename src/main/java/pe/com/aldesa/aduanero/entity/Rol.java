@@ -46,4 +46,9 @@ public class Rol extends Auditable<String> implements Serializable {
 		this.nombre = nombre;
 	}
 
+	@Override
+	public String toString() {
+		return "Rol [idRol=" + idRol + ", nombre=" + nombre + "]";
+	}
+
 }

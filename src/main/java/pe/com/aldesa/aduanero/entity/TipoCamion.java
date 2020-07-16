@@ -1,7 +1,6 @@
 package pe.com.aldesa.aduanero.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,17 +9,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tipo_documento")
-public class TipoDocumento extends Auditable<String> implements Serializable {
+@Table(name = "tipo_camion", uniqueConstraints = { @UniqueConstraint(columnNames = "abreviatura") })
+public class TipoCamion extends Auditable<String> implements Serializable {
 
-	private static final long serialVersionUID = 2150530504700988652L;
+	private static final long serialVersionUID = 187378428064186040L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_tidoc", nullable = false)
-	private Integer idTipoDocumento;
+	@Column(name = "id_ticamion")
+	private Integer idTipoCamion;
 
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
@@ -28,15 +28,15 @@ public class TipoDocumento extends Auditable<String> implements Serializable {
 	@Column(name = "abrev", nullable = false, length = 10)
 	private String abreviatura;
 
-	@OneToMany(mappedBy = "tipoDocumento")
-	private List<Persona> personas;
+	@OneToMany(mappedBy = "tipoCamion")
+	private Camion camion;
 
-	public Integer getIdTipoDocumento() {
-		return idTipoDocumento;
+	public Integer getIdTipoCamion() {
+		return idTipoCamion;
 	}
 
-	public void setIdTipoDocumento(Integer idTipoDocumento) {
-		this.idTipoDocumento = idTipoDocumento;
+	public void setIdTipoCamion(Integer idTipoCamion) {
+		this.idTipoCamion = idTipoCamion;
 	}
 
 	public String getNombre() {
@@ -57,8 +57,7 @@ public class TipoDocumento extends Auditable<String> implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TipoDocumento [idTipoDocumento=" + idTipoDocumento + ", nombre=" + nombre + ", abreviatura="
-				+ abreviatura + "]";
+		return "TipoCamion [idTipoCamion=" + idTipoCamion + ", nombre=" + nombre + ", abreviatura=" + abreviatura + "]";
 	}
 
 }

@@ -1,5 +1,11 @@
 package pe.com.aldesa.aduanero.exception;
 
+/**
+ * Esta excepción es lanzada hacia el controlador cuando se produce una incidencia en el API
+ * 
+ * @author Juan Pablo Canepa Alvarez
+ *
+ */
 public class ApiException extends Exception {
 
 	private static final long serialVersionUID = -7821958228183810886L;

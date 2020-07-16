@@ -60,12 +60,13 @@ public class WebAuthenticationProvider implements AuthenticationProvider {
         LOGGER.info("Username: {}", username);
 
         Usuario usuario = userService.loadUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
-        AuthUserData authUser = WebUtil.getAuthUser(usuario);
         
         if (!encoder.matches(password, usuario.getPassword())) {
             throw new BadCredentialsException("Autenticación falló. Username o Password no válido.");
         }
 
+        AuthUserData authUser = WebUtil.getAuthUser(usuario);
+        
         if (authUser.getRol() == null) 
         	throw new InsufficientAuthenticationException("User no tiene rol asignados");
         

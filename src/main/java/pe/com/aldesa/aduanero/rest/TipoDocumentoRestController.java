@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.dto.ErrorResponse;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.service.DefaultTipoDocumentoService;
+import pe.com.aldesa.aduanero.service.TipoDocumentoService;
 
 @RestController
 @RequestMapping("/v1")
@@ -25,10 +25,10 @@ public class TipoDocumentoRestController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private DefaultTipoDocumentoService tipoDocumentoService;
+	private TipoDocumentoService tipoDocumentoService;
 	
 	@Autowired
-	public TipoDocumentoRestController(DefaultTipoDocumentoService tipoDocumentoService) {
+	public TipoDocumentoRestController(TipoDocumentoService tipoDocumentoService) {
 		this.tipoDocumentoService = tipoDocumentoService;
 	}
 	

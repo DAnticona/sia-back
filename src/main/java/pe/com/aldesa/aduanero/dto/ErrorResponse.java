@@ -1,7 +1,10 @@
 package pe.com.aldesa.aduanero.dto;
 
+import java.util.Date;
+
 /**
  * Esta clase contiene la estructura de una respuesta errónea del API
+ * 
  * @author Juan Pablo Canepa Alvarez
  *
  */
@@ -10,6 +13,7 @@ public class ErrorResponse {
 	private String code;
 	private String message;
 	private String detailMessage;
+	private Date timestamp;
 
 	private ErrorResponse(String code, String message) {
 		this(code, message, null);
@@ -19,12 +23,13 @@ public class ErrorResponse {
 		this.code = code;
 		this.message = message;
 		this.detailMessage = detailMessage;
+		this.timestamp = new Date();
 	}
-	
+
 	public static ErrorResponse of(String code, String message, String detailMessage) {
 		return new ErrorResponse(code, message, detailMessage);
 	}
-	
+
 	public static ErrorResponse of(String code, String message) {
 		return new ErrorResponse(code, message);
 	}
@@ -51,6 +56,14 @@ public class ErrorResponse {
 
 	public void setDetailMessage(String detailMessage) {
 		this.detailMessage = detailMessage;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
 
 }

@@ -14,46 +14,43 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
-import pe.com.aldesa.aduanero.entity.TipoDocumento;
+import pe.com.aldesa.aduanero.entity.TipoCamion;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.repository.TipoDocumentoRepository;
+import pe.com.aldesa.aduanero.repository.TipoCamionRepository;
 
 @Service
-public class DefaultTipoDocumentoService implements TipoDocumentoService {
+public class TipoCamionService {
 	
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private TipoDocumentoRepository tipoDocumentoRepository;
+	private TipoCamionRepository tipoCamionRepository;
 	
 	@Autowired
-	public DefaultTipoDocumentoService(TipoDocumentoRepository tipoDocumentoRepository) {
-		this.tipoDocumentoRepository = tipoDocumentoRepository;
+	public TipoCamionService(TipoCamionRepository tipoCamionRepository) {
+		this.tipoCamionRepository = tipoCamionRepository;
 	}
-	
-	@Override
+
 	public ApiResponse findAll() throws ApiException {
-		List<TipoDocumento> listTypeDocuments = tipoDocumentoRepository.findAll();
-		int total = listTypeDocuments.size();
-		logger.debug("Total Tipo de documentos: {}", total);
-		if (listTypeDocuments.isEmpty()) {
+		List<TipoCamion> tiposCamion = tipoCamionRepository.findAll();
+		int total = tiposCamion.size();
+		logger.debug("Total Tipos camiones: {}", total);
+		if (tiposCamion.isEmpty()) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), listTypeDocuments, total);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tiposCamion, total);
 	}
-	
-	@Override
-	public ApiResponse findById(Integer id) throws ApiException {
-		TipoDocumento tmpTypeDocument = tipoDocumentoRepository.findById(id).orElse(null);
-		logger.debug("Tipo documento: {}", tmpTypeDocument);
-		if (null == tmpTypeDocument) {
+
+	public ApiResponse findById(Long id) throws ApiException {
+		TipoCamion tmpTipoCamion = tipoCamionRepository.findById(id).orElse(null);
+		logger.debug("Tipo Camion: {}", tmpTipoCamion);
+		if (null == tmpTipoCamion) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpTypeDocument);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpTipoCamion);
 	}
-	
-	@Override
+
 	public ApiResponse save(String request) throws ApiException {
-		TipoDocumento responseTipDoc;
+		TipoCamion responseTipoCamion;
 		
 		JsonNode root;
 		String	nombre = null;
@@ -76,20 +73,19 @@ public class DefaultTipoDocumentoService implements TipoDocumentoService {
 		}
 		
 		try {
-			TipoDocumento tipoDocumento = new TipoDocumento();
-			tipoDocumento.setNombre(nombre);
-			tipoDocumento.setAbreviatura(abreviatura.toUpperCase());
+			TipoCamion tipoCamion = new TipoCamion();
+			tipoCamion.setNombre(nombre);
+			tipoCamion.setAbreviatura(abreviatura);
 			
-			responseTipDoc = tipoDocumentoRepository.save(tipoDocumento);
+			responseTipoCamion = tipoCamionRepository.save(tipoCamion);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipDoc);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipoCamion);
 	}
-	
-	@Override
+
 	public ApiResponse update(String request) throws ApiException {
-		TipoDocumento responseTipDoc;
+		TipoCamion responseTipoCamion;
 		
 		JsonNode root;
 		Integer	id = null;
@@ -116,27 +112,26 @@ public class DefaultTipoDocumentoService implements TipoDocumentoService {
 		}
 		
 		try {
-			TipoDocumento tipoDocumento = new TipoDocumento();
-			tipoDocumento.setIdTipoDocumento(id);
-			tipoDocumento.setNombre(nombre);
-			tipoDocumento.setAbreviatura(abreviatura.toUpperCase());
+			TipoCamion tipoCamion = new TipoCamion();
+			tipoCamion.setIdTipoCamion(id);
+			tipoCamion.setNombre(nombre);
+			tipoCamion.setAbreviatura(abreviatura);
 			
-			responseTipDoc = tipoDocumentoRepository.save(tipoDocumento);
+			responseTipoCamion = tipoCamionRepository.save(tipoCamion);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipDoc);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipoCamion);
 	}
-	
-	@Override
-	public ApiResponse delete(Integer id) throws ApiException {
-		TipoDocumento tmpTypeDocument = tipoDocumentoRepository.findById(id).orElse(null);
-		logger.debug("Tipo documento: {}", tmpTypeDocument);
-		if (null != tmpTypeDocument) {
-			tipoDocumentoRepository.deleteById(id);
-			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Tipo Documento " + id + " eliminado");
+
+	public ApiResponse delete(Long id) throws ApiException {
+		TipoCamion tmpTipoCamion = tipoCamionRepository.findById(id).orElse(null);
+		logger.debug("Rol: {}", tmpTipoCamion);
+		if (null != tmpTipoCamion) {
+			tipoCamionRepository.deleteById(id);
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Rol " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 	}
-	
+
 }
