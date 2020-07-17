@@ -1,14 +1,12 @@
 package pe.com.aldesa.aduanero.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,9 +25,6 @@ public class TipoDocumento extends Auditable<String> implements Serializable {
 
 	@Column(name = "abrev", nullable = false, length = 10)
 	private String abreviatura;
-
-	@OneToMany(mappedBy = "tipoDocumento")
-	private List<Persona> personas;
 
 	public Integer getIdTipoDocumento() {
 		return idTipoDocumento;

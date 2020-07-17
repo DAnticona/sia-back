@@ -32,7 +32,7 @@ public class TipoDocumentoRestController {
 		this.tipoDocumentoService = tipoDocumentoService;
 	}
 	
-	@GetMapping("/tipoDocumento")
+	@GetMapping("/tipos-documentos")
 	public ResponseEntity<?> findAll() {
 		ApiResponse response = null;
 		try {
@@ -44,7 +44,7 @@ public class TipoDocumentoRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@GetMapping("/tipoDocumento/{id}")
+	@GetMapping("/tipos-documentos/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
 		ApiResponse response;
 		try {
@@ -56,7 +56,7 @@ public class TipoDocumentoRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PostMapping("/tipoDocumento")
+	@PostMapping("/tipos-documentos")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
 		try {
@@ -68,7 +68,7 @@ public class TipoDocumentoRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PutMapping("/tipoDocumento")
+	@PutMapping("/tipos-documentos")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
 		try {
@@ -80,7 +80,7 @@ public class TipoDocumentoRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@DeleteMapping("/tipoDocumento/{id}")
+	@DeleteMapping("/tipos-documentos/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;
 		try {

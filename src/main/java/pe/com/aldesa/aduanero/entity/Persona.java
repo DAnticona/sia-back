@@ -130,6 +130,14 @@ public class Persona extends Auditable<String> implements Serializable {
 		this.imagen = imagen;
 	}
 
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
 	@Override
 	public String toString() {
 		return "Persona [idPersona=" + idPersona + ", numeroDocumento=" + numeroDocumento + ", nombres=" + nombres

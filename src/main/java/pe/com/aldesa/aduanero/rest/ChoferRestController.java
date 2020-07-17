@@ -17,26 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.dto.ErrorResponse;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.service.RolService;
+import pe.com.aldesa.aduanero.service.ChoferService;
 
 @RestController
 @RequestMapping("/v1")
-public class RolRestController {
+public class ChoferRestController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private RolService rolService;
+	private ChoferService choferService;
 	
 	@Autowired
-	public RolRestController(RolService rolService) {
-		this.rolService = rolService;
+	public ChoferRestController(ChoferService camionService) {
+		this.choferService = camionService;
 	}
 	
-	@GetMapping("/roles")
+	@GetMapping("/choferes")
 	public ResponseEntity<?> findAll() {
 		ApiResponse response = null;
 		try {
-			response = rolService.findAll();
+			response = choferService.findAll();
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
@@ -44,11 +44,11 @@ public class RolRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@GetMapping("/roles/{id}")
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
+	@GetMapping("/choferes/{id}")
+	public ResponseEntity<?> findById(@PathVariable Long id) {
 		ApiResponse response;
 		try {
-			response = rolService.findById(id);
+			response = choferService.findById(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
@@ -56,11 +56,11 @@ public class RolRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PostMapping("/roles")
+	@PostMapping("/choferes")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
 		try {
-			response = rolService.save(request);
+			response = choferService.save(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
@@ -68,11 +68,11 @@ public class RolRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@PutMapping("/roles")
+	@PutMapping("/choferes")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
 		try {
-			response = rolService.update(request);
+			response = choferService.update(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
@@ -80,11 +80,11 @@ public class RolRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	@DeleteMapping("/roles/{id}")
-	public ResponseEntity<?> delete(@PathVariable Integer id) {
+	@DeleteMapping("/choferes/{id}")
+	public ResponseEntity<?> delete(@PathVariable Long id) {
 		ApiResponse response;
 		try {
-			response = rolService.delete(id);
+			response = choferService.delete(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);

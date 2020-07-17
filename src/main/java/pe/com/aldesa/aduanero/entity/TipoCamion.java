@@ -7,12 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tipo_camion", uniqueConstraints = { @UniqueConstraint(columnNames = "abreviatura") })
+@Table(name = "tipo_camion", uniqueConstraints = { @UniqueConstraint(columnNames = "abrev") })
 public class TipoCamion extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = 187378428064186040L;
@@ -27,9 +26,6 @@ public class TipoCamion extends Auditable<String> implements Serializable {
 
 	@Column(name = "abrev", nullable = false, length = 10)
 	private String abreviatura;
-
-	@OneToMany(mappedBy = "tipoCamion")
-	private Camion camion;
 
 	public Integer getIdTipoCamion() {
 		return idTipoCamion;

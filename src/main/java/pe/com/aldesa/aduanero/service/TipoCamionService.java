@@ -21,7 +21,7 @@ import pe.com.aldesa.aduanero.repository.TipoCamionRepository;
 @Service
 public class TipoCamionService {
 	
-private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private TipoCamionRepository tipoCamionRepository;
 	
@@ -40,7 +40,7 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tiposCamion, total);
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Integer id) throws ApiException {
 		TipoCamion tmpTipoCamion = tipoCamionRepository.findById(id).orElse(null);
 		logger.debug("Tipo Camion: {}", tmpTipoCamion);
 		if (null == tmpTipoCamion) {
@@ -75,7 +75,7 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		try {
 			TipoCamion tipoCamion = new TipoCamion();
 			tipoCamion.setNombre(nombre);
-			tipoCamion.setAbreviatura(abreviatura);
+			tipoCamion.setAbreviatura(abreviatura.toUpperCase());
 			
 			responseTipoCamion = tipoCamionRepository.save(tipoCamion);
 		} catch (Exception e) {
@@ -115,7 +115,7 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 			TipoCamion tipoCamion = new TipoCamion();
 			tipoCamion.setIdTipoCamion(id);
 			tipoCamion.setNombre(nombre);
-			tipoCamion.setAbreviatura(abreviatura);
+			tipoCamion.setAbreviatura(abreviatura.toUpperCase());
 			
 			responseTipoCamion = tipoCamionRepository.save(tipoCamion);
 		} catch (Exception e) {
@@ -124,12 +124,12 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipoCamion);
 	}
 
-	public ApiResponse delete(Long id) throws ApiException {
+	public ApiResponse delete(Integer id) throws ApiException {
 		TipoCamion tmpTipoCamion = tipoCamionRepository.findById(id).orElse(null);
-		logger.debug("Rol: {}", tmpTipoCamion);
+		logger.debug("Tipo camion: {}", tmpTipoCamion);
 		if (null != tmpTipoCamion) {
 			tipoCamionRepository.deleteById(id);
-			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Rol " + id + " eliminado");
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Tipo camion " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 	}

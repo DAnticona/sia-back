@@ -32,16 +32,16 @@ public class CamionService {
 	private TipoCamionRepository tipoCamionRepository;
 	
 	public ApiResponse findAll() throws ApiException {
-		List<Camion> camion = camionRepository.findAll();
-		int total = camion.size();
+		List<Camion> camiones = camionRepository.findAll();
+		int total = camiones.size();
 		logger.debug("Total Camiones: {}", total);
-		if (camion.isEmpty()) {
+		if (camiones.isEmpty()) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), camion, total);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), camiones, total);
 	}
 
-	public ApiResponse findById(Integer id) throws ApiException {
+	public ApiResponse findById(Long id) throws ApiException {
 		Camion tmpCamion = camionRepository.findById(id).orElse(null);
 		logger.debug("Camion: {}", tmpCamion);
 		if (null == tmpCamion) {
@@ -54,7 +54,7 @@ public class CamionService {
 		Camion responseCamion;
 		
 		JsonNode root;
-		Long codeTipoCamion = null;
+		Integer codeTipoCamion = null;
 		String placa = null;
 		String marca = null;
 		String certificado = null;
@@ -66,7 +66,7 @@ public class CamionService {
 		try {
 			root = new ObjectMapper().readTree(request);
 			
-			codeTipoCamion = root.path("codeTipoCamion").asLong();
+			codeTipoCamion = root.path("codeTipoCamion").asInt();
 			logger.debug("codeTipoCamion: {}", codeTipoCamion);
 			
 			placa = root.path("placa").asText();
@@ -103,10 +103,8 @@ public class CamionService {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
-		TipoCamion tipoCamion = tipoCamionRepository.findById(codeTipoCamion).orElse(null);
-		if (null == tipoCamion) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
+		TipoCamion tipoCamion = tipoCamionRepository.findById(codeTipoCamion)
+				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		
 		try {
 			Camion camion = new Camion();
@@ -131,29 +129,74 @@ public class CamionService {
 		Camion responseCamion;
 		
 		JsonNode root;
-		Integer	id = null;
-		String	nombre = null;
+		Long id = null;
+		Integer codeTipoCamion = null;
+		String placa = null;
+		String marca = null;
+		String certificado = null;
+		Double largo = null;
+		Double ancho = null;
+		Double alto = null;
+		Double peso = null;
+		Integer eje = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 			
-			id = root.path("id").asInt();
+			id = root.path("id").asLong();
 			logger.debug("id: {}", id);
 			
-			nombre = root.path("nombre").asText();
-			logger.debug("nombre: {}", nombre);
+			codeTipoCamion = root.path("codeTipoCamion").asInt();
+			logger.debug("codeTipoCamion: {}", codeTipoCamion);
+			
+			placa = root.path("placa").asText();
+			logger.debug("placa: {}", placa);
+			
+			marca = root.path("marca").asText();
+			logger.debug("marca: {}", marca);
+			
+			certificado = root.path("certificado").asText();
+			logger.debug("certificado: {}", certificado);
+			
+			largo = root.path("largo").asDouble();
+			logger.debug("largo: {}", largo);
+			
+			ancho = root.path("ancho").asDouble();
+			logger.debug("ancho: {}", ancho);
+			
+			alto = root.path("alto").asDouble();
+			logger.debug("alto: {}", alto);
+			
+			peso = root.path("peso").asDouble();
+			logger.debug("peso: {}", peso);
+			
+			eje = root.path("eje").asInt();
+			logger.debug("eje: {}", eje);
 			
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (id == null || id == 0 || StringUtils.isBlank(nombre)) {
+		if (null == id || id == 0 || null == codeTipoCamion || StringUtils.isBlank(placa) || StringUtils.isBlank(marca)
+				|| StringUtils.isBlank(certificado) || null == largo || null == ancho
+				|| null == alto || null == peso || null == eje) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
+		TipoCamion tipoCamion = tipoCamionRepository.findById(codeTipoCamion)
+				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		
 		try {
 			Camion camion = new Camion();
-//			camion.setIdRol(id);
-//			camion.setNombre(nombre.toUpperCase());
+			camion.setIdCamion(id);
+			camion.setTipoCamion(tipoCamion);
+			camion.setPlaca(placa);
+			camion.setMarca(marca);
+			camion.setCertificado(certificado);
+			camion.setLargo(largo);
+			camion.setAncho(ancho);
+			camion.setAlto(alto);
+			camion.setPeso(peso);
+			camion.setEje(eje);
 			
 			responseCamion = camionRepository.save(camion);
 		} catch (Exception e) {
@@ -162,7 +205,7 @@ public class CamionService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseCamion);
 	}
 
-	public ApiResponse delete(Integer id) throws ApiException {
+	public ApiResponse delete(Long id) throws ApiException {
 		Camion tmpCamion = camionRepository.findById(id).orElse(null);
 		logger.debug("Camion: {}", tmpCamion);
 		if (null != tmpCamion) {
