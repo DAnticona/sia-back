@@ -19,6 +19,7 @@ import pe.com.aldesa.aduanero.entity.TipoCamion;
 import pe.com.aldesa.aduanero.exception.ApiException;
 import pe.com.aldesa.aduanero.repository.CamionRepository;
 import pe.com.aldesa.aduanero.repository.TipoCamionRepository;
+import pe.com.aldesa.aduanero.util.NumberUtils;
 
 @Service
 public class CamionService {
@@ -176,7 +177,7 @@ public class CamionService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (null == id || id == 0 || null == codeTipoCamion || StringUtils.isBlank(placa) || StringUtils.isBlank(marca)
+		if (NumberUtils.isNull(id) || null == codeTipoCamion || StringUtils.isBlank(placa) || StringUtils.isBlank(marca)
 				|| StringUtils.isBlank(certificado) || null == largo || null == ancho
 				|| null == alto || null == peso || null == eje) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());

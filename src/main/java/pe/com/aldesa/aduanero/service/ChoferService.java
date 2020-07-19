@@ -118,7 +118,7 @@ public class ChoferService {
 		}
 
 		if (StringUtils.isBlank(numeroLicencia) || StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
-				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
+				|| StringUtils.isBlank(apellidoPaterno)	|| NumberUtils.isNull(idTipoDocumento)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
@@ -169,6 +169,7 @@ public class ChoferService {
 		String email = null;
 		String imagen = null;
 		Integer idTipoDocumento = null;
+		Integer idDireccion = null;
 		
 		try {
 			root = new ObjectMapper().readTree(request);
@@ -206,19 +207,26 @@ public class ChoferService {
 			idTipoDocumento = root.path("idTipoDocumento").asInt();
 			logger.debug("idTipoDocumento: {}", idTipoDocumento);
 			
+			idDireccion = root.findParent("idDireccion").asInt();
+			logger.debug("idDireccion: {}", idDireccion);
+			
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (null == idPersona || idPersona == 0 || StringUtils.isBlank(numeroLicencia) || StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
-				|| StringUtils.isBlank(apellidoPaterno) || StringUtils.isBlank(apellidoMaterno) || StringUtils.isBlank(sexo)
-				|| StringUtils.isBlank(fechaNacimiento) || StringUtils.isBlank(email) || StringUtils.isBlank(imagen)
-				|| null == idTipoDocumento || idTipoDocumento == 0 ) {
+		if (StringUtils.isBlank(numeroLicencia) || StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
+				|| StringUtils.isBlank(apellidoPaterno)	|| NumberUtils.isNotNull(idTipoDocumento)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
 		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		
+		Direccion direccion = null;
+		if (NumberUtils.isNotNull(idDireccion)) {
+			direccion = direccionRepository.findById(idDireccion)
+					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		}
 		
 		try {
 			Chofer chofer = new Chofer();
@@ -232,6 +240,7 @@ public class ChoferService {
 			chofer.setEmail(email);
 			chofer.setImagen(imagen);
 			chofer.setTipoDocumento(tipoDocumento);
+			chofer.setDireccion(direccion);
 			
 			responseChofer = choferRepository.save(chofer);
 		} catch (Exception e) {

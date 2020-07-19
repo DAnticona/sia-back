@@ -17,6 +17,7 @@ import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.entity.TipoCamion;
 import pe.com.aldesa.aduanero.exception.ApiException;
 import pe.com.aldesa.aduanero.repository.TipoCamionRepository;
+import pe.com.aldesa.aduanero.util.NumberUtils;
 
 @Service
 public class TipoCamionService {
@@ -107,7 +108,7 @@ public class TipoCamionService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (id == null || id == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+		if (NumberUtils.isNull(id) || StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		

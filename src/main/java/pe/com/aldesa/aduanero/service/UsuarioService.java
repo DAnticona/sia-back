@@ -122,16 +122,16 @@ public class UsuarioService {
 			imagen = root.path("imagen").asText();
 			logger.debug("imagen: {}", imagen);
 			
-			idDireccion = root.findParent("idDireccion").asInt();
+			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
 			
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol || 
+		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || NumberUtils.isNull(idRol) || 
 				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
-				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
+				|| StringUtils.isBlank(apellidoPaterno)	|| NumberUtils.isNull(idTipoDocumento)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
@@ -171,12 +171,126 @@ public class UsuarioService {
 	}
 
 	public ApiResponse update(String request) throws ApiException {
-		// TODO Auto-generated method stub
-		return null;
+		Usuario responseUser;
+		
+		JsonNode root;
+		String	username = null;
+		String	password = null;
+		Integer	idRol = null;
+		Long idPersona = null;
+		String numeroDocumento = null;
+		String nombres = null;
+		String apellidoPaterno = null;
+		String apellidoMaterno = null;
+		String sexo = null;
+		String fechaNacimiento = null;
+		String email = null;
+		String imagen = null;
+		Integer idTipoDocumento = null;
+		Integer idDireccion = null;
+		
+		try {
+			root = new ObjectMapper().readTree(request);
+			
+			username = root.path("username").asText();
+			logger.debug("username: {}", username);
+			
+			password = root.path("password").asText();
+			
+			idPersona = root.path("idPersona").asLong();
+			
+			idRol = root.path("idRol").asInt();
+			logger.debug("idRol: {}", idRol);
+			
+			idTipoDocumento = root.path("idTipoDocumento").asInt();
+			logger.debug("idTipoDocumento: {}", idTipoDocumento);
+
+			numeroDocumento = root.path("numeroDocumento").asText();
+			logger.debug("numeroDocumento: {}", numeroDocumento);
+			
+			nombres = root.path("nombres").asText();
+			logger.debug("nombres: {}", nombres);
+			
+			apellidoPaterno = root.path("apellidoPaterno").asText();
+			logger.debug("apellidoPaterno: {}", apellidoPaterno);
+			
+			apellidoMaterno = root.path("apellidoMaterno").asText();
+			logger.debug("apellidoMaterno: {}", apellidoMaterno);
+			
+			sexo = root.path("sexo").asText();
+			logger.debug("sexo: {}", sexo);
+			
+			fechaNacimiento = root.path("fechaNacimiento").asText();
+			logger.debug("fechaNacimiento: {}", fechaNacimiento);
+			
+			email = root.path("email").asText();
+			logger.debug("email: {}", email);
+			
+			imagen = root.path("imagen").asText();
+			logger.debug("imagen: {}", imagen);
+			
+			idDireccion = root.findParent("idDireccion").asInt();
+			logger.debug("idDireccion: {}", idDireccion);
+			
+		} catch (JsonProcessingException e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		
+		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || NumberUtils.isNull(idRol) || 
+				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
+				|| StringUtils.isBlank(apellidoPaterno)	|| NumberUtils.isNull(idTipoDocumento)) {
+			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
+		}
+		
+		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
+				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		
+		Rol rol = rolRepository.findById(idRol)
+				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		
+		Direccion direccion = null;
+		if (NumberUtils.isNotNull(idDireccion)) {
+			direccion = direccionRepository.findById(idDireccion)
+					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		}
+		
+		boolean existsUsuario = usuarioRepository.existsById(idPersona);
+		logger.debug("Usuario existe? {}", existsUsuario);
+		if (!existsUsuario) {
+			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+		}
+		
+		try {
+			Usuario usuario = new Usuario();
+			usuario.setIdPersona(idPersona);
+			usuario.setUsername(username);
+			usuario.setPassword(passwordEnconder.encode(password));
+			usuario.setRol(rol);
+			usuario.setNombres(nombres);
+			usuario.setApellidoPaterno(apellidoPaterno);
+			usuario.setApellidoMaterno(apellidoMaterno);
+			usuario.setTipoDocumento(tipoDocumento);
+			usuario.setNumeroDocumento(numeroDocumento);
+			usuario.setSexo(sexo.charAt(0));
+			usuario.setFechaNacimiento(DateUtil.of(fechaNacimiento));
+			usuario.setEmail(email);
+			usuario.setImagen(imagen);
+			usuario.setDireccion(direccion);
+			
+			responseUser = usuarioRepository.save(usuario);
+		} catch (Exception e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseUser);
 	}
 
-	public ApiResponse delete(Integer id) throws ApiException {
-		// TODO Auto-generated method stub
-		return null;
+	public ApiResponse delete(Long id) throws ApiException {
+		Usuario tmpUsuario = usuarioRepository.findById(id).orElse(null);
+		logger.debug("Usuario: {}", tmpUsuario);
+		if (null != tmpUsuario) {
+			usuarioRepository.deleteById(id);
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Usuario " + id + " eliminado");
+		}
+		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 	}
 }

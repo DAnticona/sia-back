@@ -80,16 +80,16 @@ public class UsuarioRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-//	@DeleteMapping("/usuarios/{id}")
-//	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		ApiResponse response;
-//		try {
-//			response = usuarioService.delete(id);
-//		} catch (ApiException e) {
-//			logger.error(e.getMessage(), e);
-//			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-//		}
-//		return ResponseEntity.ok(response);
-//	}
+	@DeleteMapping("/usuarios/{id}")
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		ApiResponse response;
+		try {
+			response = usuarioService.delete(id);
+		} catch (ApiException e) {
+			logger.error(e.getMessage(), e);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(response);
+	}
 
 }
