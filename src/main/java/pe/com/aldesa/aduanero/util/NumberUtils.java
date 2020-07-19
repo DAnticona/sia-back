@@ -1,6 +1,7 @@
 package pe.com.aldesa.aduanero.util;
 
 /**
+ * Operaciones en {@link Number} que son nulas
  * 
  * @author Juan Pablo Canepa Alvarez
  *
