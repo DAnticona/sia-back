@@ -1,11 +1,10 @@
 package pe.com.aldesa.aduanero.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,13 +12,11 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "persona")
-@EntityListeners(AuditingEntityListener.class)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Persona extends Auditable<String> implements Serializable {
 
@@ -29,6 +26,10 @@ public class Persona extends Auditable<String> implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_persona", nullable = false)
 	private Long idPersona;
+
+	@OneToOne
+	@JoinColumn(name = "id_direccion")
+	private Direccion direccion;
 
 	@Column(name = "nu_doc", nullable = false)
 	private String numeroDocumento;
@@ -46,7 +47,7 @@ public class Persona extends Auditable<String> implements Serializable {
 	private Character sexo;
 
 	@Column(name = "fecha_nac")
-	private LocalDate fechaNacimiento;
+	private Date fechaNacimiento;
 
 	@Column(name = "email")
 	private String email;
@@ -106,11 +107,11 @@ public class Persona extends Auditable<String> implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public LocalDate getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -138,12 +139,20 @@ public class Persona extends Auditable<String> implements Serializable {
 		this.tipoDocumento = tipoDocumento;
 	}
 
+	public Direccion getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
+
 	@Override
 	public String toString() {
-		return "Persona [idPersona=" + idPersona + ", numeroDocumento=" + numeroDocumento + ", nombres=" + nombres
-				+ ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", sexo=" + sexo
-				+ ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", imagen=" + imagen
-				+ ", tipoDocumento=" + tipoDocumento + "]";
+		return "Persona [idPersona=" + idPersona + ", idDireccion=" + direccion + ", numeroDocumento=" + numeroDocumento
+				+ ", nombres=" + nombres + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno="
+				+ apellidoMaterno + ", sexo=" + sexo + ", fechaNacimiento=" + fechaNacimiento + ", email=" + email
+				+ ", imagen=" + imagen + ", tipoDocumento=" + tipoDocumento + "]";
 	}
 
 }

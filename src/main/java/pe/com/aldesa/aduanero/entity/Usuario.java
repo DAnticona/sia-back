@@ -4,24 +4,22 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 @Entity
 @Table(name = "usuario", uniqueConstraints = { @UniqueConstraint(columnNames = "username") })
-@EntityListeners(AuditingEntityListener.class)
+@PrimaryKeyJoinColumn(name = "id_persona")
 public class Usuario extends Persona implements Serializable {
 
 	private static final long serialVersionUID = -5566869717098648176L;
 
 	@ManyToOne
 	@JoinColumn(name = "id_rol", nullable = false)
-	private Rol idRol;
+	private Rol rol;
 
 	@Column(name = "username", nullable = false)
 	private String username;
@@ -29,12 +27,12 @@ public class Usuario extends Persona implements Serializable {
 	@Column(name = "passwd", nullable = false)
 	private String password;
 
-	public Rol getIdRol() {
-		return idRol;
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setIdRol(Rol idRol) {
-		this.idRol = idRol;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	public String getUsername() {
@@ -60,7 +58,7 @@ public class Usuario extends Persona implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [idRol=" + idRol + ", username=" + username + ", password=" + password + "]";
+		return "Usuario [rol=" + rol + ", username=" + username + ", password=" + password + "]";
 	}
 
 }

@@ -1,0 +1,182 @@
+package pe.com.aldesa.aduanero.service;
+
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import pe.com.aldesa.aduanero.constant.ApiError;
+import pe.com.aldesa.aduanero.dto.ApiResponse;
+import pe.com.aldesa.aduanero.entity.Direccion;
+import pe.com.aldesa.aduanero.entity.Rol;
+import pe.com.aldesa.aduanero.entity.TipoDocumento;
+import pe.com.aldesa.aduanero.entity.Usuario;
+import pe.com.aldesa.aduanero.exception.ApiException;
+import pe.com.aldesa.aduanero.repository.DireccionRepository;
+import pe.com.aldesa.aduanero.repository.RolRepository;
+import pe.com.aldesa.aduanero.repository.TipoDocumentoRepository;
+import pe.com.aldesa.aduanero.repository.UsuarioRepository;
+import pe.com.aldesa.aduanero.util.DateUtil;
+import pe.com.aldesa.aduanero.util.NumberUtils;
+
+@Service
+public class UsuarioService {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private TipoDocumentoRepository tipoDocumentoRepository;
+	
+	@Autowired
+	private RolRepository rolRepository;
+	
+	@Autowired
+	private DireccionRepository direccionRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEnconder;
+
+	public ApiResponse findAll() throws ApiException {
+		List<Usuario> usuarios = usuarioRepository.findAll();
+		int total = usuarios.size();
+		logger.debug("Total Usuarios: {}", total);
+		if (usuarios.isEmpty()) {
+			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), usuarios, total);
+	}
+
+	public ApiResponse findById(Long id) throws ApiException {
+		Usuario tmpUser = usuarioRepository.findById(id).orElse(null);
+		logger.debug("Usuario: {}", tmpUser);
+		if (null == tmpUser) {
+			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpUser);
+	}
+
+	public ApiResponse save(String request) throws ApiException {
+		Usuario responseUser;
+		
+		JsonNode root;
+		String	username = null;
+		String	password = null;
+		Integer	idRol = null;
+		String numeroDocumento = null;
+		String nombres = null;
+		String apellidoPaterno = null;
+		String apellidoMaterno = null;
+		String sexo = null;
+		String fechaNacimiento = null;
+		String email = null;
+		String imagen = null;
+		Integer idTipoDocumento = null;
+		Integer idDireccion = null;
+		
+		try {
+			root = new ObjectMapper().readTree(request);
+			
+			username = root.path("username").asText();
+			logger.debug("username: {}", username);
+			
+			password = root.path("password").asText();
+			
+			idRol = root.path("idRol").asInt();
+			logger.debug("idRol: {}", idRol);
+			
+			idTipoDocumento = root.path("idTipoDocumento").asInt();
+			logger.debug("idTipoDocumento: {}", idTipoDocumento);
+
+			numeroDocumento = root.path("numeroDocumento").asText();
+			logger.debug("numeroDocumento: {}", numeroDocumento);
+			
+			nombres = root.path("nombres").asText();
+			logger.debug("nombres: {}", nombres);
+			
+			apellidoPaterno = root.path("apellidoPaterno").asText();
+			logger.debug("apellidoPaterno: {}", apellidoPaterno);
+			
+			apellidoMaterno = root.path("apellidoMaterno").asText();
+			logger.debug("apellidoMaterno: {}", apellidoMaterno);
+			
+			sexo = root.path("sexo").asText();
+			logger.debug("sexo: {}", sexo);
+			
+			fechaNacimiento = root.path("fechaNacimiento").asText();
+			logger.debug("fechaNacimiento: {}", fechaNacimiento);
+			
+			email = root.path("email").asText();
+			logger.debug("email: {}", email);
+			
+			imagen = root.path("imagen").asText();
+			logger.debug("imagen: {}", imagen);
+			
+			idDireccion = root.findParent("idDireccion").asInt();
+			logger.debug("idDireccion: {}", idDireccion);
+			
+		} catch (JsonProcessingException e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		
+		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol || 
+				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
+				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
+			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
+		}
+		
+		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
+				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		
+		Rol rol = rolRepository.findById(idRol)
+				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		
+		Direccion direccion = null;
+		if (NumberUtils.isNotNull(idDireccion)) {
+			direccion = direccionRepository.findById(idDireccion)
+					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		}
+		
+		try {
+			Usuario usuario = new Usuario();
+			usuario.setUsername(username);
+			usuario.setPassword(passwordEnconder.encode(password));
+			usuario.setRol(rol);
+			usuario.setNombres(nombres);
+			usuario.setApellidoPaterno(apellidoPaterno);
+			usuario.setApellidoMaterno(apellidoMaterno);
+			usuario.setTipoDocumento(tipoDocumento);
+			usuario.setNumeroDocumento(numeroDocumento);
+			usuario.setSexo(sexo.charAt(0));
+			usuario.setFechaNacimiento(DateUtil.of(fechaNacimiento));
+			usuario.setEmail(email);
+			usuario.setImagen(imagen);
+			usuario.setDireccion(direccion);
+			
+			responseUser = usuarioRepository.save(usuario);
+		} catch (Exception e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseUser);
+	}
+
+	public ApiResponse update(String request) throws ApiException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ApiResponse delete(Integer id) throws ApiException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
