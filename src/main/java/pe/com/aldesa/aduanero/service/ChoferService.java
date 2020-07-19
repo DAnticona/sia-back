@@ -20,7 +20,6 @@ import pe.com.aldesa.aduanero.entity.TipoDocumento;
 import pe.com.aldesa.aduanero.exception.ApiException;
 import pe.com.aldesa.aduanero.repository.ChoferRepository;
 import pe.com.aldesa.aduanero.repository.DireccionRepository;
-import pe.com.aldesa.aduanero.repository.PersonaRepository;
 import pe.com.aldesa.aduanero.repository.TipoDocumentoRepository;
 import pe.com.aldesa.aduanero.util.DateUtil;
 import pe.com.aldesa.aduanero.util.NumberUtils;
@@ -38,9 +37,6 @@ public class ChoferService {
 	
 	@Autowired
 	private DireccionRepository direccionRepository;
-	
-	@Autowired
-	private PersonaRepository personaRepository;
 	
 	public ApiResponse findAll() throws ApiException {
 		List<Chofer> choferes = choferRepository.findAll();
@@ -131,8 +127,6 @@ public class ChoferService {
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
 		
-		Long idPersona = personaRepository.findLastIdPersona();
-		logger.debug("Current idPersona: {}", idPersona);
 		try {
 			Chofer chofer = new Chofer();
 			chofer.setNumeroLicencia(numeroLicencia);
