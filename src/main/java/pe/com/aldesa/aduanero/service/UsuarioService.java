@@ -134,17 +134,22 @@ public class UsuarioService {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
+		logger.debug("Buscando tipo de documento {}", idTipoDocumento);
 		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		logger.debug("Tipo de documento {} encontrado", idTipoDocumento);
 		
+		logger.debug("Buscando rol {}", idRol);
 		Rol rol = rolRepository.findById(idRol)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		logger.debug("Rol {} encontrado", idRol);
 		
 		Direccion direccion = null;
 		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
+		logger.debug("Encontró dirección {} ? {}", idDireccion, (null != direccion));
 		
 		try {
 			Usuario usuario = new Usuario();
@@ -163,6 +168,7 @@ public class UsuarioService {
 			usuario.setDireccion(direccion);
 			
 			responseUser = usuarioRepository.save(usuario);
+			logger.debug("Usuario guardado");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -241,17 +247,22 @@ public class UsuarioService {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
+		logger.debug("Buscando tipo de documento {}", idTipoDocumento);
 		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		logger.debug("Tipo de documento {} encontrado", idTipoDocumento);
 		
+		logger.debug("Buscando rol {}", idRol);
 		Rol rol = rolRepository.findById(idRol)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		logger.debug("Rol {} encontrado", idRol);
 		
 		Direccion direccion = null;
 		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
+		logger.debug("Encontró dirección {} ? {}", idDireccion, (null != direccion));
 		
 		boolean existsUsuario = usuarioRepository.existsById(idPersona);
 		logger.debug("Usuario existe? {}", existsUsuario);
@@ -277,6 +288,7 @@ public class UsuarioService {
 			usuario.setDireccion(direccion);
 			
 			responseUser = usuarioRepository.save(usuario);
+			logger.debug("Usuario actualizado");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -288,6 +300,7 @@ public class UsuarioService {
 		logger.debug("Usuario: {}", tmpUsuario);
 		if (null != tmpUsuario) {
 			usuarioRepository.deleteById(id);
+			logger.debug("Usuario eliminado");
 			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Usuario " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());

@@ -78,6 +78,7 @@ public class TipoDocumentoService {
 			tipoDocumento.setAbreviatura(abreviatura.toUpperCase());
 			
 			responseTipDoc = tipoDocumentoRepository.save(tipoDocumento);
+			logger.debug("Tipo documento guardado");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -118,6 +119,7 @@ public class TipoDocumentoService {
 			tipoDocumento.setAbreviatura(abreviatura.toUpperCase());
 			
 			responseTipDoc = tipoDocumentoRepository.save(tipoDocumento);
+			logger.debug("Tipo documento actualizado");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -129,6 +131,7 @@ public class TipoDocumentoService {
 		logger.debug("Tipo documento: {}", tmpTypeDocument);
 		if (null != tmpTypeDocument) {
 			tipoDocumentoRepository.deleteById(id);
+			logger.debug("Tipo documento eliminado");
 			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Tipo Documento " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
