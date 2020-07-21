@@ -25,7 +25,6 @@ import pe.com.aldesa.aduanero.repository.RolRepository;
 import pe.com.aldesa.aduanero.repository.TipoDocumentoRepository;
 import pe.com.aldesa.aduanero.repository.UsuarioRepository;
 import pe.com.aldesa.aduanero.util.DateUtil;
-import pe.com.aldesa.aduanero.util.NumberUtils;
 
 @Service
 public class UsuarioService {
@@ -129,9 +128,9 @@ public class UsuarioService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || NumberUtils.isNull(idRol) || 
+		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol ||
 				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
-				|| StringUtils.isBlank(apellidoPaterno)	|| NumberUtils.isNull(idTipoDocumento)) {
+				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
@@ -142,7 +141,7 @@ public class UsuarioService {
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		
 		Direccion direccion = null;
-		if (NumberUtils.isNotNull(idDireccion)) {
+		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
@@ -236,9 +235,9 @@ public class UsuarioService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || NumberUtils.isNull(idRol) || 
+		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol ||
 				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
-				|| StringUtils.isBlank(apellidoPaterno)	|| NumberUtils.isNull(idTipoDocumento)) {
+				|| StringUtils.isBlank(apellidoPaterno)	|| idTipoDocumento == 0 || null == idTipoDocumento) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
@@ -249,7 +248,7 @@ public class UsuarioService {
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		
 		Direccion direccion = null;
-		if (NumberUtils.isNotNull(idDireccion)) {
+		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}

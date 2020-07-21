@@ -14,83 +14,77 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
-import pe.com.aldesa.aduanero.entity.TipoCamion;
+import pe.com.aldesa.aduanero.entity.Pais;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.repository.TipoCamionRepository;
+import pe.com.aldesa.aduanero.repository.PaisRepository;
 
 @Service
-public class TipoCamionService {
-	
+public class PaisService {
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private TipoCamionRepository tipoCamionRepository;
+	private PaisRepository paisRepository;
 	
 	@Autowired
-	public TipoCamionService(TipoCamionRepository tipoCamionRepository) {
-		this.tipoCamionRepository = tipoCamionRepository;
+	public PaisService(PaisRepository paisRepository) {
+		this.paisRepository = paisRepository;
 	}
 
 	public ApiResponse findAll() throws ApiException {
-		List<TipoCamion> tiposCamion = tipoCamionRepository.findAll();
-		int total = tiposCamion.size();
-		logger.debug("Total Tipos camiones: {}", total);
-		if (tiposCamion.isEmpty()) {
+		List<Pais> paises = paisRepository.findAll();
+		int total = paises.size();
+		logger.debug("Total Paises: {}", total);
+		if (paises.isEmpty()) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tiposCamion, total);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), paises, total);
 	}
 
 	public ApiResponse findById(Integer id) throws ApiException {
-		TipoCamion tmpTipoCamion = tipoCamionRepository.findById(id).orElse(null);
-		logger.debug("Tipo Camion: {}", tmpTipoCamion);
-		if (null == tmpTipoCamion) {
+		Pais tmpPais = paisRepository.findById(id).orElse(null);
+		logger.debug("Pais: {}", tmpPais);
+		if (null == tmpPais) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpTipoCamion);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpPais);
 	}
 
 	public ApiResponse save(String request) throws ApiException {
-		TipoCamion responseTipoCamion;
+		Pais responsePais;
 		
 		JsonNode root;
 		String	nombre = null;
-		String	abreviatura = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 			
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
 			
-			abreviatura = root.path("abreviatura").asText();
-			logger.debug("abreviatura: {}", abreviatura);
-			
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+		if (StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
 		try {
-			TipoCamion tipoCamion = new TipoCamion();
-			tipoCamion.setNombre(nombre);
-			tipoCamion.setAbreviatura(abreviatura.toUpperCase());
+			Pais pais = new Pais();
+			pais.setNombre(nombre);
 			
-			responseTipoCamion = tipoCamionRepository.save(tipoCamion);
+			responsePais = paisRepository.save(pais);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipoCamion);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responsePais);
 	}
 
 	public ApiResponse update(String request) throws ApiException {
-		TipoCamion responseTipoCamion;
+		Pais responsePais;
 		
 		JsonNode root;
 		Integer	id = null;
 		String	nombre = null;
-		String	abreviatura = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 			
@@ -100,38 +94,33 @@ public class TipoCamionService {
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
 			
-			abreviatura = root.path("abreviatura").asText();
-			logger.debug("abreviatura: {}", abreviatura);
-			
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (null == id || id == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+		if (null == id || id == 0 || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
 		try {
-			TipoCamion tipoCamion = new TipoCamion();
-			tipoCamion.setIdTipoCamion(id);
-			tipoCamion.setNombre(nombre);
-			tipoCamion.setAbreviatura(abreviatura.toUpperCase());
+			Pais pais = new Pais();
+			pais.setIdPais(id);
+			pais.setNombre(nombre);
 			
-			responseTipoCamion = tipoCamionRepository.save(tipoCamion);
+			responsePais = paisRepository.save(pais);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipoCamion);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responsePais);
 	}
 
 	public ApiResponse delete(Integer id) throws ApiException {
-		TipoCamion tmpTipoCamion = tipoCamionRepository.findById(id).orElse(null);
-		logger.debug("Tipo camion: {}", tmpTipoCamion);
-		if (null != tmpTipoCamion) {
-			tipoCamionRepository.deleteById(id);
-			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Tipo camion " + id + " eliminado");
+		Pais tmpPais = paisRepository.findById(id).orElse(null);
+		logger.debug("Pais: {}", tmpPais);
+		if (null != tmpPais) {
+			paisRepository.deleteById(id);
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Pais " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 	}
-
 }

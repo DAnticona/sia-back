@@ -17,7 +17,6 @@ import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.entity.TipoDocumento;
 import pe.com.aldesa.aduanero.exception.ApiException;
 import pe.com.aldesa.aduanero.repository.TipoDocumentoRepository;
-import pe.com.aldesa.aduanero.util.NumberUtils;
 
 @Service
 public class TipoDocumentoService {
@@ -108,7 +107,7 @@ public class TipoDocumentoService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (NumberUtils.isNull(id) || StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+		if (null == id || id == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		

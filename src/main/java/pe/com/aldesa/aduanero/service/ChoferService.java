@@ -22,7 +22,6 @@ import pe.com.aldesa.aduanero.repository.ChoferRepository;
 import pe.com.aldesa.aduanero.repository.DireccionRepository;
 import pe.com.aldesa.aduanero.repository.TipoDocumentoRepository;
 import pe.com.aldesa.aduanero.util.DateUtil;
-import pe.com.aldesa.aduanero.util.NumberUtils;
 
 @Service
 public class ChoferService {
@@ -114,7 +113,7 @@ public class ChoferService {
 		}
 
 		if (StringUtils.isBlank(numeroLicencia) || StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
-				|| StringUtils.isBlank(apellidoPaterno)	|| NumberUtils.isNull(idTipoDocumento)) {
+				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
@@ -122,7 +121,7 @@ public class ChoferService {
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		
 		Direccion direccion = null;
-		if (NumberUtils.isNotNull(idDireccion)) {
+		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
@@ -209,7 +208,7 @@ public class ChoferService {
 		}
 		
 		if (StringUtils.isBlank(numeroLicencia) || StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
-				|| StringUtils.isBlank(apellidoPaterno)	|| NumberUtils.isNotNull(idTipoDocumento)) {
+				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
@@ -217,7 +216,7 @@ public class ChoferService {
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		
 		Direccion direccion = null;
-		if (NumberUtils.isNotNull(idDireccion)) {
+		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}

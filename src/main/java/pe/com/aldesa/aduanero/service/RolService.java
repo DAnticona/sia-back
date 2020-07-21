@@ -17,7 +17,6 @@ import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.entity.Rol;
 import pe.com.aldesa.aduanero.exception.ApiException;
 import pe.com.aldesa.aduanero.repository.RolRepository;
-import pe.com.aldesa.aduanero.util.NumberUtils;
 
 @Service
 public class RolService {
@@ -99,7 +98,7 @@ public class RolService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		
-		if (NumberUtils.isNull(id) || StringUtils.isBlank(nombre)) {
+		if (null == id || id == 0 || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 		
