@@ -17,26 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.dto.ErrorResponse;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.service.CiudadService;
+import pe.com.aldesa.aduanero.service.EmpresaService;
 
 @RestController
 @RequestMapping("/v1")
-public class CiudadRestController {
+public class EmpresaRestController {
 	
-private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private CiudadService ciudadService;
+	private EmpresaService empresaService;
 	
 	@Autowired
-	public CiudadRestController(CiudadService ciudadService) {
-		this.ciudadService = ciudadService;
+	public EmpresaRestController(EmpresaService empresaService) {
+		this.empresaService = empresaService;
 	}
 	
-	@GetMapping("/ciudades")
+	@GetMapping("/empresas")
 	public ResponseEntity<?> findAll() {
 		ApiResponse response = null;
 		try {
-			response = ciudadService.findAll();
+			response = empresaService.findAll();
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
@@ -44,11 +44,11 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return ResponseEntity.ok(response);
 	}
 	
-	@GetMapping("/ciudades/{id}")
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
+	@GetMapping("/empresas/{id}")
+	public ResponseEntity<?> findById(@PathVariable Long id) {
 		ApiResponse response;
 		try {
-			response = ciudadService.findById(id);
+			response = empresaService.findById(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
@@ -56,11 +56,11 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return ResponseEntity.ok(response);
 	}
 	
-	@PostMapping("/ciudades")
+	@PostMapping("/empresas")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
 		try {
-			response = ciudadService.save(request);
+			response = empresaService.save(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
@@ -68,11 +68,11 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return ResponseEntity.ok(response);
 	}
 	
-	@PutMapping("/ciudades")
+	@PutMapping("/empresas")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
 		try {
-			response = ciudadService.update(request);
+			response = empresaService.update(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
@@ -80,11 +80,11 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 		return ResponseEntity.ok(response);
 	}
 	
-	@DeleteMapping("/ciudades/{id}")
-	public ResponseEntity<?> delete(@PathVariable Integer id) {
+	@DeleteMapping("/empresas/{id}")
+	public ResponseEntity<?> delete(@PathVariable Long id) {
 		ApiResponse response;
 		try {
-			response = ciudadService.delete(id);
+			response = empresaService.delete(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);

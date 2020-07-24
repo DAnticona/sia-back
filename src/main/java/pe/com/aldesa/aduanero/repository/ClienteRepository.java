@@ -3,9 +3,9 @@ package pe.com.aldesa.aduanero.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pe.com.aldesa.aduanero.entity.Ciudad;
+import pe.com.aldesa.aduanero.entity.Cliente;
 
 @Repository
-public interface CiudadRepository extends JpaRepository<Ciudad, Integer> {
+public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
 }

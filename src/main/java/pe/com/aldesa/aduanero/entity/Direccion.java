@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,10 +22,6 @@ public class Direccion extends Auditable<String> implements Serializable {
 
 	@Column(name = "direccion")
 	private String descripcion;
-
-	@ManyToOne
-	@JoinColumn(name = "id_ciudad", nullable = false)
-	private Ciudad ciudad;
 
 	public Integer getIdDireccion() {
 		return idDireccion;
@@ -45,17 +39,9 @@ public class Direccion extends Auditable<String> implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Ciudad getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(Ciudad ciudad) {
-		this.ciudad = ciudad;
-	}
-
 	@Override
 	public String toString() {
-		return "Direccion [idDireccion=" + idDireccion + ", descripcion=" + descripcion + ", ciudad=" + ciudad + "]";
+		return "Direccion [idDireccion=" + idDireccion + ", descripcion=" + descripcion + "]";
 	}
 
 }
