@@ -14,10 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
-import pe.com.aldesa.aduanero.entity.Moneda;
 import pe.com.aldesa.aduanero.entity.TipoComprobante;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.repository.MonedaRepository;
 import pe.com.aldesa.aduanero.repository.TipoComprobanteRepository;
 
 @Service
@@ -92,67 +90,67 @@ public class TipoComprobanteService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipoComprobante);
 	}
 	
-//	public ApiResponse update(String request) throws ApiException {
-//		TipoComprobante responseTipoComprobante;
-//		
-//		JsonNode root;
-//		Integer	id = null;
-//		String	nombre = null;
-//		String	simbolo = null;
-//		String	abreviatura = null;
-//		try {
-//			root = new ObjectMapper().readTree(request);
-//			
-//			id = root.path("id").asInt();
-//			logger.debug("id: {}", id);
-//			
-//			nombre = root.path("nombre").asText();
-//			logger.debug("nombre: {}", nombre);
-//			
-//			simbolo = root.path("simbolo").asText();
-//			logger.debug("simbolo: {}", simbolo);
-//			
-//			abreviatura = root.path("abreviatura").asText();
-//			logger.debug("abreviatura: {}", abreviatura);
-//			
-//		} catch (JsonProcessingException e) {
-//			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
-//		}
-//		
-//		if (null == id || id == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(simbolo) || StringUtils.isBlank(abreviatura)) {
-//			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
-//		}
-//		
-//		boolean existsMoneda = tipoComprobanteRepository.existsById(id);
-//		logger.debug("Existe Moneda? {}", existsMoneda);
-//		if (!existsMoneda) {
-//			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-//		}
-//		
-//		try {
-//			Moneda moneda = new Moneda();
-//			moneda.setIdMoneda(id);
-//			moneda.setNombre(nombre);
-//			moneda.setSimbolo(simbolo);
-//			moneda.setAbreviatura(abreviatura.toUpperCase());
-//			
-//			responseTipoComprobante = tipoComprobanteRepository.save(moneda);
-//			logger.debug("Moneda actualizada");
-//		} catch (Exception e) {
-//			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
-//		}
-//		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipoComprobante);
-//	}
-//	
-//	public ApiResponse delete(Integer id) throws ApiException {
-//		Moneda tmpMoneda = tipoComprobanteRepository.findById(id).orElse(null);
-//		logger.debug("Moneda: {}", tmpMoneda);
-//		if (null != tmpMoneda) {
-//			tipoComprobanteRepository.deleteById(id);
-//			logger.debug("Moneda eliminada");
-//			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Moneda " + id + " eliminado");
-//		}
-//		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-//	}
+	public ApiResponse update(String request) throws ApiException {
+		TipoComprobante responseTipoComprobante;
+		
+		JsonNode root;
+		Integer	id = null;
+		String	nombre = null;
+		Integer	tipoSunat = null;
+		String	abreviatura = null;
+		try {
+			root = new ObjectMapper().readTree(request);
+			
+			id = root.path("id").asInt();
+			logger.debug("id: {}", id);
+			
+			nombre = root.path("nombre").asText();
+			logger.debug("nombre: {}", nombre);
+			
+			tipoSunat = root.path("tipoSunat").asInt();
+			logger.debug("simbolo: {}", tipoSunat);
+			
+			abreviatura = root.path("abreviatura").asText();
+			logger.debug("abreviatura: {}", abreviatura);
+			
+		} catch (JsonProcessingException e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		
+		if (null == id || id == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
+		}
+		
+		boolean existsTipoComprobante = tipoComprobanteRepository.existsById(id);
+		logger.debug("Existe TipoComprobante? {}", existsTipoComprobante);
+		if (!existsTipoComprobante) {
+			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+		}
+		
+		try {
+			TipoComprobante tipoComprobante = new TipoComprobante();
+			tipoComprobante.setIdTipoComprobante(id);
+			tipoComprobante.setNombre(nombre);
+			tipoComprobante.setAbreviatura(abreviatura.toUpperCase());
+			tipoComprobante.setTipoSunat(tipoSunat);
+			
+			responseTipoComprobante = tipoComprobanteRepository.save(tipoComprobante);
+			logger.debug("TipoComprobante actualizado");
+		} catch (Exception e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseTipoComprobante);
+	}
+	
+	public ApiResponse delete(Integer id) throws ApiException {
+		TipoComprobante tmpTipoComprobante = tipoComprobanteRepository.findById(id).orElse(null);
+		logger.debug("TipoComprobante: {}", tmpTipoComprobante);
+		if (null != tmpTipoComprobante) {
+			tipoComprobanteRepository.deleteById(id);
+			logger.debug("TipoComprobante eliminado");
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "TipoComprobante " + id + " eliminado");
+		}
+		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+	}
 	
 }
