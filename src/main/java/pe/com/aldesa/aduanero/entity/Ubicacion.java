@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,19 +21,64 @@ public class Ubicacion extends Auditable<String> implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_ubicacion")
 	private Long idUbicacion;
-	
-	// TODO
-	@Column(name = "id_area")
+
+	@ManyToOne
+	@JoinColumn(name = "id_area", nullable = false)
 	private Area area;
 
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@Column(name = "abrev")
+	@Column(name = "abrev", nullable = false)
 	private String abreviatura;
-	
+
 	@Column(name = "nu_rack")
 	private Integer numeroRack;
 
+	public Long getIdUbicacion() {
+		return idUbicacion;
+	}
+
+	public void setIdUbicacion(Long idUbicacion) {
+		this.idUbicacion = idUbicacion;
+	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getAbreviatura() {
+		return abreviatura;
+	}
+
+	public void setAbreviatura(String abreviatura) {
+		this.abreviatura = abreviatura;
+	}
+
+	public Integer getNumeroRack() {
+		return numeroRack;
+	}
+
+	public void setNumeroRack(Integer numeroRack) {
+		this.numeroRack = numeroRack;
+	}
+
+	@Override
+	public String toString() {
+		return "Ubicacion [idUbicacion=" + idUbicacion + ", area=" + area + ", nombre=" + nombre + ", abreviatura="
+				+ abreviatura + ", numeroRack=" + numeroRack + "]";
+	}
 
 }

@@ -1,0 +1,171 @@
+package pe.com.aldesa.aduanero.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import pe.com.aldesa.aduanero.constant.ApiError;
+import pe.com.aldesa.aduanero.dto.ApiResponse;
+import pe.com.aldesa.aduanero.entity.Area;
+import pe.com.aldesa.aduanero.entity.Ubicacion;
+import pe.com.aldesa.aduanero.exception.ApiException;
+import pe.com.aldesa.aduanero.repository.AreaRepository;
+import pe.com.aldesa.aduanero.repository.UbicacionRepository;
+
+@Service
+public class UbicacionService {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
+	private UbicacionRepository ubicacionRepository;
+
+	@Autowired
+	private AreaRepository areaRepository;
+
+	public ApiResponse findAll() throws ApiException {
+		List<Ubicacion> ubicaciones = ubicacionRepository.findAll();
+		int total = ubicaciones.size();
+		logger.debug("Total Ubicaciones: {}", total);
+		if (ubicaciones.isEmpty()) {
+			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), ubicaciones, total);
+	}
+
+	public ApiResponse findById(Long id) throws ApiException {
+		Ubicacion tmpUbicacion = ubicacionRepository.findById(id).orElse(null);
+		logger.debug("Ubicacion: {}", tmpUbicacion);
+		if (null == tmpUbicacion) {
+			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpUbicacion);
+	}
+
+	public ApiResponse save(String request) throws ApiException {
+		Ubicacion responseUbicacion;
+
+		JsonNode root;
+		Integer idArea = null;
+		String nombre = null;
+		String abreviatura = null;
+		Integer numeroRack = null;
+
+		try {
+			root = new ObjectMapper().readTree(request);
+
+			idArea = root.path("idArea").asInt();
+			logger.debug("idArea: {}", idArea);
+
+			nombre = root.path("nombre").asText();
+			logger.debug("nombre: {}", nombre);
+
+			abreviatura = root.path("abreviatura").asText();
+			logger.debug("abreviatura: {}", abreviatura);
+
+			numeroRack = root.path("numeroRack").asInt();
+			logger.debug("numeroRack: {}", numeroRack);
+
+		} catch (JsonProcessingException e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+
+		if (null == idArea || idArea == 0 || StringUtils.isBlank(nombre)
+				|| StringUtils.isBlank(abreviatura) || null == numeroRack || numeroRack == 0) {
+			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
+		}
+
+		Optional<Area> opArea = areaRepository.findById(idArea);
+		logger.debug("Area: {}", opArea);
+		if (!opArea.isPresent()) throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+
+		try {
+			Ubicacion ubicacion = new Ubicacion();
+			ubicacion.setArea(opArea.get());
+			ubicacion.setAbreviatura(abreviatura);
+			ubicacion.setNombre(nombre);
+			ubicacion.setNumeroRack(numeroRack);
+
+			responseUbicacion = ubicacionRepository.save(ubicacion);
+		} catch (Exception e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseUbicacion);
+	}
+
+	public ApiResponse update(String request) throws ApiException {
+		Ubicacion responseUbicacion;
+
+		JsonNode root;
+		Long id = null;
+		Integer idArea = null;
+		String nombre = null;
+		String abreviatura = null;
+		Integer numeroRack = null;
+
+		try {
+			root = new ObjectMapper().readTree(request);
+
+			id = root.path("id").asLong();
+			logger.debug("id: {}", id);
+
+			idArea = root.path("idArea").asInt();
+			logger.debug("idArea: {}", idArea);
+
+			nombre = root.path("nombre").asText();
+			logger.debug("nombre: {}", nombre);
+
+			abreviatura = root.path("abreviatura").asText();
+			logger.debug("abreviatura: {}", abreviatura);
+
+			numeroRack = root.path("numeroRack").asInt();
+			logger.debug("numeroRack: {}", numeroRack);
+
+		} catch (JsonProcessingException e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+
+		if (null == id || id == 0 || null == idArea || idArea == 0 || StringUtils.isBlank(nombre)
+				|| StringUtils.isBlank(abreviatura) || null == numeroRack || numeroRack == 0) {
+			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
+		}
+
+		Optional<Area> opArea = areaRepository.findById(idArea);
+		logger.debug("Area: {}", opArea);
+		if (!opArea.isPresent()) throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+
+		try {
+			Ubicacion ubicacion = new Ubicacion();
+			ubicacion.setIdUbicacion(id);
+			ubicacion.setArea(opArea.get());
+			ubicacion.setAbreviatura(abreviatura);
+			ubicacion.setNombre(nombre);
+			ubicacion.setNumeroRack(numeroRack);
+
+			responseUbicacion = ubicacionRepository.save(ubicacion);
+		} catch (Exception e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseUbicacion);
+	}
+
+	public ApiResponse delete(Long id) throws ApiException {
+		Ubicacion tmpUbicacion = ubicacionRepository.findById(id).orElse(null);
+		logger.debug("Ubicacion: {}", tmpUbicacion);
+		if (null != tmpUbicacion) {
+			ubicacionRepository.deleteById(id);
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Ubicacion " + id + " eliminado");
+		}
+		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+	}
+
+}
