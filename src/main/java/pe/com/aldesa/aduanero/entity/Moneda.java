@@ -20,7 +20,7 @@ public class Moneda extends Auditable<String> implements Serializable {
 	@Column(name = "id_moneda")
 	private Integer idMoneda;
 
-	@Column(name = "nombre", nullable = false)
+	@Column(name = "nombre", nullable = false, length = 20)
 	private String nombre;
 
 	@Column(name = "simbolo", nullable = false)
@@ -28,6 +28,9 @@ public class Moneda extends Auditable<String> implements Serializable {
 
 	@Column(name = "abrev", nullable = false)
 	private String abreviatura;
+
+	@Column(name = "cod_divisa", nullable = false, length = 3)
+	private String codigoDivisa;
 
 	public Integer getIdMoneda() {
 		return idMoneda;
@@ -61,10 +64,18 @@ public class Moneda extends Auditable<String> implements Serializable {
 		this.abreviatura = abreviatura;
 	}
 
+	public String getCodigoDivisa() {
+		return codigoDivisa;
+	}
+
+	public void setCodigoDivisa(String codigoDivisa) {
+		this.codigoDivisa = codigoDivisa;
+	}
+
 	@Override
 	public String toString() {
 		return "Moneda [idMoneda=" + idMoneda + ", nombre=" + nombre + ", simbolo=" + simbolo + ", abreviatura="
-				+ abreviatura + "]";
+				+ abreviatura + ", codigoDivisa=" + codigoDivisa + "]";
 	}
 
 }
