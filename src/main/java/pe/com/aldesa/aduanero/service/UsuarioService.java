@@ -28,21 +28,21 @@ import pe.com.aldesa.aduanero.util.DateUtil;
 
 @Service
 public class UsuarioService {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Autowired
 	private TipoDocumentoRepository tipoDocumentoRepository;
-	
+
 	@Autowired
 	private RolRepository rolRepository;
-	
+
 	@Autowired
 	private DireccionRepository direccionRepository;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEnconder;
 
@@ -67,7 +67,7 @@ public class UsuarioService {
 
 	public ApiResponse save(String request) throws ApiException {
 		Usuario responseUser;
-		
+
 		JsonNode root;
 		String	username = null;
 		String	password = null;
@@ -82,75 +82,75 @@ public class UsuarioService {
 		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
-		
+
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			username = root.path("username").asText();
 			logger.debug("username: {}", username);
-			
+
 			password = root.path("password").asText();
-			
+
 			idRol = root.path("idRol").asInt();
 			logger.debug("idRol: {}", idRol);
-			
+
 			idTipoDocumento = root.path("idTipoDocumento").asInt();
 			logger.debug("idTipoDocumento: {}", idTipoDocumento);
 
 			numeroDocumento = root.path("numeroDocumento").asText();
 			logger.debug("numeroDocumento: {}", numeroDocumento);
-			
+
 			nombres = root.path("nombres").asText();
 			logger.debug("nombres: {}", nombres);
-			
+
 			apellidoPaterno = root.path("apellidoPaterno").asText();
 			logger.debug("apellidoPaterno: {}", apellidoPaterno);
-			
+
 			apellidoMaterno = root.path("apellidoMaterno").asText();
 			logger.debug("apellidoMaterno: {}", apellidoMaterno);
-			
+
 			sexo = root.path("sexo").asText();
 			logger.debug("sexo: {}", sexo);
-			
+
 			fechaNacimiento = root.path("fechaNacimiento").asText();
 			logger.debug("fechaNacimiento: {}", fechaNacimiento);
-			
+
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
-			
+
 			imagen = root.path("imagen").asText();
 			logger.debug("imagen: {}", imagen);
-			
+
 			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol ||
 				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
 				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		logger.debug("Buscando tipo de documento {}", idTipoDocumento);
 		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		logger.debug("Tipo de documento {} encontrado", idTipoDocumento);
-		
+
 		logger.debug("Buscando rol {}", idRol);
 		Rol rol = rolRepository.findById(idRol)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		logger.debug("Rol {} encontrado", idRol);
-		
+
 		Direccion direccion = null;
-		if (null != idDireccion) {
+		if (idDireccion != 0) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
 		logger.debug("Encontró dirección {} ? {}", idDireccion, (null != direccion));
-		
+
 		try {
 			Usuario usuario = new Usuario();
 			usuario.setUsername(username);
@@ -166,7 +166,7 @@ public class UsuarioService {
 			usuario.setEmail(email);
 			usuario.setImagen(imagen);
 			usuario.setDireccion(direccion);
-			
+
 			responseUser = usuarioRepository.save(usuario);
 			logger.debug("Usuario guardado");
 		} catch (Exception e) {
@@ -177,7 +177,7 @@ public class UsuarioService {
 
 	public ApiResponse update(String request) throws ApiException {
 		Usuario responseUser;
-		
+
 		JsonNode root;
 		String	username = null;
 		String	password = null;
@@ -193,83 +193,83 @@ public class UsuarioService {
 		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
-		
+
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			username = root.path("username").asText();
 			logger.debug("username: {}", username);
-			
+
 			password = root.path("password").asText();
-			
+
 			idPersona = root.path("idPersona").asLong();
-			
+
 			idRol = root.path("idRol").asInt();
 			logger.debug("idRol: {}", idRol);
-			
+
 			idTipoDocumento = root.path("idTipoDocumento").asInt();
 			logger.debug("idTipoDocumento: {}", idTipoDocumento);
 
 			numeroDocumento = root.path("numeroDocumento").asText();
 			logger.debug("numeroDocumento: {}", numeroDocumento);
-			
+
 			nombres = root.path("nombres").asText();
 			logger.debug("nombres: {}", nombres);
-			
+
 			apellidoPaterno = root.path("apellidoPaterno").asText();
 			logger.debug("apellidoPaterno: {}", apellidoPaterno);
-			
+
 			apellidoMaterno = root.path("apellidoMaterno").asText();
 			logger.debug("apellidoMaterno: {}", apellidoMaterno);
-			
+
 			sexo = root.path("sexo").asText();
 			logger.debug("sexo: {}", sexo);
-			
+
 			fechaNacimiento = root.path("fechaNacimiento").asText();
 			logger.debug("fechaNacimiento: {}", fechaNacimiento);
-			
+
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
-			
+
 			imagen = root.path("imagen").asText();
 			logger.debug("imagen: {}", imagen);
-			
+
 			idDireccion = root.findParent("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol ||
 				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
 				|| StringUtils.isBlank(apellidoPaterno)	|| idTipoDocumento == 0 || null == idTipoDocumento) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		logger.debug("Buscando tipo de documento {}", idTipoDocumento);
 		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		logger.debug("Tipo de documento {} encontrado", idTipoDocumento);
-		
+
 		logger.debug("Buscando rol {}", idRol);
 		Rol rol = rolRepository.findById(idRol)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		logger.debug("Rol {} encontrado", idRol);
-		
+
 		Direccion direccion = null;
 		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
 		logger.debug("Encontró dirección {} ? {}", idDireccion, (null != direccion));
-		
+
 		boolean existsUsuario = usuarioRepository.existsById(idPersona);
 		logger.debug("Usuario existe? {}", existsUsuario);
 		if (!existsUsuario) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		
+
 		try {
 			Usuario usuario = new Usuario();
 			usuario.setIdPersona(idPersona);
@@ -286,7 +286,7 @@ public class UsuarioService {
 			usuario.setEmail(email);
 			usuario.setImagen(imagen);
 			usuario.setDireccion(direccion);
-			
+
 			responseUser = usuarioRepository.save(usuario);
 			logger.debug("Usuario actualizado");
 		} catch (Exception e) {
