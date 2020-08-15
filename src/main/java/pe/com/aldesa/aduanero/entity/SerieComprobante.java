@@ -20,7 +20,7 @@ public class SerieComprobante implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_ticomprobante")
+	@Column(name = "id_serie")
 	private Integer idSerieComprobante;
 
 	@ManyToOne
