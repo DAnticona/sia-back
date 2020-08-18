@@ -1,9 +1,13 @@
 package pe.com.aldesa.aduanero.security.auth.web;
 
+import java.util.List;
+
+import pe.com.aldesa.aduanero.dto.MenuContext;
+
 /**
  * Esta clase contiene todos los campos de un usuario autorizado y serán parte
  * de la respuesta Http durante el proceso de autenticación
- * 
+ *
  * @author Juan Pablo Canepa Alvarez
  *
  */
@@ -15,6 +19,7 @@ public class AuthUserData {
 	private String email;
 	private String username;
 	private String rol;
+	private List<MenuContext> menu;
 
 	public Long getId() {
 		return id;
@@ -62,6 +67,14 @@ public class AuthUserData {
 
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+
+	public List<MenuContext> getMenu() {
+		return menu;
+	}
+
+	public void setMenus(List<MenuContext> menu) {
+		this.menu = menu;
 	}
 
 }

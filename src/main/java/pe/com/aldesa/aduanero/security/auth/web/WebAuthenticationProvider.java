@@ -32,51 +32,51 @@ import pe.com.aldesa.aduanero.util.WebUtil;
  * <li>Crea un {@link UserContext} con los datos necesarios (usuario y privilegios)</li>
  * <li>Luego de la autenticación delega la creación del JWT token en {@link WebAwareAuthenticationSuccessHandler}</li>
  * </ol>
- * 
+ *
  * @author Juan Pablo Canepa Alvarez
  *
  */
 @Component
 public class WebAuthenticationProvider implements AuthenticationProvider {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebAuthenticationProvider.class);
-	
+
 	private final BCryptPasswordEncoder encoder;
-    private final AuthorizationService userService;
-    
-    @Autowired
-    public WebAuthenticationProvider(final AuthorizationService userService, final BCryptPasswordEncoder encoder) {
-        this.userService = userService;
-        this.encoder = encoder;
-    }
+	private final AuthorizationService userService;
+
+	@Autowired
+	public WebAuthenticationProvider(final AuthorizationService userService, final BCryptPasswordEncoder encoder) {
+		this.userService = userService;
+		this.encoder = encoder;
+	}
 
 	@Override
 	public Authentication authenticate(Authentication authentication) {
 		Assert.notNull(authentication, "No se proporcionaron datos de autenticación");
 
-        String username = (String) authentication.getPrincipal();
-        String password = (String) authentication.getCredentials();
-        
-        LOGGER.info("Username: {}", username);
+		String username = (String) authentication.getPrincipal();
+		String password = (String) authentication.getCredentials();
 
-        Usuario usuario = userService.loadUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
-        
-        if (!encoder.matches(password, usuario.getPassword())) {
-            throw new BadCredentialsException("Autenticación falló. Username o Password no válido.");
-        }
+		LOGGER.info("Username: {}", username);
 
-        AuthUserData authUser = WebUtil.getAuthUser(usuario);
-        
-        if (authUser.getRol() == null) 
-        	throw new InsufficientAuthenticationException("User no tiene rol asignados");
-        
-        List<GrantedAuthority> authorities = Arrays.asList(authUser.getRol()).stream()
-                .map(authority -> new SimpleGrantedAuthority(authUser.getRol()))
-                .collect(Collectors.toList());
-        
-        UserContext userContext = UserContext.create(usuario.getUsername(), authorities, authUser);
-        
-        return new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
+		Usuario usuario = userService.loadUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
+
+		if (!encoder.matches(password, usuario.getPassword())) {
+			throw new BadCredentialsException("Autenticación falló. Username o Password no válido.");
+		}
+
+		AuthUserData authUser = WebUtil.getAuthUser(usuario);
+
+		if (authUser.getRol() == null)
+			throw new InsufficientAuthenticationException("User no tiene rol asignados");
+
+		List<GrantedAuthority> authorities = Arrays.asList(authUser.getRol()).stream()
+				.map(authority -> new SimpleGrantedAuthority(authUser.getRol()))
+				.collect(Collectors.toList());
+
+		UserContext userContext = UserContext.create(usuario.getUsername(), authorities, authUser);
+
+		return new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
 	}
 
 	@Override
