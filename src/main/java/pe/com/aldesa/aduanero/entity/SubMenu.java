@@ -29,6 +29,9 @@ public class SubMenu extends Auditable<String> implements Serializable {
 	@JoinColumn(name = "id_menu", nullable = false)
 	private Menu menu;
 
+	@Column(name = "nu_orden")
+	private Integer numeroOrden;
+
 	public SubmenuId getSubmenuId() {
 		return submenuId;
 	}
@@ -53,11 +56,17 @@ public class SubMenu extends Auditable<String> implements Serializable {
 		this.menu = menu;
 	}
 
-	@Override
-	public String toString() {
-		return "SubMenu [submenuId=" + submenuId + ", nombre=" + nombre + "]";
+	public Integer getNumeroOrden() {
+		return numeroOrden;
 	}
 
+	public void setNumeroOrden(Integer numeroOrden) {
+		this.numeroOrden = numeroOrden;
+	}
 
+	@Override
+	public String toString() {
+		return "SubMenu [submenuId=" + submenuId + ", nombre=" + nombre + ", numeroOrden=" + numeroOrden + "]";
+	}
 
 }

@@ -61,6 +61,7 @@ public class WebUtil {
 				SubmenuContext smContext = new SubmenuContext();
 				smContext.setId(sm.getSubmenuId().getIdSubmenu());
 				smContext.setNombre(sm.getNombre());
+				smContext.setOrden(sm.getNumeroOrden());
 
 				listSmContext.add(smContext);
 			}

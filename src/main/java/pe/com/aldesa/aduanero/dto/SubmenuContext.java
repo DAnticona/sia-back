@@ -4,6 +4,7 @@ public class SubmenuContext {
 
 	private Integer id;
 	private String nombre;
+	private Integer orden;
 
 	public Integer getId() {
 		return id;
@@ -19,6 +20,14 @@ public class SubmenuContext {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Integer getOrden() {
+		return orden;
+	}
+
+	public void setOrden(Integer orden) {
+		this.orden = orden;
 	}
 
 }
