@@ -100,12 +100,22 @@ public class ClienteService {
 			logger.debug("Persona {} encontrado", idPersona);
 		}
 
+		// Valida que no se vuelva a repetir la combibanación tipoPersona con Persona
+		if (null != tipoPersona && null != persona) {
+			throw new ApiException(ApiError.ALREADY_EXISTS.getCode(), ApiError.ALREADY_EXISTS.getMessage());
+		}
+
 		Empresa empresa = null;
 		if (PersonType.LEGAL.equals(idTipoPersona)) {
 			logger.debug("Buscando empresa {}", idEmpresa);
 			empresa = empresaRepository.findById(idEmpresa)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 			logger.debug("Empresa {} encontrado", idEmpresa);
+		}
+
+		// Valida que no se vuelva a repetir la combibanación tipoPersona con Empresa
+		if (null != tipoPersona && null != empresa) {
+			throw new ApiException(ApiError.ALREADY_EXISTS.getCode(), ApiError.ALREADY_EXISTS.getMessage());
 		}
 
 		try {
