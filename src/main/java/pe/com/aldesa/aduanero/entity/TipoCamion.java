@@ -11,14 +11,14 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tipo_camion", uniqueConstraints = { @UniqueConstraint(columnNames = "abrev") })
+@Table(name = "tipo_vehiculo", uniqueConstraints = { @UniqueConstraint(columnNames = "abrev") })
 public class TipoCamion extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = 187378428064186040L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_ticamion")
+	@Column(name = "id_tivehiculo")
 	private Integer idTipoCamion;
 
 	@Column(name = "nombre", nullable = false)
