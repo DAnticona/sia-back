@@ -50,6 +50,7 @@ public class WebUtil {
 			mContext.setId(m.getIdMenu());
 			mContext.setNombre(m.getNombre());
 			mContext.setOrden(m.getNumeroOrden());
+			mContext.setIcono(m.getIcono());
 
 			Set<SubMenu> submenus = m.getSubmenus();
 			logger.debug("Total de Submenus: {}", submenus.size());
@@ -62,6 +63,7 @@ public class WebUtil {
 				smContext.setId(sm.getSubmenuId().getIdSubmenu());
 				smContext.setNombre(sm.getNombre());
 				smContext.setOrden(sm.getNumeroOrden());
+				smContext.setRuta(sm.getRuta());
 
 				listSmContext.add(smContext);
 			}

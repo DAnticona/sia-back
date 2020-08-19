@@ -32,6 +32,9 @@ public class SubMenu extends Auditable<String> implements Serializable {
 	@Column(name = "nu_orden")
 	private Integer numeroOrden;
 
+	@Column(name = "ruta")
+	private String ruta;
+
 	public SubmenuId getSubmenuId() {
 		return submenuId;
 	}
@@ -64,9 +67,17 @@ public class SubMenu extends Auditable<String> implements Serializable {
 		this.numeroOrden = numeroOrden;
 	}
 
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
+	}
+
 	@Override
 	public String toString() {
-		return "SubMenu [submenuId=" + submenuId + ", nombre=" + nombre + ", numeroOrden=" + numeroOrden + "]";
+		return "SubMenu [submenuId=" + submenuId + ", nombre=" + nombre + ", numeroOrden=" + numeroOrden + ", ruta=" + ruta + "]";
 	}
 
 }

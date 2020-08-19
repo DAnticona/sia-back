@@ -8,6 +8,7 @@ public class MenuContext {
 	private String nombre;
 	private Integer orden;
 	private List<SubmenuContext> submenu;
+	private String icono;
 
 	public Integer getId() {
 		return id;
@@ -39,6 +40,14 @@ public class MenuContext {
 
 	public void setSubmenu(List<SubmenuContext> submenu) {
 		this.submenu = submenu;
+	}
+
+	public String getIcono() {
+		return icono;
+	}
+
+	public void setIcono(String icono) {
+		this.icono = icono;
 	}
 
 }

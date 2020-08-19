@@ -5,6 +5,7 @@ public class SubmenuContext {
 	private Integer id;
 	private String nombre;
 	private Integer orden;
+	private String ruta;
 
 	public Integer getId() {
 		return id;
@@ -28,6 +29,14 @@ public class SubmenuContext {
 
 	public void setOrden(Integer orden) {
 		this.orden = orden;
+	}
+
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
 	}
 
 }

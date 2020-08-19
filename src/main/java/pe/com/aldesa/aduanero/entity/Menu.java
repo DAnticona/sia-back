@@ -39,6 +39,9 @@ public class Menu extends Auditable<String> implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "menu")
 	private Set<SubMenu> submenus;
 
+	@Column(name = "icono")
+	private String icono;
+
 	public Integer getIdMenu() {
 		return idMenu;
 	}
@@ -79,9 +82,17 @@ public class Menu extends Auditable<String> implements Serializable {
 		this.submenus = submenus;
 	}
 
+	public String getIcono() {
+		return icono;
+	}
+
+	public void setIcono(String icono) {
+		this.icono = icono;
+	}
+
 	@Override
 	public String toString() {
-		return "Menu [idMenu=" + idMenu + ", nombre=" + nombre + ", numeroOrden=" + numeroOrden + "]";
+		return "Menu [idMenu=" + idMenu + ", nombre=" + nombre + ", numeroOrden=" + numeroOrden + ", icono=" + icono + "]";
 	}
 
 }
