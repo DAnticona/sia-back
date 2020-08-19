@@ -12,6 +12,4 @@ public interface AgenciaAduanasRepository extends JpaRepository<AgenciaAduanas, 
 	@Query("SELECT COUNT(a)>0 FROM AgenciaAduanas a WHERE a.codigoAduana = codigo")
 	boolean existsByCodigoAgencia(Integer codigo);
 
-	//	@Query("SELECT a FROM AgenciaAduanas a WHERE codigoAduana = codigo")
-	//	AgenciaAduanas findByCodigoAgencia(Integer codigo);
 }
