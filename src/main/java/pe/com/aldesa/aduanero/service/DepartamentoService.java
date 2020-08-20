@@ -24,10 +24,10 @@ import pe.com.aldesa.aduanero.repository.PaisRepository;
 public class DepartamentoService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private DepartamentoRepository departamentoRepository;
-	
+
 	@Autowired
 	private PaisRepository paisRepository;
 
@@ -52,35 +52,35 @@ public class DepartamentoService {
 
 	public ApiResponse save(String request) throws ApiException {
 		Departamento responseDepartamento;
-		
+
 		JsonNode root;
 		Integer	idPais = null;
 		String	nombre = null;
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			idPais = root.path("idPais").asInt();
 			logger.debug("idPais: {}", idPais);
-			
+
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (null == idPais || idPais == 0  || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		Pais pais = paisRepository.findById(idPais)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
-		
+
 		try {
 			Departamento departamento = new Departamento();
 			departamento.setPais(pais);
 			departamento.setNombre(nombre);
-			
+
 			responseDepartamento = departamentoRepository.save(departamento);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
@@ -90,46 +90,46 @@ public class DepartamentoService {
 
 	public ApiResponse update(String request) throws ApiException {
 		Departamento responseDepartamento;
-		
+
 		JsonNode root;
 		Integer	id = null;
 		Integer	idPais = null;
 		String	nombre = null;
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			id = root.path("id").asInt();
 			logger.debug("id: {}", id);
-			
+
 			idPais = root.path("idPais").asInt();
 			logger.debug("idPais: {}", idPais);
-			
+
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (null == id || id == 0 || null == idPais || idPais == 0 || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		boolean existsDepartamento = departamentoRepository.existsById(id);
 		logger.debug("Existe departamento? {}", existsDepartamento);
 		if (!existsDepartamento) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		
+
 		Pais pais = paisRepository.findById(idPais)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
-		
+
 		try {
 			Departamento departamento = new Departamento();
 			departamento.setIdDepartamento(id);
 			departamento.setPais(pais);
 			departamento.setNombre(nombre);
-			
+
 			responseDepartamento = departamentoRepository.save(departamento);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
@@ -141,7 +141,11 @@ public class DepartamentoService {
 		Departamento tmpDepartamento = departamentoRepository.findById(id).orElse(null);
 		logger.debug("Departamento: {}", tmpDepartamento);
 		if (null != tmpDepartamento) {
-			departamentoRepository.deleteById(id);
+			try {
+				departamentoRepository.deleteById(id);
+			} catch (Exception e) {
+				throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+			}
 			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Departamento " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
