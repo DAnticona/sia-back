@@ -234,7 +234,7 @@ public class UsuarioService {
 			imagen = root.path("imagen").asText();
 			logger.debug("imagen: {}", imagen);
 
-			idDireccion = root.findParent("idDireccion").asInt();
+			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
 
 		} catch (JsonProcessingException e) {
@@ -258,7 +258,7 @@ public class UsuarioService {
 		logger.debug("Rol {} encontrado", idRol);
 
 		Direccion direccion = null;
-		if (null != idDireccion) {
+		if (0 != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
