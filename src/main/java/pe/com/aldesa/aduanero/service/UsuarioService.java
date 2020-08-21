@@ -180,7 +180,6 @@ public class UsuarioService {
 
 		JsonNode root;
 		String	username = null;
-		String	password = null;
 		Integer	idRol = null;
 		Long idPersona = null;
 		String numeroDocumento = null;
@@ -199,8 +198,6 @@ public class UsuarioService {
 
 			username = root.path("username").asText();
 			logger.debug("username: {}", username);
-
-			password = root.path("password").asText();
 
 			idPersona = root.path("idPersona").asLong();
 
@@ -241,7 +238,7 @@ public class UsuarioService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol ||
+		if (StringUtils.isBlank(username) || idRol == 0 || null == idRol ||
 				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
 				|| StringUtils.isBlank(apellidoPaterno)	|| idTipoDocumento == 0 || null == idTipoDocumento) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
@@ -271,24 +268,18 @@ public class UsuarioService {
 		}
 
 		try {
-			Usuario usuario = new Usuario();
-			usuario.setIdPersona(idPersona);
-			usuario.setUsername(username);
-			usuario.setPassword(passwordEnconder.encode(password));
-			usuario.setRol(rol);
-			usuario.setNombres(nombres);
-			usuario.setApellidoPaterno(apellidoPaterno);
-			usuario.setApellidoMaterno(apellidoMaterno);
-			usuario.setTipoDocumento(tipoDocumento);
-			usuario.setNumeroDocumento(numeroDocumento);
-			usuario.setSexo(sexo.charAt(0));
-			usuario.setFechaNacimiento(DateUtil.of(fechaNacimiento));
-			usuario.setEmail(email);
-			usuario.setImagen(imagen);
-			usuario.setDireccion(direccion);
-
-			responseUser = usuarioRepository.save(usuario);
+			usuarioRepository.updateUsuario(idPersona, username, rol, nombres, apellidoPaterno,
+					apellidoMaterno, tipoDocumento, numeroDocumento, sexo.charAt(0), DateUtil.of(fechaNacimiento),
+					email, imagen, direccion);
 			logger.debug("Usuario actualizado");
+
+			logger.debug("Obteniendo usuario actualizado");
+			responseUser = usuarioRepository.findById(idPersona).orElse(null);
+			logger.debug("Usuario: {}", responseUser);
+			if (null == responseUser) {
+				throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+			}
+
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -304,5 +295,38 @@ public class UsuarioService {
 			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Usuario " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+	}
+
+	public ApiResponse updatePassword(String request) throws ApiException {
+		Usuario responseUser;
+
+		JsonNode root;
+		Long idPersona = null;
+		String	password = null;
+
+		try {
+			root = new ObjectMapper().readTree(request);
+
+			idPersona = root.path("idPersona").asLong();
+			password = root.path("password").asText();
+
+			if (idPersona == 0 || idPersona == null || StringUtils.isBlank(password)) {
+				throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
+			}
+
+			usuarioRepository.updatePassword(idPersona, passwordEnconder.encode(password));
+			logger.debug("Contraseña actualizada");
+
+			logger.debug("Obteniendo usuario actualizado");
+			responseUser = usuarioRepository.findById(idPersona).orElse(null);
+			logger.debug("Usuario: {}", responseUser);
+			if (null == responseUser) {
+				throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+			}
+
+		} catch (JsonProcessingException e) {
+			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseUser);
 	}
 }
