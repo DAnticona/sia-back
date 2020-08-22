@@ -233,10 +233,8 @@ public class PersonaService {
 			persona.setApellidoMaterno(apellidoMaterno);
 			persona.setTipoDocumento(tipoDocumento);
 			persona.setNumeroDocumento(numeroDocumento);
-			if (StringUtils.isNotBlank(sexo))
-				persona.setSexo(sexo.charAt(0));
-			if (StringUtils.isNotBlank(fechaNacimiento))
-				persona.setFechaNacimiento(DateUtil.of(fechaNacimiento));
+			persona.setSexo(sexo.charAt(0));
+			persona.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			persona.setEmail(email);
 			persona.setImagen(imagen);
 			persona.setDireccion(direccion);
