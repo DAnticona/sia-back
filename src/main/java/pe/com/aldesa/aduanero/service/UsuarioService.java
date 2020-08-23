@@ -200,6 +200,7 @@ public class UsuarioService {
 			logger.debug("username: {}", username);
 
 			idPersona = root.path("idPersona").asLong();
+			logger.debug("idPersona: {}", idPersona);
 
 			idRol = root.path("idRol").asInt();
 			logger.debug("idRol: {}", idRol);
