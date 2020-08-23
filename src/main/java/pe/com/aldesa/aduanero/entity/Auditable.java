@@ -1,10 +1,12 @@
 package pe.com.aldesa.aduanero.entity;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,13 +26,15 @@ public abstract class Auditable<T> {
 	@Column(name = "us_modi", nullable = false)
 	protected T usuarioModificador;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	@Column(name = "fe_crea", nullable = false, updatable = false)
-	protected LocalDateTime fechaCreacion;
+	protected Date fechaCreacion;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	@Column(name = "fe_modi", nullable = false)
-	protected LocalDateTime fechaModificacion;
+	protected Date fechaModificacion;
 
 	public T getUsuarioCreador() {
 		return usuarioCreador;
@@ -48,19 +52,19 @@ public abstract class Auditable<T> {
 		this.usuarioModificador = usuarioModificador;
 	}
 
-	public LocalDateTime getFechaCreacion() {
+	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(LocalDateTime fechaCreacion) {
+	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public LocalDateTime getFechaModificacion() {
+	public Date getFechaModificacion() {
 		return fechaModificacion;
 	}
 
-	public void setFechaModificacion(LocalDateTime fechaModificacion) {
+	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
 

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 /**
  * Muestra los valores de Fecha (fecha/hora) y de objetos de la clase {@link Calendar} serializados como marcas de tiempo numéricas.
- * 
+ *
  * @author Juan Pablo Canepa Alvarez
  *
  */
