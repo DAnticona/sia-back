@@ -22,28 +22,28 @@ import pe.com.aldesa.aduanero.service.ClienteService;
 @RestController
 @RequestMapping("/v1")
 public class ClienteRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private ClienteService clienteService;
-	
+
 	@Autowired
 	public ClienteRestController(ClienteService clienteService) {
 		this.clienteService = clienteService;
 	}
-	
-	@GetMapping("/clientes")
-	public ResponseEntity<?> findAll() {
+
+	@GetMapping("/clientes/slice/{page}")
+	public ResponseEntity<?> findAll(@PathVariable int page) {
 		ApiResponse response = null;
 		try {
-			response = clienteService.findAll();
+			response = clienteService.findAll(page);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/clientes/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
 		ApiResponse response;
@@ -55,7 +55,7 @@ public class ClienteRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/clientes")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +67,7 @@ public class ClienteRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/clientes")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +79,7 @@ public class ClienteRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/clientes/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		ApiResponse response;

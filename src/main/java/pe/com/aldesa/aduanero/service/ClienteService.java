@@ -1,10 +1,11 @@
 package pe.com.aldesa.aduanero.service;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -41,14 +42,17 @@ public class ClienteService {
 	@Autowired
 	private EmpresaRepository empresaRepository;
 
-	public ApiResponse findAll() throws ApiException {
-		List<Cliente> clientes = clienteRepository.findAll();
-		int total = clientes.size();
-		logger.debug("Total clientes: {}", total);
-		if (clientes.isEmpty()) {
+	private static final int PAGE_LIMIT = 10;
+
+	public ApiResponse findAll(Integer pageNumber) throws ApiException {
+		Pageable pageable = PageRequest.of(pageNumber - 1, PAGE_LIMIT);
+		Page<Cliente> clientesPage = clienteRepository.findAll(pageable);
+		logger.debug("Página {} de: {}", pageNumber, clientesPage.getTotalPages());
+
+		if (clientesPage.isEmpty()) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes, total);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientesPage.getContent(), Math.toIntExact(clientesPage.getTotalElements()));
 	}
 
 	public ApiResponse findById(Long id) throws ApiException {
