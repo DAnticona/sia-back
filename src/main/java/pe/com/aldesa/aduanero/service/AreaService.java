@@ -20,63 +20,57 @@ import pe.com.aldesa.aduanero.repository.AreaRepository;
 
 @Service
 public class AreaService {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private AreaRepository areaRepository;
-	
+
 	@Autowired
 	public AreaService(AreaRepository areaRepository) {
 		this.areaRepository = areaRepository;
 	}
-	
-	public ApiResponse findAll() throws ApiException {
+
+	public ApiResponse findAll() {
 		List<Area> areas = areaRepository.findAll();
 		int total = areas.size();
 		logger.debug("Total áreas: {}", total);
-		if (areas.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), areas, total);
 	}
-	
-	public ApiResponse findById(Integer id) throws ApiException {
+
+	public ApiResponse findById(Integer id) {
 		Area tmpArea = areaRepository.findById(id).orElse(null);
 		logger.debug("Area: {}", tmpArea);
-		if (null == tmpArea) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpArea);
 	}
-	
+
 	public ApiResponse save(String request) throws ApiException {
 		Area responseArea;
-		
+
 		JsonNode root;
 		String	nombre = null;
 		String	abreviatura = null;
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
-			
+
 			abreviatura = root.path("abreviatura").asText();
 			logger.debug("abreviatura: {}", abreviatura);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		try {
 			Area area = new Area();
 			area.setNombre(nombre);
 			area.setAbreviatura(abreviatura.toUpperCase());
-			
+
 			responseArea = areaRepository.save(area);
 			logger.debug("Area guardada");
 		} catch (Exception e) {
@@ -84,46 +78,46 @@ public class AreaService {
 		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseArea);
 	}
-	
+
 	public ApiResponse update(String request) throws ApiException {
 		Area responseArea;
-		
+
 		JsonNode root;
 		Integer	id = null;
 		String	nombre = null;
 		String	abreviatura = null;
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			id = root.path("id").asInt();
 			logger.debug("id: {}", id);
-			
+
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
-			
+
 			abreviatura = root.path("abreviatura").asText();
 			logger.debug("abreviatura: {}", abreviatura);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (null == id || id == 0 || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		boolean existsArea = areaRepository.existsById(id);
 		logger.debug("Existe Area? {}", existsArea);
 		if (!existsArea) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		
+
 		try {
 			Area area = new Area();
 			area.setIdArea(id);
 			area.setNombre(nombre);
 			area.setAbreviatura(abreviatura.toUpperCase());
-			
+
 			responseArea = areaRepository.save(area);
 			logger.debug("Area actualizada");
 		} catch (Exception e) {
@@ -131,7 +125,7 @@ public class AreaService {
 		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseArea);
 	}
-	
+
 	public ApiResponse delete(Integer id) throws ApiException {
 		Area tmpArea = areaRepository.findById(id).orElse(null);
 		logger.debug("Area: {}", tmpArea);

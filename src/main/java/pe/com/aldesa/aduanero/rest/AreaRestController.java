@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.AreaService;
 @RestController
 @RequestMapping("/v1")
 public class AreaRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private AreaService areaService;
-	
+
 	@Autowired
 	public AreaRestController(AreaService areaService) {
 		this.areaService = areaService;
 	}
-	
+
 	@GetMapping("/areas")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = areaService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = areaService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/areas/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = areaService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = areaService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/areas")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class AreaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/areas")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class AreaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/areas/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;
