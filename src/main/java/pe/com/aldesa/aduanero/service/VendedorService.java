@@ -135,7 +135,6 @@ public class VendedorService {
 			vendedor.setSexo(sexo.charAt(0));
 			vendedor.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			vendedor.setEmail(email);
-			vendedor.setImagen(imagen);
 			vendedor.setDireccion(direccion);
 
 			responseVendedor = vendedorRepository.save(vendedor);
@@ -158,7 +157,6 @@ public class VendedorService {
 		String sexo = null;
 		String fechaNacimiento = null;
 		String email = null;
-		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
 
@@ -191,9 +189,6 @@ public class VendedorService {
 
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
-
-			imagen = root.path("imagen").asText();
-			logger.debug("imagen: {}", imagen);
 
 			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
@@ -236,7 +231,6 @@ public class VendedorService {
 			vendedor.setSexo(sexo.charAt(0));
 			vendedor.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			vendedor.setEmail(email);
-			vendedor.setImagen(imagen);
 			vendedor.setDireccion(direccion);
 
 			responseVendedor = vendedorRepository.save(vendedor);

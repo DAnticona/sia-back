@@ -27,6 +27,9 @@ public class Usuario extends Persona implements Serializable {
 	@Column(name = "passwd", nullable = false)
 	private String password;
 
+	@Column(name = "imagen")
+	private String image;
+
 	public Rol getRol() {
 		return rol;
 	}
@@ -51,6 +54,14 @@ public class Usuario extends Persona implements Serializable {
 		this.password = password;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String getUsuarioCreador() {
 		return usuarioCreador;
@@ -58,7 +69,7 @@ public class Usuario extends Persona implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [rol=" + rol + ", username=" + username + ", password=" + password + "]";
+		return "Usuario [rol=" + rol + ", username=" + username + ", password=" + password + ", image=" + image + "]";
 	}
 
 }

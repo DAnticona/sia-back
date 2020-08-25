@@ -67,7 +67,6 @@ public class PersonaService {
 		String sexo = null;
 		String fechaNacimiento = null;
 		String email = null;
-		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
 
@@ -97,9 +96,6 @@ public class PersonaService {
 
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
-
-			imagen = root.path("imagen").asText();
-			logger.debug("imagen: {}", imagen);
 
 			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
@@ -136,7 +132,6 @@ public class PersonaService {
 			if (StringUtils.isNotBlank(fechaNacimiento))
 				persona.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			persona.setEmail(email);
-			persona.setImagen(imagen);
 			persona.setDireccion(direccion);
 
 			responsePersona = personaRepository.save(persona);
@@ -159,7 +154,6 @@ public class PersonaService {
 		String sexo = null;
 		String fechaNacimiento = null;
 		String email = null;
-		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
 
@@ -192,9 +186,6 @@ public class PersonaService {
 
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
-
-			imagen = root.path("imagen").asText();
-			logger.debug("imagen: {}", imagen);
 
 			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
@@ -236,7 +227,6 @@ public class PersonaService {
 			persona.setSexo(sexo.charAt(0));
 			persona.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			persona.setEmail(email);
-			persona.setImagen(imagen);
 			persona.setDireccion(direccion);
 
 			responsePersona = personaRepository.save(persona);

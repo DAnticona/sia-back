@@ -55,9 +55,6 @@ public class Persona extends Auditable<String> implements Serializable {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "imagen")
-	private String imagen;
-
 	@ManyToOne
 	@JoinColumn(name = "id_tidoc")
 	private TipoDocumento tipoDocumento;
@@ -126,14 +123,6 @@ public class Persona extends Auditable<String> implements Serializable {
 		this.email = email;
 	}
 
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
 	public TipoDocumento getTipoDocumento() {
 		return tipoDocumento;
 	}
@@ -155,7 +144,7 @@ public class Persona extends Auditable<String> implements Serializable {
 		return "Persona [idPersona=" + idPersona + ", idDireccion=" + direccion + ", numeroDocumento=" + numeroDocumento
 				+ ", nombres=" + nombres + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno="
 				+ apellidoMaterno + ", sexo=" + sexo + ", fechaNacimiento=" + fechaNacimiento + ", email=" + email
-				+ ", imagen=" + imagen + ", tipoDocumento=" + tipoDocumento + "]";
+				+ ", tipoDocumento=" + tipoDocumento + "]";
 	}
 
 }

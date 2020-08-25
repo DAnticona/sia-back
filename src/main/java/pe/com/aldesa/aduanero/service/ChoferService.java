@@ -27,16 +27,16 @@ import pe.com.aldesa.aduanero.util.DateUtil;
 public class ChoferService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private ChoferRepository choferRepository;
-	
+
 	@Autowired
 	private TipoDocumentoRepository tipoDocumentoRepository;
-	
+
 	@Autowired
 	private DireccionRepository direccionRepository;
-	
+
 	public ApiResponse findAll() throws ApiException {
 		List<Chofer> choferes = choferRepository.findAll();
 		int total = choferes.size();
@@ -58,7 +58,7 @@ public class ChoferService {
 
 	public ApiResponse save(String request) throws ApiException {
 		Chofer responseChofer;
-		
+
 		JsonNode root;
 		String numeroLicencia = null;
 		String numeroDocumento = null;
@@ -68,46 +68,42 @@ public class ChoferService {
 		String sexo = null;
 		String fechaNacimiento = null;
 		String email = null;
-		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
-		
+
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			numeroLicencia = root.path("numeroLicencia").asText();
 			logger.debug("numeroLicencia: {}", numeroLicencia);
-			
+
 			idTipoDocumento = root.path("idTipoDocumento").asInt();
 			logger.debug("idTipoDocumento: {}", idTipoDocumento);
 
 			numeroDocumento = root.path("numeroDocumento").asText();
 			logger.debug("numeroDocumento: {}", numeroDocumento);
-			
+
 			nombres = root.path("nombres").asText();
 			logger.debug("nombres: {}", nombres);
-			
+
 			apellidoPaterno = root.path("apellidoPaterno").asText();
 			logger.debug("apellidoPaterno: {}", apellidoPaterno);
-			
+
 			apellidoMaterno = root.path("apellidoMaterno").asText();
 			logger.debug("apellidoMaterno: {}", apellidoMaterno);
-			
+
 			sexo = root.path("sexo").asText();
 			logger.debug("sexo: {}", sexo);
-			
+
 			fechaNacimiento = root.path("fechaNacimiento").asText();
 			logger.debug("fechaNacimiento: {}", fechaNacimiento);
-			
+
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
-			
-			imagen = root.path("imagen").asText();
-			logger.debug("imagen: {}", imagen);
-			
+
 			idDireccion = root.findParent("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -116,16 +112,16 @@ public class ChoferService {
 				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
-		
+
 		Direccion direccion = null;
 		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
-		
+
 		try {
 			Chofer chofer = new Chofer();
 			chofer.setNumeroLicencia(numeroLicencia);
@@ -137,9 +133,8 @@ public class ChoferService {
 			chofer.setSexo(sexo.charAt(0));
 			chofer.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			chofer.setEmail(email);
-			chofer.setImagen(imagen);
 			chofer.setDireccion(direccion);
-			
+
 			responseChofer = choferRepository.save(chofer);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
@@ -149,7 +144,7 @@ public class ChoferService {
 
 	public ApiResponse update(String request) throws ApiException {
 		Chofer responseChofer;
-		
+
 		JsonNode root;
 		Long idPersona = null;
 		String numeroLicencia = null;
@@ -160,67 +155,63 @@ public class ChoferService {
 		String sexo = null;
 		String fechaNacimiento = null;
 		String email = null;
-		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
-		
+
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			idPersona = root.path("idPersona").asLong();
 			logger.debug("idPersona: {}", idPersona);
-			
+
 			numeroLicencia = root.path("numeroLicencia").asText();
 			logger.debug("numeroLicencia: {}", numeroLicencia);
-			
+
 			numeroDocumento = root.path("numeroDocumento").asText();
 			logger.debug("numeroDocumento: {}", numeroDocumento);
-			
+
 			nombres = root.path("nombres").asText();
 			logger.debug("nombres: {}", nombres);
-			
+
 			apellidoPaterno = root.path("apellidoPaterno").asText();
 			logger.debug("apellidoPaterno: {}", apellidoPaterno);
-			
+
 			apellidoMaterno = root.path("apellidoMaterno").asText();
 			logger.debug("apellidoMaterno: {}", apellidoMaterno);
-			
+
 			sexo = root.path("sexo").asText();
 			logger.debug("sexo: {}", sexo);
-			
+
 			fechaNacimiento = root.path("fechaNacimiento").asText();
 			logger.debug("fechaNacimiento: {}", fechaNacimiento);
-			
+
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
-			
-			imagen = root.path("imagen").asText();
-			logger.debug("imagen: {}", imagen);
-			
+
 			idTipoDocumento = root.path("idTipoDocumento").asInt();
 			logger.debug("idTipoDocumento: {}", idTipoDocumento);
-			
+
 			idDireccion = root.findParent("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (StringUtils.isBlank(numeroLicencia) || StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
 				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(idTipoDocumento)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
-		
+
 		Direccion direccion = null;
 		if (null != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
-		
+
 		try {
 			Chofer chofer = new Chofer();
 			chofer.setNumeroLicencia(numeroLicencia);
@@ -231,10 +222,9 @@ public class ChoferService {
 			chofer.setSexo(sexo.charAt(0));
 			chofer.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			chofer.setEmail(email);
-			chofer.setImagen(imagen);
 			chofer.setTipoDocumento(tipoDocumento);
 			chofer.setDireccion(direccion);
-			
+
 			responseChofer = choferRepository.save(chofer);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());

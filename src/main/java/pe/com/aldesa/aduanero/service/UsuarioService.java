@@ -156,6 +156,7 @@ public class UsuarioService {
 			usuario.setUsername(username);
 			usuario.setPassword(passwordEnconder.encode(password));
 			usuario.setRol(rol);
+			usuario.setImage(imagen);
 			usuario.setNombres(nombres);
 			usuario.setApellidoPaterno(apellidoPaterno);
 			usuario.setApellidoMaterno(apellidoMaterno);
@@ -164,7 +165,6 @@ public class UsuarioService {
 			usuario.setSexo(sexo.charAt(0));
 			usuario.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			usuario.setEmail(email);
-			usuario.setImagen(imagen);
 			usuario.setDireccion(direccion);
 
 			responseUser = usuarioRepository.save(usuario);
