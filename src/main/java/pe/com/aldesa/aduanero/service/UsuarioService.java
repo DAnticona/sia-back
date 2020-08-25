@@ -58,7 +58,7 @@ public class UsuarioService {
 
 	public ApiResponse findById(Long id) throws ApiException {
 		Usuario tmpUser = usuarioRepository.findById(id).orElse(null);
-		logger.debug("Usuario: {}", tmpUser);
+		logger.debug("Usuario found: {}", tmpUser);
 		if (null == tmpUser) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
@@ -72,6 +72,7 @@ public class UsuarioService {
 		String	username = null;
 		String	password = null;
 		Integer	idRol = null;
+		String imagen = null;
 		String numeroDocumento = null;
 		String nombres = null;
 		String apellidoPaterno = null;
@@ -79,7 +80,6 @@ public class UsuarioService {
 		String sexo = null;
 		String fechaNacimiento = null;
 		String email = null;
-		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
 
@@ -93,6 +93,9 @@ public class UsuarioService {
 
 			idRol = root.path("idRol").asInt();
 			logger.debug("idRol: {}", idRol);
+
+			imagen = root.path("imagen").asText();
+			logger.debug("imagen: {}", imagen);
 
 			idTipoDocumento = root.path("idTipoDocumento").asInt();
 			logger.debug("idTipoDocumento: {}", idTipoDocumento);
@@ -118,8 +121,6 @@ public class UsuarioService {
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
 
-			imagen = root.path("imagen").asText();
-			logger.debug("imagen: {}", imagen);
 
 			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
@@ -156,7 +157,7 @@ public class UsuarioService {
 			usuario.setUsername(username);
 			usuario.setPassword(passwordEnconder.encode(password));
 			usuario.setRol(rol);
-			usuario.setImage(imagen);
+			usuario.setImagen(imagen);
 			usuario.setNombres(nombres);
 			usuario.setApellidoPaterno(apellidoPaterno);
 			usuario.setApellidoMaterno(apellidoMaterno);
