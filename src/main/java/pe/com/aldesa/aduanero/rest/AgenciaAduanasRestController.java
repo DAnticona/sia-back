@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,25 +34,13 @@ public class AgenciaAduanasRestController {
 
 	@GetMapping("/agencias")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = agenciaAduanasService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse	response = agenciaAduanasService.findAll();
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/agencias/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = agenciaAduanasService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = agenciaAduanasService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 
@@ -79,16 +68,16 @@ public class AgenciaAduanasRestController {
 		return ResponseEntity.ok(response);
 	}
 
-	//	@DeleteMapping("/agencias/{id}")
-	//	public ResponseEntity<?> delete(@PathVariable Long id) {
-	//		ApiResponse response;
-	//		try {
-	//			response = agenciaAduanasService.delete(id);
-	//		} catch (ApiException e) {
-	//			logger.error(e.getMessage(), e);
-	//			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-	//		}
-	//		return ResponseEntity.ok(response);
-	//	}
+	@DeleteMapping("/agencias/{id}")
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		ApiResponse response;
+		try {
+			response = agenciaAduanasService.delete(id);
+		} catch (ApiException e) {
+			logger.error(e.getMessage(), e);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(response);
+	}
 
 }

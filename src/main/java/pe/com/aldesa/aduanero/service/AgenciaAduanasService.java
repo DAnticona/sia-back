@@ -31,22 +31,16 @@ public class AgenciaAduanasService {
 	@Autowired
 	private DireccionRepository direccionRepository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<AgenciaAduanas> agencias = agenciaAduanasRepository.findAll();
 		int total = agencias.size();
 		logger.debug("Total AgenciaAduanas: {}", total);
-		if (agencias.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), agencias, total);
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		AgenciaAduanas agencia = agenciaAduanasRepository.findById(id).orElse(null);
 		logger.debug("Agencia: {}", agencia);
-		if (null == agencia) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), agencia);
 	}
 
@@ -184,15 +178,15 @@ public class AgenciaAduanasService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseAgencia);
 	}
 
-	//	public ApiResponse delete(Integer id) throws ApiException {
-	//		AgenciaAduanas tmpAgencia = agenciaAduanasRepository.find
-	//		logger.debug("Agencia: {}", tmpAgencia);
-	//		if (null != tmpAgencia) {
-	//			agenciaAduanasRepository.deleteById(id);
-	//			logger.debug("Empresa eliminada");
-	//			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Empresa " + id + " eliminada");
-	//		}
-	//		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-	//	}
+	public ApiResponse delete(Long id) throws ApiException {
+		AgenciaAduanas tmpAgencia = agenciaAduanasRepository.findById(id).orElse(null);
+		logger.debug("Agencia: {}", tmpAgencia);
+		if (null != tmpAgencia) {
+			agenciaAduanasRepository.deleteById(id);
+			logger.debug("Agencia eliminada");
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Agencia " + id + " eliminada");
+		}
+		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+	}
 
 }
