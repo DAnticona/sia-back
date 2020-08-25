@@ -23,8 +23,8 @@ public class Regimen extends Auditable<String> implements Serializable {
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@Column(name = "cod_sunat", nullable = false, length = 2)
-	private String codigoSunat;
+	@Column(name = "cod_aduana", nullable = false, length = 2)
+	private Integer codigoAduana;
 
 	public Integer getIdRegimen() {
 		return idRegimen;
@@ -42,17 +42,17 @@ public class Regimen extends Auditable<String> implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getCodigoSunat() {
-		return codigoSunat;
+	public Integer getCodigoAduana() {
+		return codigoAduana;
 	}
 
-	public void setCodigoSunat(String codigoSunat) {
-		this.codigoSunat = codigoSunat;
+	public void setCodigoAduana(Integer codigoAduana) {
+		this.codigoAduana = codigoAduana;
 	}
 
 	@Override
 	public String toString() {
-		return "Regimen [idRegimen=" + idRegimen + ", nombre=" + nombre + ", codigoSunat=" + codigoSunat + "]";
+		return "Regimen [idRegimen=" + idRegimen + ", nombre=" + nombre + ", codigoAduana=" + codigoAduana + "]";
 	}
 
 }
