@@ -157,8 +157,10 @@ public class UsuarioService {
 			usuario.setApellidoMaterno(apellidoMaterno);
 			usuario.setTipoDocumento(tipoDocumento);
 			usuario.setNumeroDocumento(numeroDocumento);
-			usuario.setSexo(sexo.charAt(0));
-			usuario.setFechaNacimiento(DateUtil.of(fechaNacimiento));
+			if (StringUtils.isNotBlank(sexo))
+				usuario.setSexo(sexo.charAt(0));
+			if (StringUtils.isNotBlank(fechaNacimiento))
+				usuario.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			usuario.setEmail(email);
 			usuario.setDireccion(direccion);
 
