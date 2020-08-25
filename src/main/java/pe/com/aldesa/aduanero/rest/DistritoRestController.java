@@ -24,38 +24,26 @@ import pe.com.aldesa.aduanero.service.DistritoService;
 public class DistritoRestController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private DistritoService distritoService;
-	
+
 	@Autowired
 	public DistritoRestController(DistritoService distritoService) {
 		this.distritoService = distritoService;
 	}
-	
+
 	@GetMapping("/distritos")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = distritoService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = distritoService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/distritos/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = distritoService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = distritoService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/distritos")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class DistritoRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/distritos")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class DistritoRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/distritos/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;

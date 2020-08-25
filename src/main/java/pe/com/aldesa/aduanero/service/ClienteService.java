@@ -55,12 +55,9 @@ public class ClienteService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientesPage.getContent(), Math.toIntExact(clientesPage.getTotalElements()));
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		Cliente tmpCliente = clienteRepository.findById(id).orElse(null);
 		logger.debug("Cliente: {}", tmpCliente);
-		if (null == tmpCliente) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpCliente);
 	}
 

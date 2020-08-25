@@ -37,22 +37,16 @@ public class ChoferService {
 	@Autowired
 	private DireccionRepository direccionRepository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Chofer> choferes = choferRepository.findAll();
 		int total = choferes.size();
 		logger.debug("Total Choferes: {}", total);
-		if (choferes.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), choferes, total);
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		Chofer tmpChofer = choferRepository.findById(id).orElse(null);
 		logger.debug("Chofer: {}", tmpChofer);
-		if (null == tmpChofer) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpChofer);
 	}
 

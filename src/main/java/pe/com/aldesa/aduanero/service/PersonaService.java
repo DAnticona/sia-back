@@ -37,22 +37,16 @@ public class PersonaService {
 	@Autowired
 	private DireccionRepository direccionRepository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Persona> usuarios = personaRepository.findAll();
 		int total = usuarios.size();
 		logger.debug("Total Personas: {}", total);
-		if (usuarios.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), usuarios, total);
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		Persona tmpPersona = personaRepository.findById(id).orElse(null);
 		logger.debug("Persona: {}", tmpPersona);
-		if (null == tmpPersona) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpPersona);
 	}
 

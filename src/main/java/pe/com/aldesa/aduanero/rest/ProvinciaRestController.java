@@ -24,26 +24,20 @@ import pe.com.aldesa.aduanero.service.ProvinciaService;
 public class ProvinciaRestController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private ProvinciaService provinciaService;
-	
+
 	@Autowired
 	public ProvinciaRestController(ProvinciaService provinciaService) {
 		this.provinciaService = provinciaService;
 	}
-	
+
 	@GetMapping("/provincias")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = provinciaService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = provinciaService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/provincias/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
 		ApiResponse response;
@@ -55,7 +49,7 @@ public class ProvinciaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/provincias")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +61,7 @@ public class ProvinciaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/provincias")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +73,7 @@ public class ProvinciaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/provincias/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;

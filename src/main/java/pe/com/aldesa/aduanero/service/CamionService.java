@@ -31,22 +31,16 @@ public class CamionService {
 	@Autowired
 	private TipoCamionRepository tipoCamionRepository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Camion> camiones = camionRepository.findAll();
 		int total = camiones.size();
 		logger.debug("Total Camiones: {}", total);
-		if (camiones.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), camiones, total);
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		Camion tmpCamion = camionRepository.findById(id).orElse(null);
 		logger.debug("Camion: {}", tmpCamion);
-		if (null == tmpCamion) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpCamion);
 	}
 

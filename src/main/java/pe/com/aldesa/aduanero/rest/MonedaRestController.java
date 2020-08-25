@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.MonedaService;
 @RestController
 @RequestMapping("/v1")
 public class MonedaRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private MonedaService monedaService;
-	
+
 	@Autowired
 	public MonedaRestController(MonedaService monedaService) {
 		this.monedaService = monedaService;
 	}
-	
+
 	@GetMapping("/monedas")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = monedaService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = monedaService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/monedas/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = monedaService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = monedaService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/monedas")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class MonedaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/monedas")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class MonedaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/monedas/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;

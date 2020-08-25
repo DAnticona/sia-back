@@ -30,22 +30,16 @@ public class MonedaService {
 		this.monedaRepository = monedaRepository;
 	}
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Moneda> monedas = monedaRepository.findAll();
 		int total = monedas.size();
 		logger.debug("Total monedas: {}", total);
-		if (monedas.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), monedas, total);
 	}
 
-	public ApiResponse findById(Integer id) throws ApiException {
+	public ApiResponse findById(Integer id) {
 		Moneda tmpMoneda = monedaRepository.findById(id).orElse(null);
 		logger.debug("Moneda: {}", tmpMoneda);
-		if (null == tmpMoneda) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpMoneda);
 	}
 

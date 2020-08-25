@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.ChoferService;
 @RestController
 @RequestMapping("/v1")
 public class ChoferRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private ChoferService choferService;
-	
+
 	@Autowired
 	public ChoferRestController(ChoferService camionService) {
 		this.choferService = camionService;
 	}
-	
+
 	@GetMapping("/choferes")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = choferService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = choferService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/choferes/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = choferService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = choferService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/choferes")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class ChoferRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/choferes")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class ChoferRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/choferes/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		ApiResponse response;

@@ -34,25 +34,13 @@ public class VendedorRestController {
 
 	@GetMapping("/vendedores")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = vendedorService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = vendedorService.findAll();
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/vendedores/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = vendedorService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = vendedorService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 

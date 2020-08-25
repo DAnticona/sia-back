@@ -24,63 +24,57 @@ import pe.com.aldesa.aduanero.repository.ProvinciaRepository;
 public class DistritoService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private DistritoRepository distritoRepository;
-	
+
 	@Autowired
 	private ProvinciaRepository provinciaRepository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Distrito> distritos = distritoRepository.findAll();
 		int total = distritos.size();
 		logger.debug("Total Distritos: {}", total);
-		if (distritos.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), distritos, total);
 	}
 
-	public ApiResponse findById(Integer id) throws ApiException {
+	public ApiResponse findById(Integer id) {
 		Distrito tmpDistrito = distritoRepository.findById(id).orElse(null);
 		logger.debug("Distrito: {}", tmpDistrito);
-		if (null == tmpDistrito) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpDistrito);
 	}
 
 	public ApiResponse save(String request) throws ApiException {
 		Distrito responseDistrito;
-		
+
 		JsonNode root;
 		Integer	idProvincia = null;
 		String	nombre = null;
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			idProvincia = root.path("idProvincia").asInt();
 			logger.debug("idProvincia: {}", idProvincia);
-			
+
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (null == idProvincia || idProvincia == 0  || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		Provincia provincia = provinciaRepository.findById(idProvincia)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
-		
+
 		try {
 			Distrito distrito = new Distrito();
 			distrito.setProvincia(provincia);
 			distrito.setNombre(nombre);
-			
+
 			responseDistrito = distritoRepository.save(distrito);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
@@ -90,46 +84,46 @@ public class DistritoService {
 
 	public ApiResponse update(String request) throws ApiException {
 		Distrito responseDistrito;
-		
+
 		JsonNode root;
 		Integer	id = null;
 		Integer	idProvincia = null;
 		String	nombre = null;
 		try {
 			root = new ObjectMapper().readTree(request);
-			
+
 			id = root.path("id").asInt();
 			logger.debug("id: {}", id);
-			
+
 			idProvincia = root.path("idProvincia").asInt();
 			logger.debug("idProvincia: {}", idProvincia);
-			
+
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
-			
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		
+
 		if (null == id || id == 0 || null == idProvincia || idProvincia == 0 || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
-		
+
 		boolean existsDistrito = distritoRepository.existsById(id);
 		logger.debug("Existe distrito? {}", existsDistrito);
 		if (!existsDistrito) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
-		
+
 		Provincia provincia = provinciaRepository.findById(idProvincia)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
-		
+
 		try {
 			Distrito distrito = new Distrito();
 			distrito.setIdDistrito(id);
 			distrito.setProvincia(provincia);
 			distrito.setNombre(nombre);
-			
+
 			responseDistrito = distritoRepository.save(distrito);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());

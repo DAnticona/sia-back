@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.RolService;
 @RestController
 @RequestMapping("/v1")
 public class RolRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private RolService rolService;
-	
+
 	@Autowired
 	public RolRestController(RolService rolService) {
 		this.rolService = rolService;
 	}
-	
+
 	@GetMapping("/roles")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = rolService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = rolService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/roles/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = rolService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = rolService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/roles")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class RolRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/roles")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class RolRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/roles/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;

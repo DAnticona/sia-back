@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.TipoDocumentoService;
 @RestController
 @RequestMapping("/v1")
 public class TipoDocumentoRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private TipoDocumentoService tipoDocumentoService;
-	
+
 	@Autowired
 	public TipoDocumentoRestController(TipoDocumentoService tipoDocumentoService) {
 		this.tipoDocumentoService = tipoDocumentoService;
 	}
-	
+
 	@GetMapping("/tipos-documentos")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = tipoDocumentoService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = tipoDocumentoService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/tipos-documentos/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = tipoDocumentoService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = tipoDocumentoService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/tipos-documentos")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class TipoDocumentoRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/tipos-documentos")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class TipoDocumentoRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/tipos-documentos/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;

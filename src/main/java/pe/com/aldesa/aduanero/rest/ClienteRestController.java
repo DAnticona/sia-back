@@ -46,13 +46,7 @@ public class ClienteRestController {
 
 	@GetMapping("/clientes/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = clienteService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = clienteService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 

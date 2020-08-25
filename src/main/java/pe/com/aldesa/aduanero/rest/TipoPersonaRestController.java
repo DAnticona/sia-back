@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.TipoPersonaService;
 @RestController
 @RequestMapping("/v1")
 public class TipoPersonaRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private TipoPersonaService tipoPersonaService;
-	
+
 	@Autowired
 	public TipoPersonaRestController(TipoPersonaService tipoPersonaService) {
 		this.tipoPersonaService = tipoPersonaService;
 	}
-	
+
 	@GetMapping("/tipos-personas")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = tipoPersonaService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = tipoPersonaService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/tipos-personas/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = tipoPersonaService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = tipoPersonaService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/tipos-personas")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class TipoPersonaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/tipos-personas")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class TipoPersonaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/tipos-personas/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;

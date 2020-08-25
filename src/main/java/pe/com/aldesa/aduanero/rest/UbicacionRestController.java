@@ -34,25 +34,13 @@ public class UbicacionRestController {
 
 	@GetMapping("/ubicaciones")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = ubicacionService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = ubicacionService.findAll();
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/ubicaciones/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = ubicacionService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = ubicacionService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 

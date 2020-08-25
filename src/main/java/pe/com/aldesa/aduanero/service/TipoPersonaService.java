@@ -30,22 +30,16 @@ public class TipoPersonaService {
 		this.tipoPersonaRepository = tipoPersonaRepository;
 	}
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<TipoPersona> tiposPersonas = tipoPersonaRepository.findAll();
 		int total = tiposPersonas.size();
 		logger.debug("Total Tipos de personas: {}", total);
-		if (tiposPersonas.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tiposPersonas, total);
 	}
 
-	public ApiResponse findById(Integer id) throws ApiException {
+	public ApiResponse findById(Integer id) {
 		TipoPersona tmpTipoPersona = tipoPersonaRepository.findById(id).orElse(null);
 		logger.debug("Tipo persona: {}", tmpTipoPersona);
-		if (null == tmpTipoPersona) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpTipoPersona);
 	}
 

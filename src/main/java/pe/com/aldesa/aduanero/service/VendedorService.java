@@ -37,22 +37,16 @@ public class VendedorService {
 	@Autowired
 	private DireccionRepository direccionRepository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Vendedor> vendedores = vendedorRepository.findAll();
 		int total = vendedores.size();
 		logger.debug("Total Vendedores: {}", total);
-		if (vendedores.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), vendedores, total);
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		Vendedor tmpVendedor = vendedorRepository.findById(id).orElse(null);
 		logger.debug("Vendedor: {}", tmpVendedor);
-		if (null == tmpVendedor) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpVendedor);
 	}
 
@@ -132,8 +126,10 @@ public class VendedorService {
 			vendedor.setApellidoMaterno(apellidoMaterno);
 			vendedor.setTipoDocumento(tipoDocumento);
 			vendedor.setNumeroDocumento(numeroDocumento);
-			vendedor.setSexo(sexo.charAt(0));
-			vendedor.setFechaNacimiento(DateUtil.of(fechaNacimiento));
+			if (StringUtils.isNotBlank(sexo))
+				vendedor.setSexo(sexo.charAt(0));
+			if (StringUtils.isNotBlank(fechaNacimiento))
+				vendedor.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			vendedor.setEmail(email);
 			vendedor.setDireccion(direccion);
 

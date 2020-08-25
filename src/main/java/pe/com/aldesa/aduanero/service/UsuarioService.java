@@ -46,22 +46,16 @@ public class UsuarioService {
 	@Autowired
 	private BCryptPasswordEncoder passwordEnconder;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		int total = usuarios.size();
 		logger.debug("Total Usuarios: {}", total);
-		if (usuarios.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), usuarios, total);
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		Usuario tmpUser = usuarioRepository.findById(id).orElse(null);
 		logger.debug("Usuario found: {}", tmpUser);
-		if (null == tmpUser) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpUser);
 	}
 

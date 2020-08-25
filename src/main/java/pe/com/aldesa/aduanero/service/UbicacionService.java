@@ -32,22 +32,16 @@ public class UbicacionService {
 	@Autowired
 	private AreaRepository areaRepository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Ubicacion> ubicaciones = ubicacionRepository.findAll();
 		int total = ubicaciones.size();
 		logger.debug("Total Ubicaciones: {}", total);
-		if (ubicaciones.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), ubicaciones, total);
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		Ubicacion tmpUbicacion = ubicacionRepository.findById(id).orElse(null);
 		logger.debug("Ubicacion: {}", tmpUbicacion);
-		if (null == tmpUbicacion) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpUbicacion);
 	}
 

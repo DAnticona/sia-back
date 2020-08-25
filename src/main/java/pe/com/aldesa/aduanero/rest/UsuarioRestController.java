@@ -34,25 +34,13 @@ public class UsuarioRestController {
 
 	@GetMapping("/usuarios")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = usuarioService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = usuarioService.findAll();
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/usuarios/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = usuarioService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = usuarioService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 

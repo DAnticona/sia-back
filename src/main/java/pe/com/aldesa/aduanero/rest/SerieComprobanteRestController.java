@@ -34,25 +34,13 @@ public class SerieComprobanteRestController {
 
 	@GetMapping("/series")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = serieComprobanteService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = serieComprobanteService.findAll();
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/series/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = serieComprobanteService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = serieComprobanteService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 

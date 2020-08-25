@@ -31,22 +31,16 @@ public class DepartamentoService {
 	@Autowired
 	private PaisRepository paisRepository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<Departamento> departamentos = departamentoRepository.findAll();
 		int total = departamentos.size();
 		logger.debug("Total Departamentos: {}", total);
-		if (departamentos.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), departamentos, total);
 	}
 
-	public ApiResponse findById(Integer id) throws ApiException {
+	public ApiResponse findById(Integer id) {
 		Departamento tmpDepartamento = departamentoRepository.findById(id).orElse(null);
 		logger.debug("Departamento: {}", tmpDepartamento);
-		if (null == tmpDepartamento) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpDepartamento);
 	}
 

@@ -34,25 +34,13 @@ public class PersonaRestController {
 
 	@GetMapping("/personas")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = personaService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = personaService.findAll();
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/personas/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = personaService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = personaService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 

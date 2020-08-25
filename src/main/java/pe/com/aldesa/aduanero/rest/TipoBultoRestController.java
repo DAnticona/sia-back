@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.TipoBultoService;
 @RestController
 @RequestMapping("/v1")
 public class TipoBultoRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private TipoBultoService tipoBultoService;
-	
+
 	@Autowired
 	public TipoBultoRestController(TipoBultoService tipoBultoService) {
 		this.tipoBultoService = tipoBultoService;
 	}
-	
+
 	@GetMapping("/tipos-bultos")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = tipoBultoService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = tipoBultoService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/tipos-bultos/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = tipoBultoService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = tipoBultoService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/tipos-bultos")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class TipoBultoRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/tipos-bultos")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class TipoBultoRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/tipos-bultos/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;

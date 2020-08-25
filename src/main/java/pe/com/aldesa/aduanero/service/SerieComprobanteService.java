@@ -31,22 +31,16 @@ public class SerieComprobanteService {
 	@Autowired
 	private TipoComprobanteRepository tipoComprobanteRespository;
 
-	public ApiResponse findAll() throws ApiException {
+	public ApiResponse findAll() {
 		List<SerieComprobante> series = serieComprobanteRepository.findAll();
 		int total = series.size();
 		logger.debug("Total Series: {}", total);
-		if (series.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), series, total);
 	}
 
-	public ApiResponse findById(Integer id) throws ApiException {
+	public ApiResponse findById(Integer id) {
 		SerieComprobante agencia = serieComprobanteRepository.findById(id).orElse(null);
 		logger.debug("Series: {}", agencia);
-		if (null == agencia) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), agencia);
 	}
 

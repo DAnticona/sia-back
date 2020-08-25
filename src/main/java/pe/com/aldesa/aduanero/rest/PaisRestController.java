@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.PaisService;
 @RestController
 @RequestMapping("/v1")
 public class PaisRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private PaisService paisService;
-	
+
 	@Autowired
 	public PaisRestController(PaisService paisService) {
 		this.paisService = paisService;
 	}
-	
+
 	@GetMapping("/paises")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = paisService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = paisService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/paises/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response;
-		try {
-			response = paisService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = paisService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/paises")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class PaisRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/paises")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class PaisRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/paises/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;

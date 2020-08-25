@@ -22,40 +22,28 @@ import pe.com.aldesa.aduanero.service.CamionService;
 @RestController
 @RequestMapping("/v1")
 public class CamionRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private CamionService camionService;
-	
+
 	@Autowired
 	public CamionRestController(CamionService camionService) {
 		this.camionService = camionService;
 	}
-	
+
 	@GetMapping("/camiones")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = null;
-		try {
-			response = camionService.findAll();
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = camionService.findAll();
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/camiones/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = camionService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = camionService.findById(id);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PostMapping("/camiones")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +55,7 @@ public class CamionRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/camiones")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +67,7 @@ public class CamionRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/camiones/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		ApiResponse response;
