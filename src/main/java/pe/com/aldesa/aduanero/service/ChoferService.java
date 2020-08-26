@@ -95,7 +95,7 @@ public class ChoferService {
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
 
-			idDireccion = root.findParent("idDireccion").asInt();
+			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
 
 		} catch (JsonProcessingException e) {
@@ -111,7 +111,7 @@ public class ChoferService {
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 
 		Direccion direccion = null;
-		if (null != idDireccion) {
+		if (0 != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
@@ -124,8 +124,10 @@ public class ChoferService {
 			chofer.setNombres(nombres);
 			chofer.setApellidoPaterno(apellidoPaterno);
 			chofer.setApellidoMaterno(apellidoMaterno);
-			chofer.setSexo(sexo.charAt(0));
-			chofer.setFechaNacimiento(DateUtil.of(fechaNacimiento));
+			if (StringUtils.isNotBlank(sexo))
+				chofer.setSexo(sexo.charAt(0));
+			if (StringUtils.isNotBlank(fechaNacimiento))
+				chofer.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			chofer.setEmail(email);
 			chofer.setDireccion(direccion);
 
@@ -185,7 +187,7 @@ public class ChoferService {
 			idTipoDocumento = root.path("idTipoDocumento").asInt();
 			logger.debug("idTipoDocumento: {}", idTipoDocumento);
 
-			idDireccion = root.findParent("idDireccion").asInt();
+			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
 
 		} catch (JsonProcessingException e) {
@@ -201,7 +203,7 @@ public class ChoferService {
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 
 		Direccion direccion = null;
-		if (null != idDireccion) {
+		if (0 != idDireccion) {
 			direccion = direccionRepository.findById(idDireccion)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 		}
