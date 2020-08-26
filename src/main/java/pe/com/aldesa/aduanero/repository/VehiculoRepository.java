@@ -3,9 +3,9 @@ package pe.com.aldesa.aduanero.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pe.com.aldesa.aduanero.entity.Camion;
+import pe.com.aldesa.aduanero.entity.Vehiculo;
 
 @Repository
-public interface CamionRepository extends JpaRepository<Camion, Long> {
+public interface VehiculoRepository extends JpaRepository<Vehiculo, Long> {
 
 }

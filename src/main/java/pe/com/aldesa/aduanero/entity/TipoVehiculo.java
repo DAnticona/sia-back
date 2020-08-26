@@ -12,14 +12,14 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "tipo_vehiculo", uniqueConstraints = { @UniqueConstraint(columnNames = "abrev") })
-public class TipoCamion extends Auditable<String> implements Serializable {
+public class TipoVehiculo extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = 187378428064186040L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_tivehiculo")
-	private Integer idTipoCamion;
+	private Integer idTipoVehiculo;
 
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
@@ -27,12 +27,12 @@ public class TipoCamion extends Auditable<String> implements Serializable {
 	@Column(name = "abrev", nullable = false, length = 10)
 	private String abreviatura;
 
-	public Integer getIdTipoCamion() {
-		return idTipoCamion;
+	public Integer getIdTipoVehiculo() {
+		return idTipoVehiculo;
 	}
 
-	public void setIdTipoCamion(Integer idTipoCamion) {
-		this.idTipoCamion = idTipoCamion;
+	public void setIdTipoVehiculo(Integer idTipoVehiculo) {
+		this.idTipoVehiculo = idTipoVehiculo;
 	}
 
 	public String getNombre() {
@@ -53,7 +53,8 @@ public class TipoCamion extends Auditable<String> implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TipoCamion [idTipoCamion=" + idTipoCamion + ", nombre=" + nombre + ", abreviatura=" + abreviatura + "]";
+		return "TipoVehiculo [idTipoVehiculo=" + idTipoVehiculo + ", nombre=" + nombre + ", abreviatura=" + abreviatura
+				+ "]";
 	}
 
 }

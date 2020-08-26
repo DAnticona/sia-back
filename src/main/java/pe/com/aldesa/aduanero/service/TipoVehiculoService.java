@@ -14,37 +14,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
-import pe.com.aldesa.aduanero.entity.TipoCamion;
+import pe.com.aldesa.aduanero.entity.TipoVehiculo;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.repository.TipoCamionRepository;
+import pe.com.aldesa.aduanero.repository.TipoVehiculoRepository;
 
 @Service
-public class TipoCamionService {
+public class TipoVehiculoService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private TipoCamionRepository tipoCamionRepository;
+	private TipoVehiculoRepository tipoVehiculoRepository;
 
 	@Autowired
-	public TipoCamionService(TipoCamionRepository tipoCamionRepository) {
-		this.tipoCamionRepository = tipoCamionRepository;
+	public TipoVehiculoService(TipoVehiculoRepository tipoVehiculoRepository) {
+		this.tipoVehiculoRepository = tipoVehiculoRepository;
 	}
 
 	public ApiResponse findAll() {
-		List<TipoCamion> tiposCamion = tipoCamionRepository.findAll();
+		List<TipoVehiculo> tiposCamion = tipoVehiculoRepository.findAll();
 		int total = tiposCamion.size();
 		logger.debug("Total Tipos camiones: {}", total);
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tiposCamion, total);
 	}
 
 	public ApiResponse findById(Integer id) {
-		TipoCamion tmpTipoCamion = tipoCamionRepository.findById(id).orElse(null);
+		TipoVehiculo tmpTipoCamion = tipoVehiculoRepository.findById(id).orElse(null);
 		logger.debug("Tipo Camion: {}", tmpTipoCamion);
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpTipoCamion);
 	}
 
 	public ApiResponse save(String request) throws ApiException {
-		TipoCamion responseTipoCamion;
+		TipoVehiculo responseTipoCamion;
 
 		JsonNode root;
 		String	nombre = null;
@@ -67,11 +67,11 @@ public class TipoCamionService {
 		}
 
 		try {
-			TipoCamion tipoCamion = new TipoCamion();
-			tipoCamion.setNombre(nombre);
-			tipoCamion.setAbreviatura(abreviatura.toUpperCase());
+			TipoVehiculo tipoVehiculo = new TipoVehiculo();
+			tipoVehiculo.setNombre(nombre);
+			tipoVehiculo.setAbreviatura(abreviatura.toUpperCase());
 
-			responseTipoCamion = tipoCamionRepository.save(tipoCamion);
+			responseTipoCamion = tipoVehiculoRepository.save(tipoVehiculo);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -79,7 +79,7 @@ public class TipoCamionService {
 	}
 
 	public ApiResponse update(String request) throws ApiException {
-		TipoCamion responseTipoCamion;
+		TipoVehiculo responseTipoCamion;
 
 		JsonNode root;
 		Integer	id = null;
@@ -106,12 +106,12 @@ public class TipoCamionService {
 		}
 
 		try {
-			TipoCamion tipoCamion = new TipoCamion();
-			tipoCamion.setIdTipoCamion(id);
-			tipoCamion.setNombre(nombre);
-			tipoCamion.setAbreviatura(abreviatura.toUpperCase());
+			TipoVehiculo tipoVehiculo = new TipoVehiculo();
+			tipoVehiculo.setIdTipoVehiculo(id);
+			tipoVehiculo.setNombre(nombre);
+			tipoVehiculo.setAbreviatura(abreviatura.toUpperCase());
 
-			responseTipoCamion = tipoCamionRepository.save(tipoCamion);
+			responseTipoCamion = tipoVehiculoRepository.save(tipoVehiculo);
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -119,10 +119,10 @@ public class TipoCamionService {
 	}
 
 	public ApiResponse delete(Integer id) throws ApiException {
-		TipoCamion tmpTipoCamion = tipoCamionRepository.findById(id).orElse(null);
+		TipoVehiculo tmpTipoCamion = tipoVehiculoRepository.findById(id).orElse(null);
 		logger.debug("Tipo camion: {}", tmpTipoCamion);
 		if (null != tmpTipoCamion) {
-			tipoCamionRepository.deleteById(id);
+			tipoVehiculoRepository.deleteById(id);
 			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Tipo camion " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());

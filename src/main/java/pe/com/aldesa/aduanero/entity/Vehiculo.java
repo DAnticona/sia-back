@@ -13,18 +13,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vehiculo")
-public class Camion extends Auditable<String> implements Serializable {
+public class Vehiculo extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = 1213028909642430524L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_vehiculo")
-	private Long idCamion;
+	private Long idVehiculo;
 
 	@ManyToOne
 	@JoinColumn(name = "id_tivehiculo", nullable = false)
-	private TipoCamion tipoCamion;
+	private TipoVehiculo tipoVehiculo;
 
 	@Column(name = "placa", nullable = false)
 	private String placa;
@@ -50,12 +50,12 @@ public class Camion extends Auditable<String> implements Serializable {
 	@Column(name = "fg_pesoxeje")
 	private String eje;
 
-	public Long getIdCamion() {
-		return idCamion;
+	public Long getIdVehiculo() {
+		return idVehiculo;
 	}
 
-	public void setIdCamion(Long idCamion) {
-		this.idCamion = idCamion;
+	public void setIdVehiculo(Long idVehiculo) {
+		this.idVehiculo = idVehiculo;
 	}
 
 	public String getPlaca() {
@@ -122,18 +122,18 @@ public class Camion extends Auditable<String> implements Serializable {
 		this.eje = eje;
 	}
 
-	public TipoCamion getTipoCamion() {
-		return tipoCamion;
+	public TipoVehiculo getTipoVehiculo() {
+		return tipoVehiculo;
 	}
 
-	public void setTipoCamion(TipoCamion tipoCamion) {
-		this.tipoCamion = tipoCamion;
+	public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
+		this.tipoVehiculo = tipoVehiculo;
 	}
 
 	@Override
 	public String toString() {
-		return "Camion [idCamion=" + idCamion + ", tipoCamion=" + tipoCamion + ", placa=" + placa + ", marca=" + marca
-				+ ", certificado=" + certificado + ", largo=" + largo + ", ancho=" + ancho + ", alto=" + alto
+		return "Vehiculo [idVehiculo=" + idVehiculo + ", tipoVehiculo=" + tipoVehiculo + ", placa=" + placa + ", marca="
+				+ marca + ", certificado=" + certificado + ", largo=" + largo + ", ancho=" + ancho + ", alto=" + alto
 				+ ", peso=" + peso + ", eje=" + eje + "]";
 	}
 

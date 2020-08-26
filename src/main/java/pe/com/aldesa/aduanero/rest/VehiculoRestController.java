@@ -17,38 +17,38 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.dto.ErrorResponse;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.service.CamionService;
+import pe.com.aldesa.aduanero.service.VehiculoService;
 
 @RestController
 @RequestMapping("/v1")
-public class CamionRestController {
+public class VehiculoRestController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private CamionService camionService;
+	private VehiculoService vehiculoService;
 
 	@Autowired
-	public CamionRestController(CamionService camionService) {
-		this.camionService = camionService;
+	public VehiculoRestController(VehiculoService vehiculoService) {
+		this.vehiculoService = vehiculoService;
 	}
 
-	@GetMapping("/camiones")
+	@GetMapping("/vehiculos")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = camionService.findAll();
+		ApiResponse response = vehiculoService.findAll();
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/camiones/{id}")
+	@GetMapping("/vehiculos/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response = camionService.findById(id);
+		ApiResponse response = vehiculoService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 
-	@PostMapping("/camiones")
+	@PostMapping("/vehiculos")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
 		try {
-			response = camionService.save(request);
+			response = vehiculoService.save(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
@@ -56,11 +56,11 @@ public class CamionRestController {
 		return ResponseEntity.ok(response);
 	}
 
-	@PutMapping("/camiones")
+	@PutMapping("/vehiculos")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
 		try {
-			response = camionService.update(request);
+			response = vehiculoService.update(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
@@ -68,11 +68,11 @@ public class CamionRestController {
 		return ResponseEntity.ok(response);
 	}
 
-	@DeleteMapping("/camiones/{id}")
+	@DeleteMapping("/vehiculos/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		ApiResponse response;
 		try {
-			response = camionService.delete(id);
+			response = vehiculoService.delete(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);

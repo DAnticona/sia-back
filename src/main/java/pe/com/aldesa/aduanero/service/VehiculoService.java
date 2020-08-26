@@ -14,41 +14,41 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
-import pe.com.aldesa.aduanero.entity.Camion;
-import pe.com.aldesa.aduanero.entity.TipoCamion;
+import pe.com.aldesa.aduanero.entity.TipoVehiculo;
+import pe.com.aldesa.aduanero.entity.Vehiculo;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.repository.CamionRepository;
-import pe.com.aldesa.aduanero.repository.TipoCamionRepository;
+import pe.com.aldesa.aduanero.repository.TipoVehiculoRepository;
+import pe.com.aldesa.aduanero.repository.VehiculoRepository;
 
 @Service
-public class CamionService {
+public class VehiculoService {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private CamionRepository camionRepository;
+	private VehiculoRepository vehiculoRepository;
 
 	@Autowired
-	private TipoCamionRepository tipoCamionRepository;
+	private TipoVehiculoRepository tipoVehiculoRepository;
 
 	public ApiResponse findAll() {
-		List<Camion> camiones = camionRepository.findAll();
-		int total = camiones.size();
-		logger.debug("Total Camiones: {}", total);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), camiones, total);
+		List<Vehiculo> vehiculos = vehiculoRepository.findAll();
+		int total = vehiculos.size();
+		logger.debug("Total Vehiculos: {}", total);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), vehiculos, total);
 	}
 
 	public ApiResponse findById(Long id) {
-		Camion tmpCamion = camionRepository.findById(id).orElse(null);
-		logger.debug("Camion: {}", tmpCamion);
+		Vehiculo tmpCamion = vehiculoRepository.findById(id).orElse(null);
+		logger.debug("Vehiculo: {}", tmpCamion);
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpCamion);
 	}
 
 	public ApiResponse save(String request) throws ApiException {
-		Camion responseCamion;
+		Vehiculo responseVehiculo;
 
 		JsonNode root;
-		Integer codeTipoCamion = null;
+		Integer codeTipoVehiculo = null;
 		String placa = null;
 		String marca = null;
 		String certificado = null;
@@ -60,8 +60,8 @@ public class CamionService {
 		try {
 			root = new ObjectMapper().readTree(request);
 
-			codeTipoCamion = root.path("codeTipoCamion").asInt();
-			logger.debug("codeTipoCamion: {}", codeTipoCamion);
+			codeTipoVehiculo = root.path("codeTipoVehiculo").asInt();
+			logger.debug("codeTipoVehiculo: {}", codeTipoVehiculo);
 
 			placa = root.path("placa").asText();
 			logger.debug("placa: {}", placa);
@@ -91,40 +91,41 @@ public class CamionService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == codeTipoCamion || StringUtils.isBlank(placa) || StringUtils.isBlank(marca)
+		if (0 == codeTipoVehiculo || StringUtils.isBlank(placa) || StringUtils.isBlank(marca)
 				|| StringUtils.isBlank(certificado) || null == largo || null == ancho
 				|| null == alto || null == peso || null == eje) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
-		TipoCamion tipoCamion = tipoCamionRepository.findById(codeTipoCamion)
+		TipoVehiculo tipoVehiculo = tipoVehiculoRepository.findById(codeTipoVehiculo)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 
 		try {
-			Camion camion = new Camion();
-			camion.setTipoCamion(tipoCamion);
-			camion.setPlaca(placa);
-			camion.setMarca(marca);
-			camion.setCertificado(certificado);
-			camion.setLargo(largo);
-			camion.setAncho(ancho);
-			camion.setAlto(alto);
-			camion.setPeso(peso);
-			camion.setEje(eje);
+			Vehiculo vehiculo = new Vehiculo();
+			vehiculo.setTipoVehiculo(tipoVehiculo);
+			vehiculo.setPlaca(placa);
+			vehiculo.setMarca(marca);
+			vehiculo.setCertificado(certificado);
+			vehiculo.setLargo(largo);
+			vehiculo.setAncho(ancho);
+			vehiculo.setAlto(alto);
+			vehiculo.setPeso(peso);
+			vehiculo.setEje(eje);
 
-			responseCamion = camionRepository.save(camion);
+			responseVehiculo = vehiculoRepository.save(vehiculo);
+			logger.debug("Vehiculo guardado");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseCamion);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseVehiculo);
 	}
 
 	public ApiResponse update(String request) throws ApiException {
-		Camion responseCamion;
+		Vehiculo responseVehiculo;
 
 		JsonNode root;
 		Long id = null;
-		Integer codeTipoCamion = null;
+		Integer codeTipoVehiculo = null;
 		String placa = null;
 		String marca = null;
 		String certificado = null;
@@ -139,8 +140,8 @@ public class CamionService {
 			id = root.path("id").asLong();
 			logger.debug("id: {}", id);
 
-			codeTipoCamion = root.path("codeTipoCamion").asInt();
-			logger.debug("codeTipoCamion: {}", codeTipoCamion);
+			codeTipoVehiculo = root.path("codeTipoVehiculo").asInt();
+			logger.debug("codeTipoVehiculo: {}", codeTipoVehiculo);
 
 			placa = root.path("placa").asText();
 			logger.debug("placa: {}", placa);
@@ -170,40 +171,42 @@ public class CamionService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == id || id == 0 || null == codeTipoCamion || StringUtils.isBlank(placa) || StringUtils.isBlank(marca)
+		if (null == id || id == 0 || null == codeTipoVehiculo || StringUtils.isBlank(placa) || StringUtils.isBlank(marca)
 				|| StringUtils.isBlank(certificado) || null == largo || null == ancho
 				|| null == alto || null == peso || null == eje) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
-		TipoCamion tipoCamion = tipoCamionRepository.findById(codeTipoCamion)
+		TipoVehiculo tipoVehiculo = tipoVehiculoRepository.findById(codeTipoVehiculo)
 				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 
 		try {
-			Camion camion = new Camion();
-			camion.setIdCamion(id);
-			camion.setTipoCamion(tipoCamion);
-			camion.setPlaca(placa);
-			camion.setMarca(marca);
-			camion.setCertificado(certificado);
-			camion.setLargo(largo);
-			camion.setAncho(ancho);
-			camion.setAlto(alto);
-			camion.setPeso(peso);
-			camion.setEje(eje);
+			Vehiculo vehiculo = new Vehiculo();
+			vehiculo.setIdVehiculo(id);
+			vehiculo.setTipoVehiculo(tipoVehiculo);
+			vehiculo.setPlaca(placa);
+			vehiculo.setMarca(marca);
+			vehiculo.setCertificado(certificado);
+			vehiculo.setLargo(largo);
+			vehiculo.setAncho(ancho);
+			vehiculo.setAlto(alto);
+			vehiculo.setPeso(peso);
+			vehiculo.setEje(eje);
 
-			responseCamion = camionRepository.save(camion);
+			responseVehiculo = vehiculoRepository.save(vehiculo);
+			logger.debug("Vehiculo actualizado");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseCamion);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseVehiculo);
 	}
 
 	public ApiResponse delete(Long id) throws ApiException {
-		Camion tmpCamion = camionRepository.findById(id).orElse(null);
+		Vehiculo tmpCamion = vehiculoRepository.findById(id).orElse(null);
 		logger.debug("Camion: {}", tmpCamion);
 		if (null != tmpCamion) {
-			camionRepository.deleteById(id);
+			vehiculoRepository.deleteById(id);
+			logger.debug("Vehiculo eliminado");
 			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Camion " + id + " eliminado");
 		}
 		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());

@@ -17,38 +17,38 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.dto.ErrorResponse;
 import pe.com.aldesa.aduanero.exception.ApiException;
-import pe.com.aldesa.aduanero.service.TipoCamionService;
+import pe.com.aldesa.aduanero.service.TipoVehiculoService;
 
 @RestController
 @RequestMapping("/v1")
-public class TipoCamionRestController {
+public class TipoVehiculoRestController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private TipoCamionService tipoCamionService;
+	private TipoVehiculoService tipoVehiculoService;
 
 	@Autowired
-	public TipoCamionRestController(TipoCamionService tipoCamionService) {
-		this.tipoCamionService = tipoCamionService;
+	public TipoVehiculoRestController(TipoVehiculoService tipoVehiculoService) {
+		this.tipoVehiculoService = tipoVehiculoService;
 	}
 
-	@GetMapping("/tipos-camiones")
+	@GetMapping("/tipos-vehiculos")
 	public ResponseEntity<?> findAll() {
-		ApiResponse response = tipoCamionService.findAll();
+		ApiResponse response = tipoVehiculoService.findAll();
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/tipos-camiones/{id}")
+	@GetMapping("/tipos-vehiculos/{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		ApiResponse response = tipoCamionService.findById(id);
+		ApiResponse response = tipoVehiculoService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 
-	@PostMapping("/tipos-camiones")
+	@PostMapping("/tipos-vehiculos")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
 		try {
-			response = tipoCamionService.save(request);
+			response = tipoVehiculoService.save(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
@@ -56,11 +56,11 @@ public class TipoCamionRestController {
 		return ResponseEntity.ok(response);
 	}
 
-	@PutMapping("/tipos-camiones")
+	@PutMapping("/tipos-vehiculos")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
 		try {
-			response = tipoCamionService.update(request);
+			response = tipoVehiculoService.update(request);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
@@ -68,11 +68,11 @@ public class TipoCamionRestController {
 		return ResponseEntity.ok(response);
 	}
 
-	@DeleteMapping("/tipos-camiones/{id}")
+	@DeleteMapping("/tipos-vehiculos/{id}")
 	public ResponseEntity<?> delete(@PathVariable Integer id) {
 		ApiResponse response;
 		try {
-			response = tipoCamionService.delete(id);
+			response = tipoVehiculoService.delete(id);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
