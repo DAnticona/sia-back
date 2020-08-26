@@ -26,6 +26,9 @@ public class Area extends Auditable<String> implements Serializable {
 	@Column(name = "abrev")
 	private String abreviatura;
 
+	@Column(name = "fg_acti", nullable = false, length = 1)
+	private String activo;
+
 	public Integer getIdArea() {
 		return idArea;
 	}
@@ -50,9 +53,18 @@ public class Area extends Auditable<String> implements Serializable {
 		this.abreviatura = abreviatura;
 	}
 
+	public String getActivo() {
+		return activo;
+	}
+
+	public void setActivo(String activo) {
+		this.activo = activo;
+	}
+
 	@Override
 	public String toString() {
-		return "Area [idArea=" + idArea + ", nombre=" + nombre + ", abreviatura=" + abreviatura + "]";
+		return "Area [idArea=" + idArea + ", nombre=" + nombre + ", abreviatura=" + abreviatura + ", activo=" + activo
+				+ "]";
 	}
 
 }

@@ -49,6 +49,7 @@ public class AreaService {
 		JsonNode root;
 		String	nombre = null;
 		String	abreviatura = null;
+		String	activo = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 
@@ -58,11 +59,14 @@ public class AreaService {
 			abreviatura = root.path("abreviatura").asText();
 			logger.debug("abreviatura: {}", abreviatura);
 
+			activo = root.path("activo").asText();
+			logger.debug("activo: {}", activo);
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (StringUtils.isBlank(nombre)) {
+		if (StringUtils.isBlank(nombre) || StringUtils.isNotBlank(activo)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -70,6 +74,7 @@ public class AreaService {
 			Area area = new Area();
 			area.setNombre(nombre);
 			area.setAbreviatura(abreviatura.toUpperCase());
+			area.setActivo(activo);
 
 			responseArea = areaRepository.save(area);
 			logger.debug("Area guardada");
@@ -86,6 +91,7 @@ public class AreaService {
 		Integer	id = null;
 		String	nombre = null;
 		String	abreviatura = null;
+		String	activo = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 
@@ -98,11 +104,14 @@ public class AreaService {
 			abreviatura = root.path("abreviatura").asText();
 			logger.debug("abreviatura: {}", abreviatura);
 
+			activo = root.path("activo").asText();
+			logger.debug("activo: {}", activo);
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == id || id == 0 || StringUtils.isBlank(nombre)) {
+		if (null == id || id == 0 || StringUtils.isBlank(nombre) || StringUtils.isNotBlank(activo)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -117,6 +126,7 @@ public class AreaService {
 			area.setIdArea(id);
 			area.setNombre(nombre);
 			area.setAbreviatura(abreviatura.toUpperCase());
+			area.setActivo(activo);
 
 			responseArea = areaRepository.save(area);
 			logger.debug("Area actualizada");
