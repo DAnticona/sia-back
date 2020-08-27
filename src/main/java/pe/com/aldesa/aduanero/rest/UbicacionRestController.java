@@ -44,6 +44,18 @@ public class UbicacionRestController {
 		return ResponseEntity.ok(response);
 	}
 
+	@GetMapping("/ubicaciones/area/{id}")
+	public ResponseEntity<?> findByArea(@PathVariable Integer id) {
+		ApiResponse response;
+		try {
+			response = ubicacionService.findByArea(id);
+		} catch (ApiException e) {
+			logger.error(e.getMessage(), e);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
+		}
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping("/ubicaciones")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;

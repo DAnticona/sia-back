@@ -45,6 +45,17 @@ public class UbicacionService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpUbicacion);
 	}
 
+	public ApiResponse findByArea(Integer idArea) throws ApiException {
+		Optional<Area> optArea = areaRepository.findById(idArea);
+		if (optArea.isEmpty()) {
+			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+		}
+
+		List<Ubicacion> ubicaciones = ubicacionRepository.findByArea(optArea.get());
+		logger.debug("Ubicacion by id Area: {}", ubicaciones);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), ubicaciones);
+	}
+
 	public ApiResponse save(String request) throws ApiException {
 		Ubicacion responseUbicacion;
 
@@ -53,7 +64,7 @@ public class UbicacionService {
 		String nombre = null;
 		String abreviatura = null;
 		Integer numeroRack = null;
-
+		String activo = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 
@@ -69,11 +80,14 @@ public class UbicacionService {
 			numeroRack = root.path("numeroRack").asInt();
 			logger.debug("numeroRack: {}", numeroRack);
 
+			activo = root.path("activo").asText();
+			logger.debug("activo: {}", activo);
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == idArea || idArea == 0 || StringUtils.isBlank(nombre)
+		if (null == idArea || idArea == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(activo)
 				|| StringUtils.isBlank(abreviatura) || null == numeroRack || numeroRack == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
@@ -88,6 +102,7 @@ public class UbicacionService {
 			ubicacion.setAbreviatura(abreviatura);
 			ubicacion.setNombre(nombre);
 			ubicacion.setNumeroRack(numeroRack);
+			ubicacion.setActivo(activo);
 
 			responseUbicacion = ubicacionRepository.save(ubicacion);
 		} catch (Exception e) {
@@ -105,7 +120,7 @@ public class UbicacionService {
 		String nombre = null;
 		String abreviatura = null;
 		Integer numeroRack = null;
-
+		String activo = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 
@@ -124,11 +139,14 @@ public class UbicacionService {
 			numeroRack = root.path("numeroRack").asInt();
 			logger.debug("numeroRack: {}", numeroRack);
 
+			activo = root.path("activo").asText();
+			logger.debug("activo: {}", activo);
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == id || id == 0 || null == idArea || idArea == 0 || StringUtils.isBlank(nombre)
+		if (null == id || id == 0 || null == idArea || idArea == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(activo)
 				|| StringUtils.isBlank(abreviatura) || null == numeroRack || numeroRack == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
@@ -144,6 +162,7 @@ public class UbicacionService {
 			ubicacion.setAbreviatura(abreviatura);
 			ubicacion.setNombre(nombre);
 			ubicacion.setNumeroRack(numeroRack);
+			ubicacion.setActivo(activo);
 
 			responseUbicacion = ubicacionRepository.save(ubicacion);
 		} catch (Exception e) {

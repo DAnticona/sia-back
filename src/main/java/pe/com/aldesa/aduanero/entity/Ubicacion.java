@@ -32,8 +32,11 @@ public class Ubicacion extends Auditable<String> implements Serializable {
 	@Column(name = "abrev", nullable = false)
 	private String abreviatura;
 
-	@Column(name = "nu_rack")
+	@Column(name = "nu_rack", nullable = false)
 	private Integer numeroRack;
+
+	@Column(name = "fg_acti", nullable = false)
+	private String activo;
 
 	public Long getIdUbicacion() {
 		return idUbicacion;
@@ -75,10 +78,19 @@ public class Ubicacion extends Auditable<String> implements Serializable {
 		this.numeroRack = numeroRack;
 	}
 
+
+	public String getActivo() {
+		return activo;
+	}
+
+	public void setActivo(String activo) {
+		this.activo = activo;
+	}
+
 	@Override
 	public String toString() {
 		return "Ubicacion [idUbicacion=" + idUbicacion + ", area=" + area + ", nombre=" + nombre + ", abreviatura="
-				+ abreviatura + ", numeroRack=" + numeroRack + "]";
+				+ abreviatura + ", numeroRack=" + numeroRack + ", activo=" + activo + "]";
 	}
 
 }
