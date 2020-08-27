@@ -19,6 +19,7 @@ public class AuthUserData {
 	private String email;
 	private String username;
 	private String rol;
+	private String imagen;
 	private List<MenuContext> menu;
 
 	public Long getId() {
@@ -75,6 +76,14 @@ public class AuthUserData {
 
 	public void setMenus(List<MenuContext> menu) {
 		this.menu = menu;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 }
