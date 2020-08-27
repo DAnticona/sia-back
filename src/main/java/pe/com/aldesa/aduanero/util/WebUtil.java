@@ -36,6 +36,7 @@ public class WebUtil {
 		authUser.setLastname(usuario.getApellidoPaterno());
 		authUser.setUsername(usuario.getUsername());
 		authUser.setEmail(usuario.getEmail());
+		authUser.setImagen(usuario.getImagen());
 
 		Rol roltmp = usuario.getRol();
 		authUser.setRol(roltmp.getNombre());
