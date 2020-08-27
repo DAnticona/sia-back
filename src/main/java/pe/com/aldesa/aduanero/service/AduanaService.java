@@ -113,7 +113,7 @@ public class AduanaService {
 			aduana.setCodigoAduana(codigoAduana);
 
 			responseAduana = aduanaRepository.save(aduana);
-			logger.debug("Aduana guardada");
+			logger.debug("Aduana actualizada");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}

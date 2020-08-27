@@ -103,7 +103,7 @@ public class FormaPagoService {
 			formaPago.setNombre(nombre);
 
 			responseFormaPago = formaPagoRepository.save(formaPago);
-			logger.debug("FormaPago guardada");
+			logger.debug("FormaPago actualizada");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
