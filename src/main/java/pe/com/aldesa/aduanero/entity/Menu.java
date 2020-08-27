@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "menu")
 public class Menu extends Auditable<String> implements Serializable {
@@ -36,6 +38,7 @@ public class Menu extends Auditable<String> implements Serializable {
 	@JoinTable(name = "acceso", joinColumns = @JoinColumn(name = "id_menu"), inverseJoinColumns = @JoinColumn(name = "id_rol"))
 	private Set<Rol> roles;
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "menu")
 	private Set<SubMenu> submenus;
 
