@@ -1,5 +1,7 @@
 package pe.com.aldesa.aduanero.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "grupo_servicio")
-public class GrupoServicio {
+public class GrupoServicio extends Auditable<String> implements Serializable {
+
+	private static final long serialVersionUID = -8498854550580492431L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
