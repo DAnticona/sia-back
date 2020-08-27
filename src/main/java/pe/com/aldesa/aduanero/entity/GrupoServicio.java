@@ -20,7 +20,7 @@ public class GrupoServicio extends Auditable<String> implements Serializable {
 	@Column(name = "id_grservicio")
 	private Integer idGrupoServicio;
 
-	@Column(name = "nombre")
+	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
 	public Integer getIdGrupoServicio() {
