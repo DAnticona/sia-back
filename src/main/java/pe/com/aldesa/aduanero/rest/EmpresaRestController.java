@@ -22,28 +22,28 @@ import pe.com.aldesa.aduanero.service.EmpresaService;
 @RestController
 @RequestMapping("/v1")
 public class EmpresaRestController {
-	
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	private EmpresaService empresaService;
-	
+
 	@Autowired
 	public EmpresaRestController(EmpresaService empresaService) {
 		this.empresaService = empresaService;
 	}
-	
-	@GetMapping("/empresas")
-	public ResponseEntity<?> findAll() {
+
+	@GetMapping("/empresas/slice/{page}")
+	public ResponseEntity<?> findAll(@PathVariable int page) {
 		ApiResponse response = null;
 		try {
-			response = empresaService.findAll();
+			response = empresaService.findAll(page);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/empresas/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
 		ApiResponse response;
@@ -55,7 +55,31 @@ public class EmpresaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
+	@GetMapping("/empresas/ruc/{ruc}")
+	public ResponseEntity<?> findById(@PathVariable String ruc) {
+		ApiResponse response;
+		try {
+			response = empresaService.findByRuc(ruc);
+		} catch (ApiException e) {
+			logger.error(e.getMessage(), e);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/empresas/razon-social/{razon}")
+	public ResponseEntity<?> findByRazonSocial(@PathVariable String razon) {
+		ApiResponse response = empresaService.findByRazonSocial(razon);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/empresas/nombre-comercial/{nombre}")
+	public ResponseEntity<?> findByNombreComercial(@PathVariable String nombre) {
+		ApiResponse response = empresaService.findByNombreComercial(nombre);
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping("/empresas")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
@@ -67,7 +91,7 @@ public class EmpresaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@PutMapping("/empresas")
 	public ResponseEntity<?> update(@RequestBody String request) {
 		ApiResponse response;
@@ -79,7 +103,7 @@ public class EmpresaRestController {
 		}
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@DeleteMapping("/empresas/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		ApiResponse response;
