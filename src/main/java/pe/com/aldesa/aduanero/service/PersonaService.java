@@ -50,6 +50,33 @@ public class PersonaService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpPersona);
 	}
 
+	public ApiResponse findByNombres(String nombre) {
+		List<Persona> personas = personaRepository.findByNombres(nombre);
+		logger.debug("Personas by Name: {}", personas);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), personas);
+	}
+
+	public ApiResponse findByApellidoPaterno(String apellidoPaterno) {
+		List<Persona> personas = personaRepository.findByApellidoPaterno(apellidoPaterno);
+		logger.debug("Personas by Apellido Paterno: {}", personas);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), personas);
+	}
+
+	public ApiResponse findByApellidoMaterno(String apellidoPaterno) {
+		List<Persona> personas = personaRepository.findByApellidoMaterno(apellidoPaterno);
+		logger.debug("Personas by Apellido Materno: {}", personas);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), personas);
+	}
+
+	public ApiResponse findByNumeroDocumento(String apellidoPaterno) throws ApiException {
+		List<Persona> personas = personaRepository.findByNumeroDocumento(apellidoPaterno);
+		logger.debug("Persona by Numero Documento: {}", personas);
+		if (personas.size() > 1) {
+			throw new ApiException(ApiError.MULTIPLES_SIMILAR_ELEMENTS.getCode(), ApiError.MULTIPLES_SIMILAR_ELEMENTS.getMessage());
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), personas.get(0));
+	}
+
 	public ApiResponse save(String request) throws ApiException {
 		Persona responsePersona;
 

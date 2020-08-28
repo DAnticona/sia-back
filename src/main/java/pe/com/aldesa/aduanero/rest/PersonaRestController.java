@@ -44,6 +44,36 @@ public class PersonaRestController {
 		return ResponseEntity.ok(response);
 	}
 
+	@GetMapping("/personas/nombre/{nombre}")
+	public ResponseEntity<?> findByNombres(@PathVariable String nombre) {
+		ApiResponse response = personaService.findByNombres(nombre);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/personas/apellido-paterno/{apaterno}")
+	public ResponseEntity<?> findByApellidoPaterno(@PathVariable String apaterno) {
+		ApiResponse response = personaService.findByApellidoPaterno(apaterno);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/personas/apellido-materno/{amaterno}")
+	public ResponseEntity<?> findByApellidoMaterno(@PathVariable String amaterno) {
+		ApiResponse response = personaService.findByApellidoMaterno(amaterno);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/personas/numero-documento/{ndocumento}")
+	public ResponseEntity<?> findByNumeroDocumento(@PathVariable String ndocumento) {
+		ApiResponse response;
+		try {
+			response = personaService.findByNumeroDocumento(ndocumento);
+		} catch (ApiException e) {
+			logger.error(e.getMessage(), e);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping("/personas")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
