@@ -50,6 +50,60 @@ public class ClienteRestController {
 		return ResponseEntity.ok(response);
 	}
 
+	@GetMapping("/clientes/nombre/{nombre}")
+	public ResponseEntity<?> findByNombre(@PathVariable String nombre) {
+		ApiResponse response = clienteService.findByNombre(nombre);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/clientes/apellido-paterno/{apaterno}")
+	public ResponseEntity<?> findByApellidoPaterno(@PathVariable String apaterno) {
+		ApiResponse response = clienteService.findByApellidoPaterno(apaterno);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/clientes/apellido-materno/{amaterno}")
+	public ResponseEntity<?> findByApellidoMaterno(@PathVariable String amaterno) {
+		ApiResponse response = clienteService.findByApellidoMaterno(amaterno);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/clientes/numero-documento/{ndocumento}")
+	public ResponseEntity<?> findByNumeroDocumento(@PathVariable String ndocumento) {
+		ApiResponse response = null;
+		try {
+			response = clienteService.findByNumeroDocumento(ndocumento);
+		} catch (ApiException e) {
+			logger.error(e.getMessage(), e);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/clientes/razon-social/{rsocial}")
+	public ResponseEntity<?> findByRazonSocial(@PathVariable String rsocial) {
+		ApiResponse response = clienteService.findByRazonSocial(rsocial);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/clientes/nombre-comercial/{ncomercial}")
+	public ResponseEntity<?> findByNombreComercial(@PathVariable String ncomercial) {
+		ApiResponse response = clienteService.findByNombreComercial(ncomercial);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/clientes/ruc/{ruc}")
+	public ResponseEntity<?> findByRuc(@PathVariable String ruc) {
+		ApiResponse response = null;
+		try {
+			response = clienteService.findByRuc(ruc);
+		} catch (ApiException e) {
+			logger.error(e.getMessage(), e);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping("/clientes")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;

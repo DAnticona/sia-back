@@ -1,5 +1,7 @@
 package pe.com.aldesa.aduanero.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,50 @@ public class ClienteService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpCliente);
 	}
 
+	public ApiResponse findByNombre(String nombre) {
+		List<Cliente> clientes = clienteRepository.findByNombre(nombre);
+		logger.debug("Cliente by Nombre: {}", clientes);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
+	}
+
+	public ApiResponse findByApellidoPaterno(String apellidoPaterno) {
+		List<Cliente> clientes = clienteRepository.findByApellidoPaterno(apellidoPaterno);
+		logger.debug("Cliente by Apellido Paterno: {}", clientes);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
+	}
+
+	public ApiResponse findByApellidoMaterno(String apellidoMaterno) {
+		List<Cliente> clientes = clienteRepository.findByApellidoMaterno(apellidoMaterno);
+		logger.debug("Cliente by ApellidoMaterno: {}", clientes);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
+	}
+
+	public ApiResponse findByNumeroDocumento(String numeroDocumento) throws ApiException {
+		Cliente cliente = clienteRepository.findByNumeroDocumento(numeroDocumento)
+				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		logger.debug("Cliente by Numero de documento: {}", cliente);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), cliente);
+	}
+
+	public ApiResponse findByRazonSocial(String razonSocial) {
+		List<Cliente> clientes = clienteRepository.findByRazonSocial(razonSocial);
+		logger.debug("Cliente by Razon Social: {}", clientes);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
+	}
+
+	public ApiResponse findByNombreComercial(String nombreComercial) {
+		List<Cliente> clientes = clienteRepository.findByNombreComercial(nombreComercial);
+		logger.debug("Cliente by Nombre Comercial: {}", clientes);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
+	}
+
+	public ApiResponse findByRuc(String ruc) throws ApiException {
+		Cliente cliente = clienteRepository.findByRuc(ruc)
+				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+		logger.debug("Cliente by RUC: {}", cliente);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), cliente);
+	}
+
 	public ApiResponse save(String request) throws ApiException {
 		Cliente responseCliente;
 
@@ -99,11 +145,15 @@ public class ClienteService {
 			persona = personaRepository.findById(idPersona)
 					.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
 			logger.debug("Persona {} encontrado", idPersona);
+
 		}
 
-		// Valida que no se vuelva a repetir la combibanación tipoPersona con Persona
+		// Valida que no se vuelva a repetir la combinación tipoPersona con Persona en la tabla cliente
 		if (null != tipoPersona && null != persona) {
-			throw new ApiException(ApiError.ALREADY_EXISTS.getCode(), ApiError.ALREADY_EXISTS.getMessage());
+			boolean exists = clienteRepository.existsCliente(tipoPersona, persona);
+			logger.debug("Exists cliente con tipoPersona: {} y persona: {}? {}", tipoPersona.getIdTipoPersona(), persona.getIdPersona(), exists);
+			if (exists)
+				throw new ApiException(ApiError.ALREADY_EXISTS.getCode(), ApiError.ALREADY_EXISTS.getMessage());
 		}
 
 		Empresa empresa = null;
@@ -114,9 +164,12 @@ public class ClienteService {
 			logger.debug("Empresa {} encontrado", idEmpresa);
 		}
 
-		// Valida que no se vuelva a repetir la combibanación tipoPersona con Empresa
+		// Valida que no se vuelva a repetir la combinación tipoPersona con Empresa en la tabla cliente
 		if (null != tipoPersona && null != empresa) {
-			throw new ApiException(ApiError.ALREADY_EXISTS.getCode(), ApiError.ALREADY_EXISTS.getMessage());
+			boolean exists = clienteRepository.existsCliente(tipoPersona, empresa);
+			logger.debug("Exists cliente con tipoPersona: {} y empresa: {}? {}", tipoPersona.getIdTipoPersona(), empresa.getIdEmpresa(), exists);
+			if (exists)
+				throw new ApiException(ApiError.ALREADY_EXISTS.getCode(), ApiError.ALREADY_EXISTS.getMessage());
 		}
 
 		try {
