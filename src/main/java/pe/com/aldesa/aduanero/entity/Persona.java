@@ -16,9 +16,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "persona")
+@Table(name = "persona", uniqueConstraints = { @UniqueConstraint(columnNames = {"nu_doc", "email"}) })
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Persona extends Auditable<String> implements Serializable {
 
