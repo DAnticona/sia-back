@@ -6,9 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "agencia_aduanas")
+@Table(name = "agencia_aduanas", uniqueConstraints = { @UniqueConstraint(columnNames = {"cod_aduana"}) })
 @PrimaryKeyJoinColumn(name = "id_empresa")
 public class AgenciaAduanas extends Empresa implements Serializable {
 

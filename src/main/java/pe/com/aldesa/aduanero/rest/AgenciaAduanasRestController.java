@@ -44,6 +44,17 @@ public class AgenciaAduanasRestController {
 		return ResponseEntity.ok(response);
 	}
 
+	@GetMapping("/agencias/aduana/{codigoAgencia}")
+	public ResponseEntity<?> findByCodigoAduana(@PathVariable Integer codigoAgencia) {
+		ApiResponse response;
+		try {
+			response = agenciaAduanasService.findByCodigoAduana(codigoAgencia);
+		} catch (ApiException e) {
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping("/agencias")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;

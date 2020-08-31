@@ -44,11 +44,20 @@ public class AgenciaAduanasService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), agencia);
 	}
 
+	public ApiResponse findByCodigoAduana(Integer codigoAduana) throws ApiException {
+		List<AgenciaAduanas> agencias = agenciaAduanasRepository.findByCodigoAduana(codigoAduana);
+		if (agencias.size() > 1) {
+			throw new ApiException(ApiError.MULTIPLES_SIMILAR_ELEMENTS.getCode(), ApiError.MULTIPLES_SIMILAR_ELEMENTS.getMessage());
+		}
+		logger.debug("Agencias: {}", agencias.get(0));
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), agencias.get(0));
+	}
+
 	public ApiResponse save(String request) throws ApiException {
 		AgenciaAduanas responseAgencia;
 
 		JsonNode root;
-		Integer	codigoAgencia = null;
+		Integer	codigoAduana = null;
 		String	ruc = null;
 		String	razonSocial = null;
 		String	nombreComercial = null;
@@ -56,8 +65,8 @@ public class AgenciaAduanasService {
 		try {
 			root = new ObjectMapper().readTree(request);
 
-			codigoAgencia = root.path("codigoAgencia").asInt();
-			logger.debug("codigoAgencia: {}", codigoAgencia);
+			codigoAduana = root.path("codigoAduana").asInt();
+			logger.debug("codigoAduana: {}", codigoAduana);
 
 			ruc = root.path("ruc").asText();
 			logger.debug("ruc: {}", ruc);
@@ -75,7 +84,7 @@ public class AgenciaAduanasService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == codigoAgencia || codigoAgencia == 0 || StringUtils.isBlank(ruc) || StringUtils.isBlank(razonSocial)) {
+		if (null == codigoAduana || codigoAduana == 0 || StringUtils.isBlank(ruc) || StringUtils.isBlank(razonSocial)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -88,7 +97,7 @@ public class AgenciaAduanasService {
 
 		try {
 			AgenciaAduanas agencia = new AgenciaAduanas();
-			agencia.setCodigoAduana(codigoAgencia);
+			agencia.setCodigoAduana(codigoAduana);
 			agencia.setRuc(ruc);
 			agencia.setRazonSocial(razonSocial);
 			agencia.setDireccion(direccion);
@@ -107,7 +116,7 @@ public class AgenciaAduanasService {
 
 		JsonNode root;
 		Long id = null;
-		Integer	codigoAgencia = null;
+		Integer	codigoAduana = null;
 		String	ruc = null;
 		String	razonSocial = null;
 		String	nombreComercial = null;
@@ -118,8 +127,8 @@ public class AgenciaAduanasService {
 			id = root.path("id").asLong();
 			logger.debug("id: {}", id);
 
-			codigoAgencia = root.path("codigoAgencia").asInt();
-			logger.debug("codigoAgencia: {}", codigoAgencia);
+			codigoAduana = root.path("codigoAduana").asInt();
+			logger.debug("codigoAduana: {}", codigoAduana);
 
 			ruc = root.path("ruc").asText();
 			logger.debug("ruc: {}", ruc);
@@ -138,7 +147,7 @@ public class AgenciaAduanasService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == codigoAgencia || codigoAgencia == 0 || null == id || id == 0 || StringUtils.isBlank(ruc) || StringUtils.isBlank(razonSocial)) {
+		if (null == codigoAduana || codigoAduana == 0 || null == id || id == 0 || StringUtils.isBlank(ruc) || StringUtils.isBlank(razonSocial)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -164,7 +173,7 @@ public class AgenciaAduanasService {
 		try {
 			AgenciaAduanas agencia = new AgenciaAduanas();
 			agencia.setIdEmpresa(id);
-			agencia.setCodigoAduana(codigoAgencia);
+			agencia.setCodigoAduana(codigoAduana);
 			agencia.setRuc(ruc);
 			agencia.setRazonSocial(razonSocial);
 			agencia.setDireccion(direccion);
