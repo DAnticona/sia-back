@@ -24,7 +24,7 @@ public class TipoVehiculo extends Auditable<String> implements Serializable {
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@Column(name = "abrev", nullable = false, length = 10)
+	@Column(name = "abrev", length = 10)
 	private String abreviatura;
 
 	public Integer getIdTipoVehiculo() {

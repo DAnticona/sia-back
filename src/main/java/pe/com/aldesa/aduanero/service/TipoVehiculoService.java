@@ -62,14 +62,15 @@ public class TipoVehiculoService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+		if (StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
 		try {
 			TipoVehiculo tipoVehiculo = new TipoVehiculo();
 			tipoVehiculo.setNombre(nombre);
-			tipoVehiculo.setAbreviatura(abreviatura.toUpperCase());
+			if (StringUtils.isNotBlank(abreviatura))
+				tipoVehiculo.setAbreviatura(abreviatura.toUpperCase());
 
 			responseTipoCamion = tipoVehiculoRepository.save(tipoVehiculo);
 		} catch (Exception e) {
@@ -101,7 +102,7 @@ public class TipoVehiculoService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == id || id == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(abreviatura)) {
+		if (null == id || id == 0 || StringUtils.isBlank(nombre)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -109,7 +110,8 @@ public class TipoVehiculoService {
 			TipoVehiculo tipoVehiculo = new TipoVehiculo();
 			tipoVehiculo.setIdTipoVehiculo(id);
 			tipoVehiculo.setNombre(nombre);
-			tipoVehiculo.setAbreviatura(abreviatura.toUpperCase());
+			if (StringUtils.isNotBlank(abreviatura))
+				tipoVehiculo.setAbreviatura(abreviatura.toUpperCase());
 
 			responseTipoCamion = tipoVehiculoRepository.save(tipoVehiculo);
 		} catch (Exception e) {
