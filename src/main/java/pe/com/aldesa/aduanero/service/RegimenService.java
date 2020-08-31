@@ -39,6 +39,15 @@ public class RegimenService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), regimen);
 	}
 
+	public ApiResponse findByCodigoAduana(Integer codigoAduana) throws ApiException {
+		List<Regimen> regimenes = regimenRepository.findByCodigoAduana(codigoAduana);
+		if (regimenes.size() > 1) {
+			throw new ApiException(ApiError.MULTIPLES_SIMILAR_ELEMENTS.getCode(), ApiError.MULTIPLES_SIMILAR_ELEMENTS.getMessage());
+		}
+		logger.debug("Regimenes: {}", regimenes.get(0));
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), regimenes.get(0));
+	}
+
 	public ApiResponse save(String request) throws ApiException {
 		Regimen responseRegimen;
 
