@@ -15,7 +15,12 @@ public enum ApiError {
 	TIPO_BULTO_NOT_FOUND("8004", "No se encontró Tipo Bulto"),
 	DAM_NOT_FOUND("8005", "No se encontró DAM"),
 	SERIE_NOT_FOUND("8006", "No se encontró Serie Comprobante"),
-	TIPO_COMPROBANTE_NOT_FOUND("8007", "No se encontró Tipo Comprobante");
+	TIPO_COMPROBANTE_NOT_FOUND("8007", "No se encontró Tipo Comprobante"),
+	VENDEDOR_NOT_FOUND("8008", "No se encontró Vendedor"),
+	CLIENTE_NOT_FOUND("8009", "No se encontró Cliente"),
+	AGENCIA_ADUANAS_NOT_FOUND("8010", "No se encontró Agencia Aduanas"),
+	MONEDA_NOT_FOUND("8010", "No se encontró Moneda"),
+	COTIZACION_NOT_FOUND("8011", "No se encontró Cotización");
 
 	private final String code;
 	private final String message;
