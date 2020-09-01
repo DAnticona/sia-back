@@ -27,8 +27,8 @@ public class TipoComprobante extends Auditable<String> implements Serializable {
 	@Column(name = "abrev", nullable = false)
 	private String abreviatura;
 
-	@Column(name = "tipo_sunat")
-	private Integer tipoSunat;
+	@Column(name = "cod_sunat")
+	private Integer codSunat;
 
 	public Integer getIdTipoComprobante() {
 		return idTipoComprobante;
@@ -54,18 +54,18 @@ public class TipoComprobante extends Auditable<String> implements Serializable {
 		this.abreviatura = abreviatura;
 	}
 
-	public Integer getTipoSunat() {
-		return tipoSunat;
+	public Integer getCodSunat() {
+		return codSunat;
 	}
 
-	public void setTipoSunat(Integer tipoSunat) {
-		this.tipoSunat = tipoSunat;
+	public void setCodSunat(Integer codSunat) {
+		this.codSunat = codSunat;
 	}
 
 	@Override
 	public String toString() {
 		return "TipoComprobante [idTipoComprobante=" + idTipoComprobante + ", nombre=" + nombre + ", abreviatura="
-				+ abreviatura + ", tipoSunat=" + tipoSunat + "]";
+				+ abreviatura + ", codSunat=" + codSunat + "]";
 	}
 
 }

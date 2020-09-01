@@ -49,7 +49,7 @@ public class TipoComprobanteService {
 		JsonNode root;
 		String	nombre = null;
 		String	abreviatura = null;
-		Integer	tipoSunat = null;
+		Integer	codigoSunat = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 
@@ -59,8 +59,8 @@ public class TipoComprobanteService {
 			abreviatura = root.path("abreviatura").asText();
 			logger.debug("abreviatura: {}", abreviatura);
 
-			tipoSunat = root.path("tipoSunat").asInt();
-			logger.debug("tipoSunat: {}", tipoSunat);
+			codigoSunat = root.path("codigoSunat").asInt();
+			logger.debug("codigoSunat: {}", codigoSunat);
 
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
@@ -74,7 +74,7 @@ public class TipoComprobanteService {
 			TipoComprobante tipoComprobante = new TipoComprobante();
 			tipoComprobante.setNombre(nombre);
 			tipoComprobante.setAbreviatura(abreviatura.toUpperCase());
-			tipoComprobante.setTipoSunat(tipoSunat);
+			tipoComprobante.setCodSunat(codigoSunat);
 
 			responseTipoComprobante = tipoComprobanteRepository.save(tipoComprobante);
 			logger.debug("Tipo comprobante guardado");
@@ -90,7 +90,7 @@ public class TipoComprobanteService {
 		JsonNode root;
 		Integer	id = null;
 		String	nombre = null;
-		Integer	tipoSunat = null;
+		Integer	codigoSunat = null;
 		String	abreviatura = null;
 		try {
 			root = new ObjectMapper().readTree(request);
@@ -101,8 +101,8 @@ public class TipoComprobanteService {
 			nombre = root.path("nombre").asText();
 			logger.debug("nombre: {}", nombre);
 
-			tipoSunat = root.path("tipoSunat").asInt();
-			logger.debug("simbolo: {}", tipoSunat);
+			codigoSunat = root.path("codigoSunat").asInt();
+			logger.debug("codigoSunat: {}", codigoSunat);
 
 			abreviatura = root.path("abreviatura").asText();
 			logger.debug("abreviatura: {}", abreviatura);
@@ -126,7 +126,7 @@ public class TipoComprobanteService {
 			tipoComprobante.setIdTipoComprobante(id);
 			tipoComprobante.setNombre(nombre);
 			tipoComprobante.setAbreviatura(abreviatura.toUpperCase());
-			tipoComprobante.setTipoSunat(tipoSunat);
+			tipoComprobante.setCodSunat(codigoSunat);
 
 			responseTipoComprobante = tipoComprobanteRepository.save(tipoComprobante);
 			logger.debug("TipoComprobante actualizado");

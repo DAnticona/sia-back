@@ -81,12 +81,12 @@ public class SerieComprobanteService {
 		}
 
 		TipoComprobante tipoComprobante = tipoComprobanteRespository.findById(idTipoComprobante)
-				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+				.orElseThrow(() -> new ApiException(ApiError.TIPO_COMPROBANTE_NOT_FOUND.getCode(), ApiError.TIPO_COMPROBANTE_NOT_FOUND.getMessage()));
 
 		try {
 			SerieComprobante serieComprobante = new SerieComprobante();
 			serieComprobante.setTipoComprobante(tipoComprobante);
-			serieComprobante.setSerie(serie.toCharArray()[0]);
+			serieComprobante.setSerie(serie);
 			serieComprobante.setActivado('S');
 			serieComprobante.setNumeroMinimo(numeroMinimo);
 			serieComprobante.setNumeroMaximo(numeroMaximo);
@@ -103,18 +103,18 @@ public class SerieComprobanteService {
 		SerieComprobante responseSerie;
 
 		JsonNode root;
-		Integer	idSerie = null;
+		Integer	id = null;
 		Integer	idTipoComprobante = null;
 		String	serie = null;
-		String	activoStatus = null;
+		String	activado = null;
 		Integer	numeroMinimo = null;
 		Integer	numeroMaximo = null;
 		String descripcion = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 
-			idSerie = root.path("idSerie").asInt();
-			logger.debug("idSerie: {}", idSerie);
+			id = root.path("id").asInt();
+			logger.debug("id: {}", id);
 
 			idTipoComprobante = root.path("idTipoComprobante").asInt();
 			logger.debug("idTipoComprobante: {}", idTipoComprobante);
@@ -122,8 +122,8 @@ public class SerieComprobanteService {
 			serie = root.path("serie").asText();
 			logger.debug("serie: {}", serie);
 
-			activoStatus = root.path("activoStatus").asText();
-			logger.debug("activoStatus: {}", activoStatus);
+			activado = root.path("activado").asText();
+			logger.debug("activado: {}", activado);
 
 			numeroMinimo = root.path("numeroMinimo").asInt();
 			logger.debug("numeroMinimo {}", numeroMinimo);
@@ -138,31 +138,31 @@ public class SerieComprobanteService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (null == idSerie || idSerie == 0 || null == idTipoComprobante || idTipoComprobante == 0 || StringUtils.isBlank(serie) || StringUtils.isBlank(activoStatus)
-				|| "S".equalsIgnoreCase(activoStatus) || "N".equalsIgnoreCase(activoStatus)
+		if (null == id || id == 0 || null == idTipoComprobante || idTipoComprobante == 0 || StringUtils.isBlank(serie) || StringUtils.isBlank(activado)
 				|| null == numeroMinimo || numeroMinimo == 0 || null == numeroMaximo || numeroMaximo == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
-		boolean existsIdSerie = serieComprobanteRepository.existsById(idSerie);
-		logger.debug("Existe idSerie? {}", existsIdSerie);
+		boolean existsIdSerie = serieComprobanteRepository.existsById(id);
+		logger.debug("Existe idSerie {}? {}", id, existsIdSerie);
 		if (!existsIdSerie) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+			throw new ApiException(ApiError.SERIE_NOT_FOUND.getCode(), ApiError.SERIE_NOT_FOUND.getMessage());
 		}
 
 		TipoComprobante tipoComprobante = tipoComprobanteRespository.findById(idTipoComprobante)
-				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+				.orElseThrow(() -> new ApiException(ApiError.TIPO_COMPROBANTE_NOT_FOUND.getCode(), ApiError.TIPO_COMPROBANTE_NOT_FOUND.getMessage()));
 
 		try {
 			SerieComprobante serieComprobante = new SerieComprobante();
+			serieComprobante.setIdSerieComprobante(id);
 			serieComprobante.setTipoComprobante(tipoComprobante);
-			serieComprobante.setSerie(serie.toCharArray()[0]);
-			serieComprobante.setActivado(activoStatus.toCharArray()[0]);
+			serieComprobante.setSerie(serie);
+			serieComprobante.setActivado(activado.toCharArray()[0]);
 			serieComprobante.setNumeroMinimo(numeroMinimo);
 			serieComprobante.setNumeroMaximo(numeroMaximo);
 
 			responseSerie = serieComprobanteRepository.save(serieComprobante);
-			logger.debug("SerieComprobante guardada");
+			logger.debug("SerieComprobante actualizada");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}

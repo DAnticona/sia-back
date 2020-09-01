@@ -28,7 +28,7 @@ public class SerieComprobante implements Serializable {
 	private TipoComprobante tipoComprobante;
 
 	@Column(name = "serie", nullable = false, length = 4)
-	private Character serie;
+	private String serie;
 
 	@Column(name = "fg_acti", nullable = false, length = 1)
 	private Character activado;
@@ -58,11 +58,11 @@ public class SerieComprobante implements Serializable {
 		this.tipoComprobante = tipoComprobante;
 	}
 
-	public Character getSerie() {
+	public String getSerie() {
 		return serie;
 	}
 
-	public void setSerie(Character serie) {
+	public void setSerie(String serie) {
 		this.serie = serie;
 	}
 

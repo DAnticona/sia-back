@@ -13,7 +13,9 @@ public enum ApiError {
 	DEPOSITO_TEMPORAL_NOT_FOUND("8002", "No se encontró Depósito temporal"),
 	REGIMEN_NOT_FOUND("8003", "No se encontró Régimen"),
 	TIPO_BULTO_NOT_FOUND("8004", "No se encontró Tipo Bulto"),
-	DAM_NOT_FOUND("8005", "No se encontró DAM");
+	DAM_NOT_FOUND("8005", "No se encontró DAM"),
+	SERIE_NOT_FOUND("8006", "No se encontró Serie Comprobante"),
+	TIPO_COMPROBANTE_NOT_FOUND("8007", "No se encontró Tipo Comprobante");
 
 	private final String code;
 	private final String message;
