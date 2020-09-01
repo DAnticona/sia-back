@@ -47,7 +47,7 @@ public class UbicacionService {
 
 	public ApiResponse findByArea(Integer idArea) throws ApiException {
 		Optional<Area> optArea = areaRepository.findById(idArea);
-		if (optArea.isEmpty()) {
+		if (!optArea.isPresent()) {
 			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 		}
 
