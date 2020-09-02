@@ -1,6 +1,7 @@
 package pe.com.aldesa.aduanero.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
+import pe.com.aldesa.aduanero.constant.DocumentType;
 import pe.com.aldesa.aduanero.constant.PersonType;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.entity.Cliente;
@@ -26,6 +28,7 @@ import pe.com.aldesa.aduanero.repository.ClienteRepository;
 import pe.com.aldesa.aduanero.repository.EmpresaRepository;
 import pe.com.aldesa.aduanero.repository.PersonaRepository;
 import pe.com.aldesa.aduanero.repository.TipoPersonaRepository;
+import pe.com.aldesa.aduanero.util.FormatDocumentTypeUtil;
 
 @Service
 public class ClienteService {
@@ -46,14 +49,10 @@ public class ClienteService {
 
 	private static final int PAGE_LIMIT = 10;
 
-	public ApiResponse findAll(Integer pageNumber) throws ApiException {
+	public ApiResponse findAll(Integer pageNumber) {
 		Pageable pageable = PageRequest.of(pageNumber - 1, PAGE_LIMIT);
 		Page<Cliente> clientesPage = clienteRepository.findAll(pageable);
 		logger.debug("Página {} de: {}", pageNumber, clientesPage.getTotalPages());
-
-		if (clientesPage.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientesPage.getContent(), Math.toIntExact(clientesPage.getTotalElements()));
 	}
 
@@ -81,11 +80,11 @@ public class ClienteService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
 	}
 
-	public ApiResponse findByNumeroDocumento(String numeroDocumento) throws ApiException {
-		Cliente cliente = clienteRepository.findByNumeroDocumento(numeroDocumento)
-				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
-		logger.debug("Cliente by Numero de documento: {}", cliente);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), cliente);
+	public ApiResponse findByNumeroDocumento(String numeroDocumento, Integer idTipoDocumento) throws ApiException {
+		FormatDocumentTypeUtil.validateDocumentType(numeroDocumento, idTipoDocumento);
+		Optional<Cliente> optCli = clienteRepository.findByNumeroDocumento(numeroDocumento, idTipoDocumento);
+		logger.debug("Cliente by Numero de documento: {}", optCli);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), optCli);
 	}
 
 	public ApiResponse findByRazonSocial(String razonSocial) {
@@ -101,10 +100,10 @@ public class ClienteService {
 	}
 
 	public ApiResponse findByRuc(String ruc) throws ApiException {
-		Cliente cliente = clienteRepository.findByRuc(ruc)
-				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
-		logger.debug("Cliente by RUC: {}", cliente);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), cliente);
+		FormatDocumentTypeUtil.validateDocumentType(ruc, DocumentType.RUC);
+		Optional<Cliente> optCli = clienteRepository.findByRuc(ruc);
+		logger.debug("Cliente by RUC: {}", optCli);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), optCli);
 	}
 
 	public ApiResponse save(String request) throws ApiException {

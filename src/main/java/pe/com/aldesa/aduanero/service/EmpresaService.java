@@ -16,12 +16,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
+import pe.com.aldesa.aduanero.constant.DocumentType;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.entity.Direccion;
 import pe.com.aldesa.aduanero.entity.Empresa;
 import pe.com.aldesa.aduanero.exception.ApiException;
 import pe.com.aldesa.aduanero.repository.DireccionRepository;
 import pe.com.aldesa.aduanero.repository.EmpresaRepository;
+import pe.com.aldesa.aduanero.util.FormatDocumentTypeUtil;
 
 @Service
 public class EmpresaService {
@@ -36,30 +38,27 @@ public class EmpresaService {
 
 	private static final int PAGE_LIMIT = 10;
 
-	public ApiResponse findAll(Integer pageNumber) throws ApiException {
+	public ApiResponse findAll(Integer pageNumber) {
 		Pageable pageable = PageRequest.of(pageNumber - 1, PAGE_LIMIT);
 		Page<Empresa> empresasPage = empresaRepository.findAll(pageable);
 		logger.debug("Empresa {} de: {}", pageNumber, empresasPage.getTotalPages());
-
-		if (empresasPage.isEmpty()) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresasPage.getContent(), Math.toIntExact(empresasPage.getTotalElements()));
 	}
 
-	public ApiResponse findById(Long id) throws ApiException {
+	public ApiResponse findById(Long id) {
 		Empresa empresa = empresaRepository.findById(id).orElse(null);
-		logger.debug("Moneda: {}", empresa);
-		if (null == empresa) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-		}
+		logger.debug("Empresa: {}", empresa);
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresa);
 	}
 
 	public ApiResponse findByRuc(String ruc) throws ApiException {
+		FormatDocumentTypeUtil.validateDocumentType(ruc, DocumentType.RUC);
 		List<Empresa> empresas = empresaRepository.findByRuc(ruc);
 		if (empresas.size() > 1) {
 			throw new ApiException(ApiError.MULTIPLES_SIMILAR_ELEMENTS.getCode(), ApiError.MULTIPLES_SIMILAR_ELEMENTS.getMessage());
+		}
+		if (empresas.isEmpty()) {
+			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), null);
 		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresas.get(0));
 	}

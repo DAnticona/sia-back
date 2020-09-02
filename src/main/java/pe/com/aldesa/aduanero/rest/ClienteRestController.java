@@ -34,13 +34,7 @@ public class ClienteRestController {
 
 	@GetMapping("/clientes/slice/{page}")
 	public ResponseEntity<?> findAll(@PathVariable int page) {
-		ApiResponse response = null;
-		try {
-			response = clienteService.findAll(page);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = clienteService.findAll(page);
 		return ResponseEntity.ok(response);
 	}
 
@@ -68,11 +62,11 @@ public class ClienteRestController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/clientes/numero-documento/{ndocumento}")
-	public ResponseEntity<?> findByNumeroDocumento(@PathVariable String ndocumento) {
+	@GetMapping("/clientes/numero-documento/{ndocumento}/tipo-documento/{tdocumento}")
+	public ResponseEntity<?> findByNumeroDocumento(@PathVariable String ndocumento, @PathVariable Integer tdocumento) {
 		ApiResponse response = null;
 		try {
-			response = clienteService.findByNumeroDocumento(ndocumento);
+			response = clienteService.findByNumeroDocumento(ndocumento, tdocumento);
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);

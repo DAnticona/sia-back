@@ -34,25 +34,13 @@ public class EmpresaRestController {
 
 	@GetMapping("/empresas/slice/{page}")
 	public ResponseEntity<?> findAll(@PathVariable int page) {
-		ApiResponse response = null;
-		try {
-			response = empresaService.findAll(page);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = empresaService.findAll(page);
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/empresas/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = empresaService.findById(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = empresaService.findById(id);
 		return ResponseEntity.ok(response);
 	}
 

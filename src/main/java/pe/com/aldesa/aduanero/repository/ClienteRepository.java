@@ -30,8 +30,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	List<Cliente> findByApellidoMaterno(String apellidoMaterno);
 
 	@Query(value = "select * from cliente c inner join persona p on c.id_persona = p.id_persona " +
-			"where p.nu_doc like lower(concat('%', :numeroDocumento, '%'))", nativeQuery = true)
-	Optional<Cliente> findByNumeroDocumento(String numeroDocumento);
+			"where p.nu_doc = :numeroDocumento and p.id_tidoc = :idTipoDocumento", nativeQuery = true)
+	Optional<Cliente> findByNumeroDocumento(String numeroDocumento, Integer idTipoDocumento);
 
 	@Query(value = "select * from cliente c inner join empresa e on c.id_empresa = e.id_empresa " +
 			"where e.ra_social like lower(concat('%', :razonSocial, '%'))", nativeQuery = true)
@@ -42,7 +42,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	List<Cliente> findByNombreComercial(String nombreComercial);
 
 	@Query(value = "select * from cliente c inner join empresa e on c.id_empresa = e.id_empresa " +
-			"where e.nu_ruc like lower(concat('%', :ruc, '%'))", nativeQuery = true)
+			"where e.nu_ruc = :ruc", nativeQuery = true)
 	Optional<Cliente> findByRuc(String ruc);
 
 	@Query("select count(c)>0 from Cliente c where tipoPersona = :tipoPersona and persona = :persona")

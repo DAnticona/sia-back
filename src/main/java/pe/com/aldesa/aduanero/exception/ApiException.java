@@ -2,7 +2,7 @@ package pe.com.aldesa.aduanero.exception;
 
 /**
  * Esta excepción es lanzada hacia el controlador cuando se produce una incidencia en el API
- * 
+ *
  * @author Juan Pablo Canepa Alvarez
  *
  */
@@ -13,6 +13,10 @@ public class ApiException extends Exception {
 	private final String code;
 	private final String message;
 	private final String detailMessage;
+
+	public ApiException(String message) {
+		this(message, null);
+	}
 
 	public ApiException(String code, String message) {
 		this(code, message, null);
