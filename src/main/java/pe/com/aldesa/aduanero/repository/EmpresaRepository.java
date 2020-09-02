@@ -12,7 +12,7 @@ import pe.com.aldesa.aduanero.entity.Empresa;
 @Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
-	List<Empresa> findByRuc(String ruc);
+	Empresa findByRuc(String ruc);
 
 	List<Empresa> findByRazonSocial(String razonsocial);
 

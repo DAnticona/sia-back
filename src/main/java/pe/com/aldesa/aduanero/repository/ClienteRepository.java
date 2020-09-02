@@ -30,8 +30,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	List<Cliente> findByApellidoMaterno(String apellidoMaterno);
 
 	@Query(value = "select * from cliente c inner join persona p on c.id_persona = p.id_persona " +
-			"where p.nu_doc = :numeroDocumento and p.id_tidoc = :idTipoDocumento", nativeQuery = true)
-	Optional<Cliente> findByNumeroDocumento(String numeroDocumento, Integer idTipoDocumento);
+			"where p.nu_doc = :numeroDocumento", nativeQuery = true)
+	Optional<Cliente> findByNumeroDocumento(String numeroDocumento);
 
 	@Query(value = "select * from cliente c inner join empresa e on c.id_empresa = e.id_empresa " +
 			"where e.ra_social like lower(concat('%', :razonSocial, '%'))", nativeQuery = true)

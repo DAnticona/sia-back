@@ -12,9 +12,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "empresa")
+@Table(name = "empresa", uniqueConstraints = { @UniqueConstraint(columnNames = "nu_ruc") })
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Empresa extends Auditable<String> implements Serializable {
 

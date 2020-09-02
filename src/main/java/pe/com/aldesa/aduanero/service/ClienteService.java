@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
-import pe.com.aldesa.aduanero.constant.DocumentType;
 import pe.com.aldesa.aduanero.constant.PersonType;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.entity.Cliente;
@@ -28,7 +27,6 @@ import pe.com.aldesa.aduanero.repository.ClienteRepository;
 import pe.com.aldesa.aduanero.repository.EmpresaRepository;
 import pe.com.aldesa.aduanero.repository.PersonaRepository;
 import pe.com.aldesa.aduanero.repository.TipoPersonaRepository;
-import pe.com.aldesa.aduanero.util.FormatDocumentTypeUtil;
 
 @Service
 public class ClienteService {
@@ -80,9 +78,8 @@ public class ClienteService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
 	}
 
-	public ApiResponse findByNumeroDocumento(String numeroDocumento, Integer idTipoDocumento) throws ApiException {
-		FormatDocumentTypeUtil.validateDocumentType(numeroDocumento, idTipoDocumento);
-		Optional<Cliente> optCli = clienteRepository.findByNumeroDocumento(numeroDocumento, idTipoDocumento);
+	public ApiResponse findByNumeroDocumento(String numeroDocumento) {
+		Optional<Cliente> optCli = clienteRepository.findByNumeroDocumento(numeroDocumento);
 		logger.debug("Cliente by Numero de documento: {}", optCli);
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), optCli);
 	}
@@ -100,7 +97,6 @@ public class ClienteService {
 	}
 
 	public ApiResponse findByRuc(String ruc) throws ApiException {
-		FormatDocumentTypeUtil.validateDocumentType(ruc, DocumentType.RUC);
 		Optional<Cliente> optCli = clienteRepository.findByRuc(ruc);
 		logger.debug("Cliente by RUC: {}", optCli);
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), optCli);

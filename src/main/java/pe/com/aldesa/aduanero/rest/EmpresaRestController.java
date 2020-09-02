@@ -46,13 +46,7 @@ public class EmpresaRestController {
 
 	@GetMapping("/empresas/ruc/{ruc}")
 	public ResponseEntity<?> findById(@PathVariable String ruc) {
-		ApiResponse response;
-		try {
-			response = empresaService.findByRuc(ruc);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+		ApiResponse response = empresaService.findByRuc(ruc);
 		return ResponseEntity.ok(response);
 	}
 

@@ -16,14 +16,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
-import pe.com.aldesa.aduanero.constant.DocumentType;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
 import pe.com.aldesa.aduanero.entity.Direccion;
 import pe.com.aldesa.aduanero.entity.Empresa;
 import pe.com.aldesa.aduanero.exception.ApiException;
 import pe.com.aldesa.aduanero.repository.DireccionRepository;
 import pe.com.aldesa.aduanero.repository.EmpresaRepository;
-import pe.com.aldesa.aduanero.util.FormatDocumentTypeUtil;
 
 @Service
 public class EmpresaService {
@@ -51,16 +49,9 @@ public class EmpresaService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresa);
 	}
 
-	public ApiResponse findByRuc(String ruc) throws ApiException {
-		FormatDocumentTypeUtil.validateDocumentType(ruc, DocumentType.RUC);
-		List<Empresa> empresas = empresaRepository.findByRuc(ruc);
-		if (empresas.size() > 1) {
-			throw new ApiException(ApiError.MULTIPLES_SIMILAR_ELEMENTS.getCode(), ApiError.MULTIPLES_SIMILAR_ELEMENTS.getMessage());
-		}
-		if (empresas.isEmpty()) {
-			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), null);
-		}
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresas.get(0));
+	public ApiResponse findByRuc(String ruc) {
+		Empresa empresa = empresaRepository.findByRuc(ruc);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresa);
 	}
 
 	public ApiResponse findByRazonSocial(String razonSocial) {

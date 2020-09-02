@@ -62,15 +62,9 @@ public class ClienteRestController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/clientes/numero-documento/{ndocumento}/tipo-documento/{tdocumento}")
-	public ResponseEntity<?> findByNumeroDocumento(@PathVariable String ndocumento, @PathVariable Integer tdocumento) {
-		ApiResponse response = null;
-		try {
-			response = clienteService.findByNumeroDocumento(ndocumento, tdocumento);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
-		}
+	@GetMapping("/clientes/numero-documento/{ndocumento}")
+	public ResponseEntity<?> findByNumeroDocumento(@PathVariable String ndocumento) {
+		ApiResponse response = clienteService.findByNumeroDocumento(ndocumento);
 		return ResponseEntity.ok(response);
 	}
 
