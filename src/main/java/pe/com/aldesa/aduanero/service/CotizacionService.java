@@ -111,7 +111,7 @@ public class CotizacionService {
 		logger.debug("Cliente: {}", cliente);
 
 		AgenciaAduanas agenciaAduana = agenciaAduanasRepository.findById(idAgencia)
-				.orElseThrow(() -> new ApiException(ApiError.AGENCIA_ADUANAS_NOT_FOUND.getCode(), ApiError.AGENCIA_ADUANAS_NOT_FOUND.getMessage()));
+				.orElseThrow(() -> new ApiException(ApiError.AGENCIA_ADUANA_NOT_FOUND.getCode(), ApiError.AGENCIA_ADUANA_NOT_FOUND.getMessage()));
 		logger.debug("Agencia Aduana: {}", agenciaAduana);
 
 		Moneda moneda = monedaRepository.findById(idMoneda)
@@ -198,7 +198,7 @@ public class CotizacionService {
 		logger.debug("Cliente: {}", cliente);
 
 		AgenciaAduanas agenciaAduana = agenciaAduanasRepository.findById(idAgencia)
-				.orElseThrow(() -> new ApiException(ApiError.AGENCIA_ADUANAS_NOT_FOUND.getCode(), ApiError.AGENCIA_ADUANAS_NOT_FOUND.getMessage()));
+				.orElseThrow(() -> new ApiException(ApiError.AGENCIA_ADUANA_NOT_FOUND.getCode(), ApiError.AGENCIA_ADUANA_NOT_FOUND.getMessage()));
 		logger.debug("Agencia Aduana: {}", agenciaAduana);
 
 		Moneda moneda = monedaRepository.findById(idMoneda)

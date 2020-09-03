@@ -21,7 +21,6 @@ public enum ApiError {
 	TIPO_COMPROBANTE_NOT_FOUND("8007", "No se encontró Tipo Comprobante"),
 	VENDEDOR_NOT_FOUND("8008", "No se encontró Vendedor"),
 	CLIENTE_NOT_FOUND("8009", "No se encontró Cliente"),
-	AGENCIA_ADUANAS_NOT_FOUND("8010", "No se encontró Agencia Aduanas"),
 	MONEDA_NOT_FOUND("8010", "No se encontró Moneda"),
 	COTIZACION_NOT_FOUND("8011", "No se encontró Cotización"),
 	SERVICIO_NOT_FOUND("8012", "No se encontró Servicio");
