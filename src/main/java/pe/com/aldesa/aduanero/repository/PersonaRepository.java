@@ -15,7 +15,7 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
 	@Query("select p from Persona p where p.nombres like %:nombres% or p.apellidoPaterno like %:nombres% or p.apellidoMaterno like %:nombres%")
 	List<Persona> searchByNombres(String nombres);
 
-	@Query("select p from Persona p where p.nu_doc = :numeroDocumento")
-	Optional<Persona> findByNumeroDocumento(String numerodocumento);
+	@Query("select p from Persona p where p.numeroDocumento = :numeroDocumento")
+	Optional<Persona> findByNumeroDocumento(String numeroDocumento);
 
 }
