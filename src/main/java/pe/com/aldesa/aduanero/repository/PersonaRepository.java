@@ -1,8 +1,10 @@
 package pe.com.aldesa.aduanero.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import pe.com.aldesa.aduanero.entity.Persona;
@@ -10,12 +12,10 @@ import pe.com.aldesa.aduanero.entity.Persona;
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Long> {
 
-	List<Persona> findByNombres(String nombres);
+	@Query("select p from Persona p where p.nombres like %:nombres% or p.apellidoPaterno like %:nombres% or p.apellidoMaterno like %:nombres%")
+	List<Persona> searchByNombres(String nombres);
 
-	List<Persona> findByApellidoPaterno(String apellidopaterno);
-
-	List<Persona> findByApellidoMaterno(String apellidomaterno);
-
-	List<Persona> findByNumeroDocumento(String numerodocumento);
+	@Query("select p from Persona p where p.nu_doc = :numeroDocumento")
+	Optional<Persona> findByNumeroDocumento(String numerodocumento);
 
 }
