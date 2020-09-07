@@ -56,12 +56,6 @@ public class EmpresaRestController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/empresas/nombre-comercial/{nombre}")
-	public ResponseEntity<?> findByNombreComercial(@PathVariable String nombre) {
-		ApiResponse response = empresaService.findByNombreComercial(nombre);
-		return ResponseEntity.ok(response);
-	}
-
 	@PostMapping("/empresas")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;

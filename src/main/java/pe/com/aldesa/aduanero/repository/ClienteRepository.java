@@ -18,28 +18,17 @@ import pe.com.aldesa.aduanero.entity.TipoPersona;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
 	@Query(value = "select * from cliente c inner join persona p on c.id_persona = p.id_persona " +
-			"where p.nombres like lower(concat('%', :nombre, '%'))", nativeQuery = true)
+			"where p.nombres like lower(concat('%', :nombre, '%')) or p.ap_paterno like lower(concat('%', :nombre, '%')) or "
+			+ "p.ap_materno like lower(concat('%', :nombre, '%'))", nativeQuery = true)
 	List<Cliente> findByNombre(String nombre);
-
-	@Query(value = "select * from cliente c inner join persona p on c.id_persona = p.id_persona " +
-			"where p.ap_paterno like lower(concat('%', :apellidoPaterno, '%'))", nativeQuery = true)
-	List<Cliente> findByApellidoPaterno(String apellidoPaterno);
-
-	@Query(value = "select * from cliente c inner join persona p on c.id_persona = p.id_persona " +
-			"where p.ap_materno like lower(concat('%', :apellidoMaterno, '%'))", nativeQuery = true)
-	List<Cliente> findByApellidoMaterno(String apellidoMaterno);
 
 	@Query(value = "select * from cliente c inner join persona p on c.id_persona = p.id_persona " +
 			"where p.nu_doc = :numeroDocumento", nativeQuery = true)
 	Optional<Cliente> findByNumeroDocumento(String numeroDocumento);
 
 	@Query(value = "select * from cliente c inner join empresa e on c.id_empresa = e.id_empresa " +
-			"where e.ra_social like lower(concat('%', :razonSocial, '%'))", nativeQuery = true)
+			"where e.ra_social like lower(concat('%', :razonSocial, '%')) or e.no_comercial like lower(concat('%', :razonSocial, '%'))", nativeQuery = true)
 	List<Cliente> findByRazonSocial(String razonSocial);
-
-	@Query(value = "select * from cliente c inner join empresa e on c.id_empresa = e.id_empresa " +
-			"where e.no_comercial like lower(concat('%', :nombreComercial, '%'))", nativeQuery = true)
-	List<Cliente> findByNombreComercial(String nombreComercial);
 
 	@Query(value = "select * from cliente c inner join empresa e on c.id_empresa = e.id_empresa " +
 			"where e.nu_ruc = :ruc", nativeQuery = true)

@@ -56,12 +56,7 @@ public class EmpresaService {
 
 	public ApiResponse findByRazonSocial(String razonSocial) {
 		List<Empresa> empresas = empresaRepository.findByRazonSocial(razonSocial);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresas);
-	}
-
-	public ApiResponse findByNombreComercial(String nombrecomercial) {
-		List<Empresa> empresas = empresaRepository.findByNombreComercial(nombrecomercial);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresas);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), empresas, empresas.size());
 	}
 
 	public ApiResponse save(String request) throws ApiException {

@@ -63,19 +63,7 @@ public class ClienteService {
 	public ApiResponse findByNombre(String nombre) {
 		List<Cliente> clientes = clienteRepository.findByNombre(nombre);
 		logger.debug("Cliente by Nombre: {}", clientes);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
-	}
-
-	public ApiResponse findByApellidoPaterno(String apellidoPaterno) {
-		List<Cliente> clientes = clienteRepository.findByApellidoPaterno(apellidoPaterno);
-		logger.debug("Cliente by Apellido Paterno: {}", clientes);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
-	}
-
-	public ApiResponse findByApellidoMaterno(String apellidoMaterno) {
-		List<Cliente> clientes = clienteRepository.findByApellidoMaterno(apellidoMaterno);
-		logger.debug("Cliente by ApellidoMaterno: {}", clientes);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes.size());
 	}
 
 	public ApiResponse findByNumeroDocumento(String numeroDocumento) {
@@ -87,16 +75,10 @@ public class ClienteService {
 	public ApiResponse findByRazonSocial(String razonSocial) {
 		List<Cliente> clientes = clienteRepository.findByRazonSocial(razonSocial);
 		logger.debug("Cliente by Razon Social: {}", clientes);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes, clientes.size());
 	}
 
-	public ApiResponse findByNombreComercial(String nombreComercial) {
-		List<Cliente> clientes = clienteRepository.findByNombreComercial(nombreComercial);
-		logger.debug("Cliente by Nombre Comercial: {}", clientes);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes);
-	}
-
-	public ApiResponse findByRuc(String ruc) throws ApiException {
+	public ApiResponse findByRuc(String ruc) {
 		Optional<Cliente> optCli = clienteRepository.findByRuc(ruc);
 		logger.debug("Cliente by RUC: {}", optCli);
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), optCli);
