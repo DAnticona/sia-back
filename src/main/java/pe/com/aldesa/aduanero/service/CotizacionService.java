@@ -1,6 +1,8 @@
 package pe.com.aldesa.aduanero.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -11,19 +13,24 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import pe.com.aldesa.aduanero.constant.ApiError;
 import pe.com.aldesa.aduanero.dto.ApiResponse;
+import pe.com.aldesa.aduanero.dto.CotizacionContext;
 import pe.com.aldesa.aduanero.entity.AgenciaAduanas;
 import pe.com.aldesa.aduanero.entity.Cliente;
 import pe.com.aldesa.aduanero.entity.Cotizacion;
+import pe.com.aldesa.aduanero.entity.CotizacionDetalle;
 import pe.com.aldesa.aduanero.entity.Moneda;
+import pe.com.aldesa.aduanero.entity.Servicio;
 import pe.com.aldesa.aduanero.entity.Vendedor;
 import pe.com.aldesa.aduanero.exception.ApiException;
 import pe.com.aldesa.aduanero.repository.AgenciaAduanasRepository;
 import pe.com.aldesa.aduanero.repository.ClienteRepository;
 import pe.com.aldesa.aduanero.repository.CotizacionRepository;
 import pe.com.aldesa.aduanero.repository.MonedaRepository;
+import pe.com.aldesa.aduanero.repository.ServicioRepository;
 import pe.com.aldesa.aduanero.repository.VendedorRepository;
 
 @Service
@@ -44,23 +51,35 @@ public class CotizacionService {
 	private AgenciaAduanasRepository agenciaAduanasRepository;
 
 	@Autowired
+	private ServicioRepository servicioRepository;
+
+	@Autowired
 	private MonedaRepository monedaRepository;
 
 	public ApiResponse findAll() {
 		List<Cotizacion> cotizaciones = cotizacionRepository.findAll();
 		int total = cotizaciones.size();
 		logger.debug("Total Cotizaciones: {}", total);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), cotizaciones, total);
+
+		List<CotizacionContext> allCotizaciones = new ArrayList<>();
+		for (Cotizacion cotizacion : cotizaciones) {
+			CotizacionContext cotContent = new CotizacionContext(cotizacion, cotizacion.getLineas());
+			allCotizaciones.add(cotContent);
+		}
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), allCotizaciones, total);
 	}
 
 	public ApiResponse findById(Long id) {
 		Cotizacion tmpCotizacion = cotizacionRepository.findById(id).orElse(null);
 		logger.debug("Cotizacion: {}", tmpCotizacion);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpCotizacion);
+		CotizacionContext cotContent = null;
+		if (null != tmpCotizacion)
+			cotContent = new CotizacionContext(tmpCotizacion, tmpCotizacion.getLineas());
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), cotContent);
 	}
 
 	public ApiResponse save(String request) throws ApiException {
-		Cotizacion responseCoti;
+		CotizacionContext responseCoti = null;
 
 		JsonNode root;
 		Long idVendedor = null;
@@ -70,6 +89,7 @@ public class CotizacionService {
 		String etapa = null;
 		String referencia = null;
 		String observaciones = null;
+		ArrayNode lineas = null;
 		try {
 			root = new ObjectMapper().readTree(request);
 
@@ -94,11 +114,14 @@ public class CotizacionService {
 			observaciones = root.path("observaciones").asText();
 			logger.debug("observaciones: {}", observaciones);
 
+			lineas = (ArrayNode) root.path("lineas");
+			logger.debug("Total líneas: {}", lineas.size());
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (idVendedor == 0 || idCliente == 0 || idMoneda == 0 || StringUtils.isBlank(etapa)) {
+		if (idVendedor == 0 || idCliente == 0 || idMoneda == 0 || StringUtils.isBlank(etapa) || lineas.size() < 1) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -120,6 +143,36 @@ public class CotizacionService {
 
 		try {
 			Cotizacion cotizacion = new Cotizacion();
+			List<CotizacionDetalle> detalles = new ArrayList<>();
+			for (JsonNode node : lineas) {
+
+				int item = node.path("item").asInt();
+				logger.debug("item: {}", item);
+
+				int idServicio = node.path("idServicio").asInt();
+				logger.debug("idServicio: {}", idServicio);
+
+				double precio = node.path("precio").asDouble();
+				logger.debug("precio: {}", precio);
+
+				if (item == 0 || idServicio == 0) {
+					throw new ApiException(ApiError.QUOTATION_LINES.getCode(), ApiError.QUOTATION_LINES.getMessage());
+				}
+
+				Servicio servicio = servicioRepository.findById(idServicio)
+						.orElseThrow(() -> new ApiException(ApiError.SERVICIO_NOT_FOUND.getCode(), ApiError.SERVICIO_NOT_FOUND.getMessage()));
+				logger.debug("Servicio: {}", servicio);
+
+				CotizacionDetalle detalle = new CotizacionDetalle();
+				detalle.setIdDetalle(UUID.randomUUID().toString());
+				detalle.setItem(item);
+				detalle.setServicio(servicio);
+				detalle.setPrecio(precio);
+				detalle.setCotizacion(cotizacion);
+
+				detalles.add(detalle);
+			}
+
 			cotizacion.setVendedor(vendedor);
 			cotizacion.setCliente(cliente);
 			cotizacion.setAgenciaAduana(agenciaAduana);
@@ -127,9 +180,13 @@ public class CotizacionService {
 			cotizacion.setEtapa(etapa);
 			cotizacion.setReferencia(referencia);
 			cotizacion.setObservaciones(observaciones);
+			cotizacion.setLineas(detalles);
 
-			responseCoti = cotizacionRepository.save(cotizacion);
-			logger.debug("Cotizacion guardada");
+			cotizacion = cotizacionRepository.save(cotizacion);
+			logger.debug("Se guardó Cotizacion");
+
+			responseCoti = new CotizacionContext(cotizacion, cotizacion.getLineas());
+
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -226,7 +283,6 @@ public class CotizacionService {
 
 	public ApiResponse delete(Long id) throws ApiException {
 		Cotizacion tmpCotizacion = cotizacionRepository.findById(id).orElse(null);
-		logger.debug("Cotizacion: {}", tmpCotizacion);
 		if (null != tmpCotizacion) {
 			cotizacionRepository.deleteById(id);
 			logger.debug("Cotizacion eliminada");

@@ -11,6 +11,7 @@ public enum ApiError {
 	RUC_LENGTH("9005", "RUC debe tener longitud 11"),
 	DNI_LENGTH("9006", "DNI debe tener longitud 8"),
 	CE_LENGTH("9007", "CE debe tener longitud máxima de 12"),
+	QUOTATION_LINES("9008", "No se ha enviado líneas de cotización"),
 	ADUANA_NOT_FOUND("8000", "No se encontró Aduana"),
 	AGENCIA_ADUANA_NOT_FOUND("8001", "No se encontró Agencia Aduana"),
 	DEPOSITO_TEMPORAL_NOT_FOUND("8002", "No se encontró Depósito temporal"),

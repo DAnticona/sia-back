@@ -1,15 +1,21 @@
 package pe.com.aldesa.aduanero.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cotizacion")
@@ -46,6 +52,10 @@ public class Cotizacion extends Auditable<String> implements Serializable {
 
 	@Column(name = "observaciones")
 	private String observaciones;
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cotizacion", cascade = CascadeType.ALL)
+	private List<CotizacionDetalle> lineas;
 
 	public Long getIdCotizacion() {
 		return idCotizacion;
@@ -111,11 +121,19 @@ public class Cotizacion extends Auditable<String> implements Serializable {
 		this.observaciones = observaciones;
 	}
 
+	public List<CotizacionDetalle> getLineas() {
+		return lineas;
+	}
+
+	public void setLineas(List<CotizacionDetalle> lineas) {
+		this.lineas = lineas;
+	}
+
 	@Override
 	public String toString() {
 		return "Cotizacion [idCotizacion=" + idCotizacion + ", vendedor=" + vendedor + ", cliente=" + cliente
 				+ ", agenciaAduana=" + agenciaAduana + ", moneda=" + moneda + ", etapa=" + etapa + ", referencia="
-				+ referencia + ", observaciones=" + observaciones + "]";
+				+ referencia + ", observaciones=" + observaciones + ", lineas=" + lineas + "]";
 	}
 
 }

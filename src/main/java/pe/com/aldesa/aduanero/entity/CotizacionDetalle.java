@@ -3,8 +3,9 @@ package pe.com.aldesa.aduanero.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,8 +16,12 @@ public class CotizacionDetalle extends Auditable<String> implements Serializable
 
 	private static final long serialVersionUID = -6224104135349703307L;
 
-	@EmbeddedId
-	private CotizacionDetalleId cotizacionDetalleId;
+	@Id
+	@Column(name = "id_detalle", nullable = false)
+	private String idDetalle;
+
+	@Column(name = "item", nullable = false)
+	private Integer item;
 
 	@ManyToOne
 	@JoinColumn(name = "id_servicio", nullable = false)
@@ -25,12 +30,24 @@ public class CotizacionDetalle extends Auditable<String> implements Serializable
 	@Column(name = "precio", nullable = false, precision = 12, scale = 2)
 	private Double precio;
 
-	public CotizacionDetalleId getDetalleCotizacionId() {
-		return cotizacionDetalleId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_cotizacion", nullable = false)
+	private Cotizacion cotizacion;
+
+	public String getIdDetalle() {
+		return idDetalle;
 	}
 
-	public void setDetalleCotizacionId(CotizacionDetalleId cotizacionDetalleId) {
-		this.cotizacionDetalleId = cotizacionDetalleId;
+	public void setIdDetalle(String idDetalle) {
+		this.idDetalle = idDetalle;
+	}
+
+	public Integer getItem() {
+		return item;
+	}
+
+	public void setItem(Integer item) {
+		this.item = item;
 	}
 
 	public Servicio getServicio() {
@@ -49,10 +66,18 @@ public class CotizacionDetalle extends Auditable<String> implements Serializable
 		this.precio = precio;
 	}
 
+	public Cotizacion getCotizacion() {
+		return cotizacion;
+	}
+
+	public void setCotizacion(Cotizacion cotizacion) {
+		this.cotizacion = cotizacion;
+	}
+
 	@Override
 	public String toString() {
-		return "DetalleCotizacion [detalleCotizacionId=" + cotizacionDetalleId + ", servicio=" + servicio + ", precio="
-				+ precio + "]";
+		return "CotizacionDetalle [idDetalle=" + idDetalle + ", item=" + item
+				+ ", servicio=" + servicio + ", precio=" + precio + ", cotizacion=" + cotizacion + "]";
 	}
 
 }
