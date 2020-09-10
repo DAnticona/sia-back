@@ -88,7 +88,7 @@ public class ServicioService {
 			servicio.setGrupoServicio(grupoServicio);
 			servicio.setPct(pct);
 			servicio.setPrecioMonedaNacional(precioMonedaNacional);
-			servicio.setPrecioMonedaExtrangera(precioMonedaExtrangera);
+			servicio.setPrecioMonedaExtranjera(precioMonedaExtrangera);
 
 			responseServicio = servicioRepository.save(servicio);
 			logger.debug("Servicio guardado");
@@ -155,7 +155,7 @@ public class ServicioService {
 			servicio.setGrupoServicio(grupoServicio);
 			servicio.setPct(pct);
 			servicio.setPrecioMonedaNacional(precioMonedaNacional);
-			servicio.setPrecioMonedaExtrangera(precioMonedaExtrangera);
+			servicio.setPrecioMonedaExtranjera(precioMonedaExtrangera);
 
 			responseServicio = servicioRepository.save(servicio);
 			logger.debug("Servicio guardado");

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "servicio", uniqueConstraints = {@UniqueConstraint(columnNames = "nombre")})
+@Table(name = "servicio", uniqueConstraints = { @UniqueConstraint(columnNames = "nombre") })
 public class Servicio extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = 7712878983649738669L;
@@ -37,7 +37,7 @@ public class Servicio extends Auditable<String> implements Serializable {
 	private Double precioMonedaNacional;
 
 	@Column(name = "precio_me", precision = 12, scale = 2)
-	private Double precioMonedaExtrangera;
+	private Double precioMonedaExtranjera;
 
 	public Integer getIdServicio() {
 		return idServicio;
@@ -79,19 +79,19 @@ public class Servicio extends Auditable<String> implements Serializable {
 		this.precioMonedaNacional = precioMonedaNacional;
 	}
 
-	public Double getPrecioMonedaExtrangera() {
-		return precioMonedaExtrangera;
+	public Double getPrecioMonedaExtranjera() {
+		return precioMonedaExtranjera;
 	}
 
-	public void setPrecioMonedaExtrangera(Double precioMonedaExtrangera) {
-		this.precioMonedaExtrangera = precioMonedaExtrangera;
+	public void setPrecioMonedaExtranjera(Double precioMonedaExtranjera) {
+		this.precioMonedaExtranjera = precioMonedaExtranjera;
 	}
 
 	@Override
 	public String toString() {
 		return "Servicio [idServicio=" + idServicio + ", grupoServicio=" + grupoServicio + ", nombre=" + nombre
-				+ ", pct=" + pct + ", precioMonedaNacional=" + precioMonedaNacional + ", precioMonedaExtrangera="
-				+ precioMonedaExtrangera + "]";
+				+ ", pct=" + pct + ", precioMonedaNacional=" + precioMonedaNacional + ", precioMonedaExtranjera="
+				+ precioMonedaExtranjera + "]";
 	}
 
 }
