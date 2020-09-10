@@ -10,9 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "deposito_temporal")
+@Table(name = "deposito_temporal", uniqueConstraints = { @UniqueConstraint(columnNames = "cod_aduana")})
 public class DepositoTemporal extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = -7982469029159361418L;

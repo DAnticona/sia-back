@@ -8,9 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "aduana")
+@Table(name = "aduana", uniqueConstraints = { @UniqueConstraint(columnNames = "cod_aduana")})
 public class Aduana extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = -1013094946214699133L;
