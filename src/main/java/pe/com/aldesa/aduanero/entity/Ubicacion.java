@@ -32,7 +32,7 @@ public class Ubicacion extends Auditable<String> implements Serializable {
 	@Column(name = "abrev", nullable = false)
 	private String abreviatura;
 
-	@Column(name = "nu_rack", nullable = false)
+	@Column(name = "nu_rack")
 	private Integer numeroRack;
 
 	@Column(name = "fg_acti", nullable = false)

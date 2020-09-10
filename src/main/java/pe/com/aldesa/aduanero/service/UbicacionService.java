@@ -88,7 +88,7 @@ public class UbicacionService {
 		}
 
 		if (null == idArea || idArea == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(activo)
-				|| StringUtils.isBlank(abreviatura) || null == numeroRack || numeroRack == 0) {
+				|| StringUtils.isBlank(abreviatura)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -147,7 +147,7 @@ public class UbicacionService {
 		}
 
 		if (null == id || id == 0 || null == idArea || idArea == 0 || StringUtils.isBlank(nombre) || StringUtils.isBlank(activo)
-				|| StringUtils.isBlank(abreviatura) || null == numeroRack || numeroRack == 0) {
+				|| StringUtils.isBlank(abreviatura)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
