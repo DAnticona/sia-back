@@ -229,19 +229,6 @@ public class PersonaService {
 		logger.debug("Encontró dirección {} ? {}", idDireccion, (null != direccion));
 
 		try {
-			Persona persona = new Persona();
-			persona.setIdPersona(id);
-			persona.setNombres(nombres);
-			persona.setApellidoPaterno(apellidoPaterno);
-			persona.setApellidoMaterno(apellidoMaterno);
-			persona.setTipoDocumento(tipoDocumento);
-			persona.setNumeroDocumento(numeroDocumento);
-			if (StringUtils.isNotBlank(sexo))
-				persona.setSexo(sexo.charAt(0));
-			if (StringUtils.isNotBlank(fechaNacimiento))
-				persona.setFechaNacimiento(DateUtil.of(fechaNacimiento));
-			persona.setEmail(email);
-			persona.setDireccion(direccion);
 
 			personaRepository.updatePersona(id, nombres, apellidoPaterno,
 					apellidoMaterno, tipoDocumento, numeroDocumento, StringUtils.isBlank(sexo)? null : sexo.charAt(0), StringUtils.isBlank(fechaNacimiento)? null : DateUtil.of(fechaNacimiento),

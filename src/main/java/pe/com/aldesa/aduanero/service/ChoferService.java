@@ -212,19 +212,16 @@ public class ChoferService {
 		}
 
 		try {
-			Chofer chofer = new Chofer();
-			chofer.setNumeroLicencia(numeroLicencia);
-			chofer.setNumeroDocumento(numeroDocumento);
-			chofer.setNombres(nombres);
-			chofer.setApellidoPaterno(apellidoPaterno);
-			chofer.setApellidoMaterno(apellidoMaterno);
-			chofer.setSexo(sexo.charAt(0));
-			chofer.setFechaNacimiento(DateUtil.of(fechaNacimiento));
-			chofer.setEmail(email);
-			chofer.setTipoDocumento(tipoDocumento);
-			chofer.setDireccion(direccion);
 
-			responseChofer = choferRepository.save(chofer);
+			choferRepository.updateChofer(idPersona, nombres, apellidoPaterno,
+					apellidoMaterno, tipoDocumento, numeroDocumento, StringUtils.isBlank(sexo)? null : sexo.charAt(0), StringUtils.isBlank(fechaNacimiento)? null : DateUtil.of(fechaNacimiento),
+							email, direccion, numeroLicencia);
+			logger.debug("Chofer actualizado");
+
+			responseChofer = choferRepository.findById(idPersona)
+					.orElseThrow(() -> new ApiException(ApiError.CHOFER_NOT_FOUND.getCode(), ApiError.CHOFER_NOT_FOUND.getMessage()));
+			logger.debug("Chofer encontrado: {}", responseChofer);
+
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}

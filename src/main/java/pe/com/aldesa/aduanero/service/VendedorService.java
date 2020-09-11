@@ -217,19 +217,6 @@ public class VendedorService {
 		}
 
 		try {
-			Vendedor vendedor = new Vendedor();
-			vendedor.setIdPersona(idPersona);
-			vendedor.setNombres(nombres);
-			vendedor.setApellidoPaterno(apellidoPaterno);
-			vendedor.setApellidoMaterno(apellidoMaterno);
-			vendedor.setTipoDocumento(tipoDocumento);
-			vendedor.setNumeroDocumento(numeroDocumento);
-			if (StringUtils.isNotBlank(sexo))
-				vendedor.setSexo(sexo.charAt(0));
-			if (StringUtils.isNotBlank(fechaNacimiento))
-				vendedor.setFechaNacimiento(DateUtil.of(fechaNacimiento));
-			vendedor.setEmail(email);
-			vendedor.setDireccion(direccion);
 
 			vendedorRepository.updateVendedor(idPersona, nombres, apellidoPaterno, apellidoMaterno, tipoDocumento, numeroDocumento, StringUtils.isBlank(sexo)? null : sexo.charAt(0), StringUtils.isBlank(fechaNacimiento)? null : DateUtil.of(fechaNacimiento), email, direccion);
 			logger.debug("Vendedor actualizado");
