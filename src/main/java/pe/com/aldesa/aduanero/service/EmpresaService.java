@@ -163,15 +163,14 @@ public class EmpresaService {
 		logger.debug("Encontró dirección {} ? {}", idDireccion, (null != direccion));
 
 		try {
-			Empresa empresa = new Empresa();
-			empresa.setIdEmpresa(id);
-			empresa.setRuc(ruc);
-			empresa.setRazonSocial(razonSocial);
-			empresa.setDireccion(direccion);
-			empresa.setNombreComercial(nombreComercial);
 
-			responseEmpresa = empresaRepository.save(empresa);
+			empresaRepository.updateEmpresa(id, ruc, razonSocial, nombreComercial, direccion);
 			logger.debug("Empresa actualizada");
+
+			responseEmpresa = empresaRepository.findById(id)
+					.orElseThrow(() -> new ApiException(ApiError.EMPRESA_NOT_FOUND.getCode(), ApiError.EMPRESA_NOT_FOUND.getMessage()));
+			logger.debug("Empresa encontrada: {}", responseEmpresa);
+
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
