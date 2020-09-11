@@ -214,7 +214,7 @@ public class ChoferService {
 		try {
 
 			choferRepository.updateChofer(idPersona, nombres, apellidoPaterno,
-					apellidoMaterno, tipoDocumento, numeroDocumento, StringUtils.isBlank(sexo)? null : sexo.charAt(0), StringUtils.isBlank(fechaNacimiento)? null : DateUtil.of(fechaNacimiento),
+					apellidoMaterno, tipoDocumento, numeroDocumento, StringUtils.isBlank(sexo) || sexo.equals("null")? null : sexo.charAt(0), StringUtils.isBlank(fechaNacimiento) || fechaNacimiento.equals("null")? null : DateUtil.of(fechaNacimiento),
 							email, direccion, numeroLicencia);
 			logger.debug("Chofer actualizado");
 
