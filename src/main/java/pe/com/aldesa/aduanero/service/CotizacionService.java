@@ -194,7 +194,7 @@ public class CotizacionService {
 	}
 
 	public ApiResponse update(String request) throws ApiException {
-		Cotizacion responseCoti;
+		CotizacionContext responseCoti;
 
 		JsonNode root;
 		Long id = null;
@@ -205,6 +205,8 @@ public class CotizacionService {
 		String etapa = null;
 		String referencia = null;
 		String observaciones = null;
+		ArrayNode lineas = null;
+
 		try {
 			root = new ObjectMapper().readTree(request);
 
@@ -232,11 +234,14 @@ public class CotizacionService {
 			observaciones = root.path("observaciones").asText();
 			logger.debug("observaciones: {}", observaciones);
 
+			lineas = (ArrayNode) root.path("lineas");
+			logger.debug("Total líneas: {}", lineas.size());
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (id == 0 || idVendedor == 0 || idCliente == 0 || idMoneda == 0 || StringUtils.isBlank(etapa)) {
+		if (id == 0 || idVendedor == 0 || idCliente == 0 || idMoneda == 0 || StringUtils.isBlank(etapa) || lineas.size() < 1) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -265,6 +270,40 @@ public class CotizacionService {
 		try {
 			Cotizacion cotizacion = new Cotizacion();
 			cotizacion.setIdCotizacion(id);
+
+			List<CotizacionDetalle> detalles = new ArrayList<>();
+			for (JsonNode node : lineas) {
+
+				String uuid = node.path("id").asText();
+				logger.debug("id: {}", uuid);
+
+				int item = node.path("item").asInt();
+				logger.debug("item: {}", item);
+
+				int idServicio = node.path("idServicio").asInt();
+				logger.debug("idServicio: {}", idServicio);
+
+				double precio = node.path("precio").asDouble();
+				logger.debug("precio: {}", precio);
+
+				if (item == 0 || idServicio == 0) {
+					throw new ApiException(ApiError.QUOTATION_LINES.getCode(), ApiError.QUOTATION_LINES.getMessage());
+				}
+
+				Servicio servicio = servicioRepository.findById(idServicio)
+						.orElseThrow(() -> new ApiException(ApiError.SERVICIO_NOT_FOUND.getCode(), ApiError.SERVICIO_NOT_FOUND.getMessage()));
+				logger.debug("Servicio: {}", servicio);
+
+				CotizacionDetalle detalle = new CotizacionDetalle();
+				detalle.setIdDetalle(uuid);
+				detalle.setItem(item);
+				detalle.setServicio(servicio);
+				detalle.setPrecio(precio);
+				detalle.setCotizacion(cotizacion);
+
+				detalles.add(detalle);
+			}
+
 			cotizacion.setVendedor(vendedor);
 			cotizacion.setCliente(cliente);
 			cotizacion.setAgenciaAduana(agenciaAduana);
@@ -272,9 +311,13 @@ public class CotizacionService {
 			cotizacion.setEtapa(etapa);
 			cotizacion.setReferencia(referencia);
 			cotizacion.setObservaciones(observaciones);
+			cotizacion.setLineas(detalles);
 
-			responseCoti = cotizacionRepository.save(cotizacion);
-			logger.debug("Cotizacion actualizada");
+			cotizacion = cotizacionRepository.save(cotizacion);
+			logger.debug("Se actualizó Cotizacion");
+
+			responseCoti = new CotizacionContext(cotizacion, cotizacion.getLineas());
+
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
