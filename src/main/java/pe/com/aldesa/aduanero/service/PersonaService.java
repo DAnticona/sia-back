@@ -7,6 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -38,11 +41,13 @@ public class PersonaService {
 	@Autowired
 	private DireccionRepository direccionRepository;
 
-	public ApiResponse findAll() {
-		List<Persona> usuarios = personaRepository.findAll();
-		int total = usuarios.size();
-		logger.debug("Total Personas: {}", total);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), usuarios, total);
+	private static final int PAGE_LIMIT = 10;
+
+	public ApiResponse findAll(Integer pageNumber) {
+		Pageable pageable = PageRequest.of(pageNumber - 1, PAGE_LIMIT);
+		Page<Persona> personasPage = personaRepository.findAll(pageable);
+		logger.debug("Página {} de: {}", pageNumber, personasPage.getTotalPages());
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), personasPage.getContent(), Math.toIntExact(personasPage.getTotalElements()));
 	}
 
 	public ApiResponse findById(Long id) {

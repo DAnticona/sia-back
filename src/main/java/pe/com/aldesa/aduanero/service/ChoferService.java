@@ -1,11 +1,12 @@
 package pe.com.aldesa.aduanero.service;
 
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -37,11 +38,13 @@ public class ChoferService {
 	@Autowired
 	private DireccionRepository direccionRepository;
 
-	public ApiResponse findAll() {
-		List<Chofer> choferes = choferRepository.findAll();
-		int total = choferes.size();
-		logger.debug("Total Choferes: {}", total);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), choferes, total);
+	private static final int PAGE_LIMIT = 10;
+
+	public ApiResponse findAll(Integer pageNumber) {
+		Pageable pageable = PageRequest.of(pageNumber - 1, PAGE_LIMIT);
+		Page<Chofer> choferPage = choferRepository.findAll(pageable);
+		logger.debug("Página {} de: {}", pageNumber, choferPage.getTotalPages());
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), choferPage.getContent(), Math.toIntExact(choferPage.getTotalElements()));
 	}
 
 	public ApiResponse findById(Long id) {

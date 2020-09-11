@@ -32,9 +32,9 @@ public class ChoferRestController {
 		this.choferService = camionService;
 	}
 
-	@GetMapping("/choferes")
-	public ResponseEntity<?> findAll() {
-		ApiResponse response = choferService.findAll();
+	@GetMapping("/choferes/slice/{page}")
+	public ResponseEntity<?> findAll(@PathVariable int page) {
+		ApiResponse response = choferService.findAll(page);
 		return ResponseEntity.ok(response);
 	}
 

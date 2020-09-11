@@ -32,9 +32,9 @@ public class PersonaRestController {
 		this.personaService = personaService;
 	}
 
-	@GetMapping("/personas")
-	public ResponseEntity<?> findAll() {
-		ApiResponse response = personaService.findAll();
+	@GetMapping("/personas/slice/{page}")
+	public ResponseEntity<?> findAll(@PathVariable int page) {
+		ApiResponse response = personaService.findAll(page);
 		return ResponseEntity.ok(response);
 	}
 
