@@ -224,13 +224,20 @@ public class VendedorService {
 			vendedor.setApellidoMaterno(apellidoMaterno);
 			vendedor.setTipoDocumento(tipoDocumento);
 			vendedor.setNumeroDocumento(numeroDocumento);
-			vendedor.setSexo(sexo.charAt(0));
-			vendedor.setFechaNacimiento(DateUtil.of(fechaNacimiento));
+			if (StringUtils.isNotBlank(sexo))
+				vendedor.setSexo(sexo.charAt(0));
+			if (StringUtils.isNotBlank(fechaNacimiento))
+				vendedor.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			vendedor.setEmail(email);
 			vendedor.setDireccion(direccion);
 
-			responseVendedor = vendedorRepository.save(vendedor);
+			vendedorRepository.updateVendedor(idPersona, nombres, apellidoPaterno, apellidoMaterno, tipoDocumento, numeroDocumento, StringUtils.isBlank(sexo)? null : sexo.charAt(0), StringUtils.isBlank(fechaNacimiento)? null : DateUtil.of(fechaNacimiento), email, direccion);
 			logger.debug("Vendedor actualizado");
+
+			responseVendedor = vendedorRepository.findById(idPersona)
+					.orElseThrow(() -> new ApiException(ApiError.VENDEDOR_NOT_FOUND.getCode(), ApiError.VENDEDOR_NOT_FOUND.getMessage()));
+			logger.debug("Vendedor encontrado");
+
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}

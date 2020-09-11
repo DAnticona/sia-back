@@ -275,8 +275,8 @@ public class UsuarioService {
 
 		try {
 			usuarioRepository.updateUsuario(idPersona, username, rol, nombres, apellidoPaterno,
-					apellidoMaterno, tipoDocumento, numeroDocumento, sexo.charAt(0), DateUtil.of(fechaNacimiento),
-					email, imagen, direccion, activo);
+					apellidoMaterno, tipoDocumento, numeroDocumento, StringUtils.isBlank(sexo)? null: sexo.charAt(0), StringUtils.isBlank(fechaNacimiento)? null:  DateUtil.of(fechaNacimiento),
+							email, imagen, direccion, activo);
 			logger.debug("Usuario actualizado");
 
 			logger.debug("Obteniendo usuario actualizado");
