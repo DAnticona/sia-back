@@ -243,8 +243,18 @@ public class PersonaService {
 			persona.setEmail(email);
 			persona.setDireccion(direccion);
 
-			responsePersona = personaRepository.save(persona);
+			personaRepository.updatePersona(id, nombres, apellidoPaterno,
+					apellidoMaterno, tipoDocumento, numeroDocumento, sexo.charAt(0), DateUtil.of(fechaNacimiento),
+					email, direccion);
 			logger.debug("Persona actualizada");
+
+			logger.debug("Obteniendo Persona actualizada");
+			responsePersona = personaRepository.findById(id).orElse(null);
+
+			if (null == responsePersona) {
+				throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+			}
+
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
