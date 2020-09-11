@@ -30,7 +30,7 @@ public class Usuario extends Persona implements Serializable {
 	@Column(name = "imagen")
 	private String imagen;
 
-	@Column(name = "fg_activo", nullable = false, length = 1)
+	@Column(name = "fg_acti", nullable = false, length = 1)
 	private String activo;
 
 	public Rol getRol() {
