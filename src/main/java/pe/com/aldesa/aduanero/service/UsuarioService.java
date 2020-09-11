@@ -76,6 +76,7 @@ public class UsuarioService {
 		String email = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
+		String activo = null;
 
 		try {
 			root = new ObjectMapper().readTree(request);
@@ -115,16 +116,18 @@ public class UsuarioService {
 			email = root.path("email").asText();
 			logger.debug("email: {}", email);
 
-
 			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
+
+			activo = root.path("activo").asText();
+			logger.debug("activo: {}", activo);
 
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
 		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol ||
-				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
+				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres) || StringUtils.isBlank(activo)
 				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
@@ -163,6 +166,7 @@ public class UsuarioService {
 				usuario.setFechaNacimiento(DateUtil.of(fechaNacimiento));
 			usuario.setEmail(email);
 			usuario.setDireccion(direccion);
+			usuario.setActivo(activo);
 
 			responseUser = usuarioRepository.save(usuario);
 			logger.debug("Usuario guardado");
@@ -189,6 +193,7 @@ public class UsuarioService {
 		String imagen = null;
 		Integer idTipoDocumento = null;
 		Integer idDireccion = null;
+		String activo = null;
 
 		try {
 			root = new ObjectMapper().readTree(request);
@@ -232,6 +237,9 @@ public class UsuarioService {
 			idDireccion = root.path("idDireccion").asInt();
 			logger.debug("idDireccion: {}", idDireccion);
 
+			activo = root.path("activo").asText();
+			logger.debug("activo: {}", activo);
+
 		} catch (JsonProcessingException e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
@@ -268,12 +276,12 @@ public class UsuarioService {
 		try {
 			usuarioRepository.updateUsuario(idPersona, username, rol, nombres, apellidoPaterno,
 					apellidoMaterno, tipoDocumento, numeroDocumento, sexo.charAt(0), DateUtil.of(fechaNacimiento),
-					email, imagen, direccion);
+					email, imagen, direccion, activo);
 			logger.debug("Usuario actualizado");
 
 			logger.debug("Obteniendo usuario actualizado");
 			responseUser = usuarioRepository.findById(idPersona).orElse(null);
-			logger.debug("Usuario: {}", responseUser);
+
 			if (null == responseUser) {
 				throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
 			}

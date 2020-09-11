@@ -23,10 +23,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 			+ "u.apellidoPaterno = :apellidoPaterno, u.apellidoMaterno = :apellidoMaterno, "
 			+ "u.tipoDocumento = :tipoDocumento, u.numeroDocumento = :numeroDocumento, "
 			+ "u.sexo = :sexo, u.fechaNacimiento = :fechaNacimiento, u.email = :email, "
-			+ "u.imagen = :imagen, u.direccion = :direccion WHERE u.idPersona = :id")
+			+ "u.imagen = :imagen, u.direccion = :direccion, u.activo = :activo WHERE u.idPersona = :id")
 	void updateUsuario(Long id, String username, Rol rol, String nombres, String apellidoPaterno,
 			String apellidoMaterno, TipoDocumento tipoDocumento, String numeroDocumento, Character sexo,
-			Date fechaNacimiento, String email, String imagen, Direccion direccion);
+			Date fechaNacimiento, String email, String imagen, Direccion direccion, String activo);
 
 	@Transactional
 	@Modifying(clearAutomatically = true)

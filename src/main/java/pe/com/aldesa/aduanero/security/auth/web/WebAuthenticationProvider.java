@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -60,6 +61,10 @@ public class WebAuthenticationProvider implements AuthenticationProvider {
 		LOGGER.info("Username: {}", username);
 
 		Usuario usuario = userService.loadUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
+
+		if (usuario.getActivo().equalsIgnoreCase("N")) {
+			throw new LockedException("Usuario está bloqueado");
+		}
 
 		if (!encoder.matches(password, usuario.getPassword())) {
 			throw new BadCredentialsException("Autenticación falló. Username o Password no válido.");

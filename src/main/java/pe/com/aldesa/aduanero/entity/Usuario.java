@@ -30,6 +30,9 @@ public class Usuario extends Persona implements Serializable {
 	@Column(name = "imagen")
 	private String imagen;
 
+	@Column(name = "fg_activo", nullable = false, length = 1)
+	private String activo;
+
 	public Rol getRol() {
 		return rol;
 	}
@@ -67,9 +70,18 @@ public class Usuario extends Persona implements Serializable {
 		return usuarioCreador;
 	}
 
+	public String getActivo() {
+		return activo;
+	}
+
+	public void setActivo(String activo) {
+		this.activo = activo;
+	}
+
 	@Override
 	public String toString() {
-		return "Usuario [rol=" + rol + ", username=" + username + ", password=" + password + ", imagen=" + imagen + "]";
+		return "Usuario [rol=" + rol + ", username=" + username + ", password=" + password + ", imagen=" + imagen
+				+ ", activo=" + activo + "]";
 	}
 
 }
