@@ -244,8 +244,8 @@ public class PersonaService {
 			persona.setDireccion(direccion);
 
 			personaRepository.updatePersona(id, nombres, apellidoPaterno,
-					apellidoMaterno, tipoDocumento, numeroDocumento, sexo.charAt(0), DateUtil.of(fechaNacimiento),
-					email, direccion);
+					apellidoMaterno, tipoDocumento, numeroDocumento, StringUtils.isBlank(sexo)? null : sexo.charAt(0), StringUtils.isBlank(fechaNacimiento)? null : DateUtil.of(fechaNacimiento),
+							email, direccion);
 			logger.debug("Persona actualizada");
 
 			logger.debug("Obteniendo Persona actualizada");
