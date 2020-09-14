@@ -188,7 +188,7 @@ public class DamService {
 			dam.setNumeroDeclaracion(numeroDeclaracion);
 			dam.setNumeroManifiesto(numeroManifiesto);
 			dam.setFechaNumeracion(DateUtil.of(fechaNumeracion));
-			if (StringUtils.isNotBlank(docTransporte))
+			if (StringUtils.isNotBlank(docTransporte) && !"null".equals(docTransporte))
 				dam.setDocTransporte(docTransporte);
 			dam.setNumeroFacComercial(numeroFacComercial);
 			dam.setFechaFacComercial(DateUtil.of(fechaFacComercial));
@@ -342,7 +342,8 @@ public class DamService {
 			dam.setNumeroDeclaracion(numeroDeclaracion);
 			dam.setNumeroManifiesto(numeroManifiesto);
 			dam.setFechaNumeracion(DateUtil.of(fechaNumeracion));
-			dam.setDocTransporte(docTransporte);
+			if (StringUtils.isNotBlank(docTransporte) && !"null".equals(docTransporte))
+				dam.setDocTransporte(docTransporte);
 			dam.setNumeroFacComercial(numeroFacComercial);
 			dam.setFechaFacComercial(DateUtil.of(fechaFacComercial));
 			dam.setIdClase(idClase);
