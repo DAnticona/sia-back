@@ -78,8 +78,8 @@ public class TarjetaService {
 		String vapAvi = null;
 		String observacion = null;
 		String levante = null;
-		int nuCont20Suelta;
-		int nuCont40;
+		Integer nuCont20Suelta;
+		Integer nuCont40;
 
 		try {
 			root = new ObjectMapper().readTree(request);
@@ -272,7 +272,6 @@ public class TarjetaService {
 
 	public ApiResponse delete(Long id) throws ApiException {
 		Tarjeta tmpTarjeta = tarjetaRepository.findById(id).orElse(null);
-		logger.debug("Tarjeta: {}", tmpTarjeta);
 		if (null != tmpTarjeta) {
 			tarjetaRepository.deleteById(id);
 			logger.debug("Tarjeta eliminada");
