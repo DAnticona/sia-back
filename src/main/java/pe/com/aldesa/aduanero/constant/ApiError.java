@@ -29,7 +29,8 @@ public enum ApiError {
 	CHOFER_NOT_FOUND("8014", "No se encontró Chofer"),
 	UBICACION_NOT_FOUND("8015", "No se encontró Ubicación"),
 	TIPO_MERCANCIA_NOT_FOUND("8015", "No se encontró Tipo Mercancía"),
-	TARJETA_NOT_FOUND("8015", "No se encontró Tarjeta");
+	TARJETA_NOT_FOUND("8015", "No se encontró Tarjeta"),
+	VEHICULO_NOT_FOUND("8016", "No se encontró Vehículo");
 
 	private final String code;
 	private final String message;
