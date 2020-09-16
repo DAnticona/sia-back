@@ -63,7 +63,7 @@ public class ClienteService {
 	public ApiResponse findByNombre(String nombre) {
 		List<Cliente> clientes = clienteRepository.findByNombre(nombre);
 		logger.debug("Cliente by Nombre: {}", clientes);
-		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes.size());
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), clientes, clientes.size());
 	}
 
 	public ApiResponse findByNumeroDocumento(String numeroDocumento) {
