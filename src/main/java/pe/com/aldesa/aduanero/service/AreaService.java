@@ -66,7 +66,7 @@ public class AreaService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (StringUtils.isBlank(nombre) || StringUtils.isNotBlank(activo)) {
+		if (StringUtils.isBlank(nombre) || StringUtils.isBlank(activo)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
