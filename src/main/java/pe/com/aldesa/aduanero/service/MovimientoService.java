@@ -96,7 +96,6 @@ public class MovimientoService {
 			movimiento.setFgMovimiento(fgMovimiento);
 			movimiento.setFechaMovimiento(DateUtil.of(fechaMovimiento));
 
-			//			movimientoRepository.saveMovimiento(idTarjeta, idTicket, fgMovimiento, DateUtil.of(fechaMovimiento));
 			responseMovimiento = movimientoRepository.save(movimiento);
 			logger.debug("Movimiento guardado");
 		} catch (Exception e) {
@@ -162,22 +161,11 @@ public class MovimientoService {
 			movimiento.setFechaMovimiento(DateUtil.of(fechaMovimiento));
 
 			responseMovimiento = movimientoRepository.save(movimiento);
-			logger.debug("Movimiento guardado");
+			logger.debug("Movimiento actualizado");
 		} catch (Exception e) {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseMovimiento);
 	}
-
-	public ApiResponse delete(Long id) throws ApiException {
-		Movimiento tmpMovimiento = movimientoRepository.findById(id).orElse(null);
-		if (null != tmpMovimiento) {
-			movimientoRepository.deleteById(id);
-			logger.debug("Movimiento eliminado");
-			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Movimiento " + id + " eliminado");
-		}
-		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-	}
-
 
 }

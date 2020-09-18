@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,18 +63,6 @@ public class MovimientoRestController {
 		} catch (ApiException e) {
 			logger.error(e.getMessage(), e);
 			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
-		}
-		return ResponseEntity.ok(response);
-	}
-
-	@DeleteMapping("/movimientos/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id) {
-		ApiResponse response;
-		try {
-			response = movimientoService.delete(id);
-		} catch (ApiException e) {
-			logger.error(e.getMessage(), e);
-			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.NOT_FOUND);
 		}
 		return ResponseEntity.ok(response);
 	}

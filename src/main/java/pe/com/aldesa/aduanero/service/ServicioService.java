@@ -80,7 +80,7 @@ public class ServicioService {
 		}
 
 		GrupoServicio grupoServicio = grupoServicioRepository.findById(idGrupoServicio)
-				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+				.orElseThrow(() -> new ApiException(ApiError.GRUPO_SERVICIO_NOT_FOUND.getCode(), ApiError.GRUPO_SERVICIO_NOT_FOUND.getMessage()));
 
 		try {
 			Servicio servicio = new Servicio();
@@ -139,13 +139,13 @@ public class ServicioService {
 		}
 
 		GrupoServicio grupoServicio = grupoServicioRepository.findById(idGrupoServicio)
-				.orElseThrow(() -> new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage()));
+				.orElseThrow(() -> new ApiException(ApiError.GRUPO_SERVICIO_NOT_FOUND.getCode(), ApiError.GRUPO_SERVICIO_NOT_FOUND.getMessage()));
 
 		boolean existServicio = servicioRepository.existsById(id);
 		logger.debug("Existe servicio? {}", existServicio);
 
 		if (!existServicio) {
-			throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
+			throw new ApiException(ApiError.SERVICIO_NOT_FOUND.getCode(), ApiError.SERVICIO_NOT_FOUND.getMessage());
 		}
 
 		try {

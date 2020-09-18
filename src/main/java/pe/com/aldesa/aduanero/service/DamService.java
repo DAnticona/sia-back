@@ -364,15 +364,4 @@ public class DamService {
 
 	}
 
-	public ApiResponse delete(Long id) throws ApiException {
-		Dam tmpDam = damRepository.findById(id).orElse(null);
-		logger.debug("Dam: {}", tmpDam);
-		if (null != tmpDam) {
-			damRepository.deleteById(id);
-			logger.debug("Dam eliminada");
-			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Dam " + id + " eliminado");
-		}
-		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-	}
-
 }

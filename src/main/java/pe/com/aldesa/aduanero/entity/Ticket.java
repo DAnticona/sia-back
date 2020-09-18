@@ -25,7 +25,7 @@ public class Ticket extends Auditable<String> implements Serializable {
 	private Vehiculo vehiculo;
 
 	@ManyToOne
-	@JoinColumn(name = "id_chofer", nullable = false)
+	@JoinColumn(name = "id_chofer", nullable = false, referencedColumnName = "id_persona")
 	private Chofer chofer;
 
 	@Column(name = "peso_1", nullable = false, precision = 20, scale = 5)

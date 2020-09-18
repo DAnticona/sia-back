@@ -324,15 +324,4 @@ public class CotizacionService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), responseCoti);
 	}
 
-	public ApiResponse delete(Long id) throws ApiException {
-		Cotizacion tmpCotizacion = cotizacionRepository.findById(id).orElse(null);
-		if (null != tmpCotizacion) {
-			cotizacionRepository.deleteById(id);
-			logger.debug("Cotizacion eliminada");
-			return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), "Cotizacion " + id + " eliminado");
-		}
-		throw new ApiException(ApiError.RESOURCE_NOT_FOUND.getCode(), ApiError.RESOURCE_NOT_FOUND.getMessage());
-	}
-
-
 }
