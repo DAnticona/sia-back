@@ -127,7 +127,7 @@ public class UsuarioService {
 		}
 
 		if (StringUtils.isBlank(username) || StringUtils.isBlank(password) || idRol == 0 || null == idRol ||
-				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres) || StringUtils.isBlank(activo)
+				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres) || StringUtils.isBlank(activo) || "null".equals(activo)
 				|| StringUtils.isBlank(apellidoPaterno)	|| null == idTipoDocumento || idTipoDocumento == 0) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
@@ -245,7 +245,7 @@ public class UsuarioService {
 		}
 
 		if (StringUtils.isBlank(username) || idRol == 0 || null == idRol ||
-				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres)
+				StringUtils.isBlank(numeroDocumento) || StringUtils.isBlank(nombres) || StringUtils.isBlank(activo) || "null".equals(activo)
 				|| StringUtils.isBlank(apellidoPaterno)	|| idTipoDocumento == 0 || null == idTipoDocumento) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
