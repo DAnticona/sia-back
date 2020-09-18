@@ -1,6 +1,7 @@
 package pe.com.aldesa.aduanero.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -42,6 +43,17 @@ public class ServicioService {
 		Servicio tmpServicio = servicioRepository.findById(id).orElse(null);
 		logger.debug("Servicio: {}", tmpServicio);
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), tmpServicio);
+	}
+
+	public ApiResponse findByGrupoServicios(Integer idGrupoServicio) throws ApiException {
+		Optional<GrupoServicio> optGruposervicio = grupoServicioRepository.findById(idGrupoServicio);
+		if (!optGruposervicio.isPresent()) {
+			throw new ApiException(ApiError.GRUPO_SERVICIO_NOT_FOUND.getCode(), ApiError.GRUPO_SERVICIO_NOT_FOUND.getMessage());
+		}
+		List<Servicio> servicios = servicioRepository.findByGrupoServicio(optGruposervicio.get());
+		int total = servicios.size();
+		logger.debug("Servicio por grupo de servicios: {}", total);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), servicios, total);
 	}
 
 	public ApiResponse save(String request) throws ApiException {

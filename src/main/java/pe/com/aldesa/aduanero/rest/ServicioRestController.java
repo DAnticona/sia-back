@@ -44,6 +44,18 @@ public class ServicioRestController {
 		return ResponseEntity.ok(response);
 	}
 
+	@GetMapping("/servicios/grupo-servicios/{idGrupoServicio}")
+	public ResponseEntity<?> findByGrupoServicios(@PathVariable Integer idGrupoServicio) {
+		ApiResponse response;
+		try {
+			response = servicioService.findByGrupoServicios(idGrupoServicio);
+		} catch (ApiException e) {
+			logger.error(e.getMessage(), e);
+			return new ResponseEntity<>(ErrorResponse.of(e.getCode(), e.getMessage(), e.getDetailMessage()), HttpStatus.PRECONDITION_FAILED);
+		}
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping("/servicios")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
