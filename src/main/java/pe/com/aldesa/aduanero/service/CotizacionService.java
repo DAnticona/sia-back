@@ -1,6 +1,7 @@
 package pe.com.aldesa.aduanero.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,6 +33,7 @@ import pe.com.aldesa.aduanero.repository.CotizacionRepository;
 import pe.com.aldesa.aduanero.repository.MonedaRepository;
 import pe.com.aldesa.aduanero.repository.ServicioRepository;
 import pe.com.aldesa.aduanero.repository.VendedorRepository;
+import pe.com.aldesa.aduanero.util.DateUtil;
 
 @Service
 public class CotizacionService {
@@ -78,6 +80,15 @@ public class CotizacionService {
 		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), cotContent);
 	}
 
+	public ApiResponse findByRangoFechas(String startDate, String endDate) {
+		Date fechaInicial = DateUtil.of(startDate);
+		Date fechaFinal = DateUtil.of(endDate);
+		List<Cotizacion> cotizaciones = cotizacionRepository.searchByRangoFechas(fechaInicial, fechaFinal);
+		int size = cotizaciones.size();
+		logger.debug("Total cotizaciones: {}", size);
+		return ApiResponse.of(ApiError.SUCCESS.getCode(), ApiError.SUCCESS.getMessage(), cotizaciones, size);
+	}
+
 	public ApiResponse save(String request) throws ApiException {
 		CotizacionContext responseCoti = null;
 
@@ -87,6 +98,8 @@ public class CotizacionService {
 		Long idAgencia = null;
 		Integer	idMoneda = null;
 		String etapa = null;
+		String fecha = null;
+		Double precioTotal = null;
 		String referencia = null;
 		String observaciones = null;
 		ArrayNode lineas = null;
@@ -108,6 +121,12 @@ public class CotizacionService {
 			etapa = root.path("etapa").asText();
 			logger.debug("etapa: {}", etapa);
 
+			fecha = root.path("fecha").asText();
+			logger.debug("fecha: {}", fecha);
+
+			precioTotal = root.path("precioTotal").asDouble();
+			logger.debug("precioTotal: {}", precioTotal);
+
 			referencia = root.path("referencia").asText();
 			logger.debug("referencia: {}", referencia);
 
@@ -121,7 +140,8 @@ public class CotizacionService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (idVendedor == 0 || idCliente == 0 || idMoneda == 0 || StringUtils.isBlank(etapa) || lineas.size() < 1) {
+		if (idVendedor == 0 || idCliente == 0 || idMoneda == 0 || StringUtils.isBlank(etapa) || lineas.size() < 1
+				|| "null".equals(fecha) || StringUtils.isBlank(fecha)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -178,6 +198,8 @@ public class CotizacionService {
 			cotizacion.setAgenciaAduana(agenciaAduana);
 			cotizacion.setMoneda(moneda);
 			cotizacion.setEtapa(etapa);
+			cotizacion.setFecha(DateUtil.of(fecha));
+			cotizacion.setPrecioTotal(precioTotal);
 			cotizacion.setReferencia(referencia);
 			cotizacion.setObservaciones(observaciones);
 			cotizacion.setLineas(detalles);
@@ -203,6 +225,8 @@ public class CotizacionService {
 		Long idAgencia = null;
 		Integer	idMoneda = null;
 		String etapa = null;
+		Double precioTotal = null;
+		String fecha = null;
 		String referencia = null;
 		String observaciones = null;
 		ArrayNode lineas = null;
@@ -228,6 +252,12 @@ public class CotizacionService {
 			etapa = root.path("etapa").asText();
 			logger.debug("etapa: {}", etapa);
 
+			fecha = root.path("fecha").asText();
+			logger.debug("fecha: {}", fecha);
+
+			precioTotal = root.path("precioTotal").asDouble();
+			logger.debug("precioTotal: {}", precioTotal);
+
 			referencia = root.path("referencia").asText();
 			logger.debug("referencia: {}", referencia);
 
@@ -241,7 +271,7 @@ public class CotizacionService {
 			throw new ApiException(ApiError.NO_APPLICATION_PROCESSED.getCode(), ApiError.NO_APPLICATION_PROCESSED.getMessage(), e.getMessage());
 		}
 
-		if (id == 0 || idVendedor == 0 || idCliente == 0 || idMoneda == 0 || StringUtils.isBlank(etapa) || lineas.size() < 1) {
+		if (id == 0 || idVendedor == 0 || idCliente == 0 || idMoneda == 0 || StringUtils.isBlank(etapa) || lineas.size() < 1 || "null".equals(fecha) || StringUtils.isBlank(fecha)) {
 			throw new ApiException(ApiError.EMPTY_OR_NULL_PARAMETER.getCode(), ApiError.EMPTY_OR_NULL_PARAMETER.getMessage());
 		}
 
@@ -309,6 +339,8 @@ public class CotizacionService {
 			cotizacion.setAgenciaAduana(agenciaAduana);
 			cotizacion.setMoneda(moneda);
 			cotizacion.setEtapa(etapa);
+			cotizacion.setFecha(DateUtil.of(fecha));
+			cotizacion.setPrecioTotal(precioTotal);
 			cotizacion.setReferencia(referencia);
 			cotizacion.setObservaciones(observaciones);
 			cotizacion.setLineas(detalles);

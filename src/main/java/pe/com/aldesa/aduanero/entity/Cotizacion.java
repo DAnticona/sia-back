@@ -1,6 +1,7 @@
 package pe.com.aldesa.aduanero.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -44,8 +45,14 @@ public class Cotizacion extends Auditable<String> implements Serializable {
 	@JoinColumn(name = "id_moneda", nullable = false)
 	private Moneda moneda;
 
+	@Column(name = "fecha", nullable = false)
+	private Date fecha;
+
 	@Column(name = "fg_etapa", nullable = false, length = 1)
 	private String etapa;
+
+	@Column(name = "precio_total", nullable = false, precision = 12, scale = 5)
+	private Double precioTotal;
 
 	@Column(name = "referencia")
 	private String referencia;
@@ -129,11 +136,28 @@ public class Cotizacion extends Auditable<String> implements Serializable {
 		this.lineas = lineas;
 	}
 
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public Double getPrecioTotal() {
+		return precioTotal;
+	}
+
+	public void setPrecioTotal(Double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+
 	@Override
 	public String toString() {
 		return "Cotizacion [idCotizacion=" + idCotizacion + ", vendedor=" + vendedor + ", cliente=" + cliente
-				+ ", agenciaAduana=" + agenciaAduana + ", moneda=" + moneda + ", etapa=" + etapa + ", referencia="
-				+ referencia + ", observaciones=" + observaciones + ", lineas=" + lineas + "]";
+				+ ", agenciaAduana=" + agenciaAduana + ", moneda=" + moneda + ", fecha=" + fecha + ", etapa=" + etapa
+				+ ", precioTotal=" + precioTotal + ", referencia=" + referencia + ", observaciones=" + observaciones
+				+ ", lineas=" + lineas + "]";
 	}
 
 }

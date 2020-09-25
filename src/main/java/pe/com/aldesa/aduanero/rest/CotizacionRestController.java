@@ -43,6 +43,12 @@ public class CotizacionRestController {
 		return ResponseEntity.ok(response);
 	}
 
+	@GetMapping("/cotizaciones/between/{fechaInicial}/{fechaFinal}")
+	public ResponseEntity<?> findByRangoFechas(@PathVariable String fechaInicial, @PathVariable String fechaFinal) {
+		ApiResponse response = cotizacionService.findByRangoFechas(fechaInicial, fechaFinal);
+		return ResponseEntity.ok(response);
+	}
+
 	@PostMapping("/cotizaciones")
 	public ResponseEntity<?> create(@RequestBody String request) {
 		ApiResponse response;
