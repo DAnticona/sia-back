@@ -28,12 +28,13 @@ public enum ApiError {
 	EMPRESA_NOT_FOUND("8013", "No se encontró Empresa"),
 	CHOFER_NOT_FOUND("8014", "No se encontró Chofer"),
 	UBICACION_NOT_FOUND("8015", "No se encontró Ubicación"),
-	TIPO_MERCANCIA_NOT_FOUND("8015", "No se encontró Tipo Mercancía"),
-	TARJETA_NOT_FOUND("8015", "No se encontró Tarjeta"),
-	VEHICULO_NOT_FOUND("8016", "No se encontró Vehículo"),
-	TICKET_NOT_FOUND("8017", "No se encontró Ticket"),
-	MOVIMIENTO_NOT_FOUND("8018", "No se encontró Movimiento"),
-	GRUPO_SERVICIO_NOT_FOUND("8018", "No se encontró Grupo de servicios");
+	TIPO_MERCANCIA_NOT_FOUND("8016", "No se encontró Tipo Mercancía"),
+	TARJETA_NOT_FOUND("8017", "No se encontró Tarjeta"),
+	VEHICULO_NOT_FOUND("8018", "No se encontró Vehículo"),
+	TICKET_NOT_FOUND("8019", "No se encontró Ticket"),
+	MOVIMIENTO_NOT_FOUND("8020", "No se encontró Movimiento"),
+	GRUPO_SERVICIO_NOT_FOUND("8021", "No se encontró Grupo de servicios"),
+	SUBSERVICIO_NOT_FOUND("8022", "No se encontró Grupo de Subservicio");
 
 	private final String code;
 	private final String message;
