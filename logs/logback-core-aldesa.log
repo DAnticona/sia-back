@@ -1,0 +1,945 @@
+2020-11-11 09:58:12.255 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Starting CoreAldesaApplication on WCSIL8003 with PID 17452 (D:\workspaces\eclipse\core-aldesa\target\classes started by danticona in D:\workspaces\eclipse\core-aldesa)
+2020-11-11 09:58:12.260 DEBUG [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2020-11-11 09:58:12.261 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : No active profile set, falling back to default profiles: default
+2020-11-11 09:58:14.727 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-11 09:58:17.769 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Started CoreAldesaApplication in 5.838 seconds (JVM running for 6.275)
+2020-11-11 09:58:29.458 DEBUG [qtp1422005164-211] p.c.a.a.s.a.w.WebLoginProcessingFilter : Request is to process authentication
+2020-11-11 09:58:29.514 INFO  [qtp1422005164-211] p.c.a.a.s.a.w.WebAuthenticationProvider : Username: supervisor
+2020-11-11 09:58:29.685 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Menus: 7
+2020-11-11 09:58:29.686 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 09:58:29.686 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 1
+2020-11-11 09:58:29.686 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=5, idSubmenu=1], nombre=Cotizaciones, numeroOrden=100, ruta=/cotizaciones]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 14
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=3], nombre=Almacenes, numeroOrden=300, ruta=/almacenes]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=5], nombre=Aduanas, numeroOrden=500, ruta=/aduanas]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=7], nombre=Depósitos Temporales, numeroOrden=700, ruta=/depositos-temporales]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=2], nombre=Comercial, numeroOrden=200, ruta=/vendedores]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=9], nombre=Vehículos, numeroOrden=900, ruta=/vehiculos]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=10], nombre=Tipos de Bulto, numeroOrden=1000, ruta=/tipos-bulto]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=4], nombre=Agencias de Aduana, numeroOrden=400, ruta=/agencias-aduana]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=14], nombre=Empresas, numeroOrden=20, ruta=/empresas]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=11], nombre=Tipos de Mercancía, numeroOrden=1100, ruta=/tipos-mercancia]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=6], nombre=Regímenes, numeroOrden=600, ruta=/regimenes]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=12], nombre=Servicios, numeroOrden=1200, ruta=/servicios]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=13], nombre=Personas, numeroOrden=10, ruta=/personas]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=1], nombre=Clientes, numeroOrden=100, ruta=/clientes]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=8], nombre=Choferes, numeroOrden=800, ruta=/choferes]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 4
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=4], nombre=Notas de Débito, numeroOrden=400, ruta=/notas-debito]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=1], nombre=Facturas, numeroOrden=100, ruta=/facturas]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=3], nombre=Notas de Crédito, numeroOrden=300, ruta=/notas-credito]
+2020-11-11 09:58:29.687 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=2], nombre=Boletas, numeroOrden=200, ruta=/boletas]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=2, idSubmenu=1], nombre=Tarjetas, numeroOrden=100, ruta=/tarjetas]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=2, idSubmenu=2], nombre=DAM, numeroOrden=50, ruta=/dams]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=3, idSubmenu=1], nombre=Ingresos / Salidas, numeroOrden=100, ruta=/ingresos-salidas]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=3, idSubmenu=2], nombre=Tickets de Pesaje, numeroOrden=200, ruta=/tickets-pesaje]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 0
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=7, idSubmenu=2], nombre=Roles, numeroOrden=200, ruta=/roles]
+2020-11-11 09:58:29.688 DEBUG [qtp1422005164-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=7, idSubmenu=1], nombre=Usuarios, numeroOrden=100, ruta=/usuarios]
+2020-11-11 09:58:30.024 INFO  [qtp1422005164-211] p.c.a.a.s.m.token.JwtTokenFactory : Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXBlcnZpc29yIiwic2NvcGVzIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9hbGRlc2EuY29tLnBlIiwiaWF0IjoxNjA1MTA2NzA5LCJleHAiOjE2MDUxMTAzMDl9.CFZImpP6XrR64AkcD4YbA3zLhx9j5TAES_C8lSucw0wHXRd4Qd1hC21Tc4f2LEDSkVBgVhfuv0KoWo7N7E8aDg
+2020-11-11 09:58:33.771 DEBUG [qtp1422005164-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:58:33.771 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:58:33.850 DEBUG [qtp1422005164-209] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 09:58:33.882 DEBUG [qtp1422005164-210] p.c.a.a.service.UsuarioService : Usuario found: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]
+2020-11-11 09:58:49.852 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:58:49.886 DEBUG [qtp1422005164-210] p.c.a.a.service.PersonaService : Página 1 de: 3
+2020-11-11 09:58:58.882 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:58:58.901 DEBUG [qtp1422005164-210] p.c.a.a.service.PersonaService : Personas by Name: [Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S], Persona [idPersona=5, idDireccion=Direccion [idDireccion=1, descripcion=AV. DOS DE MAYO NRO. 647 PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - CALLAO], numeroDocumento=481135663, nombres=David, apellidoPaterno=Vargas, apellidoMaterno=Alvarado, sexo=null, fechaNacimiento=null, email=pparker@gmail.com, tipoDocumento=TipoDocumento [idTipoDocumento=1, nombre=Documento Nacional de Identidad, abreviatura=DNI]]]
+2020-11-11 09:59:07.217 DEBUG [qtp1422005164-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:07.238 DEBUG [qtp1422005164-209] p.c.a.a.service.PersonaService : Persona by Numero Documento: Optional[Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]]
+2020-11-11 09:59:07.250 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:07.254 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:07.255 DEBUG [qtp1422005164-206] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 09:59:07.284 DEBUG [qtp1422005164-211] p.c.a.a.service.PersonaService : Persona: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]
+2020-11-11 09:59:11.301 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:11.329 DEBUG [qtp1422005164-205] p.c.a.a.service.PersonaService : Página 1 de: 3
+2020-11-11 09:59:14.155 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:14.172 DEBUG [qtp1422005164-205] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 09:59:33.399 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:37.358 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:40.997 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:41.011 DEBUG [qtp1422005164-206] p.c.a.a.service.EmpresaService : Empresa 2 de: 129
+2020-11-11 09:59:42.853 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:42.873 DEBUG [qtp1422005164-211] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 09:59:44.858 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:46.385 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:46.391 DEBUG [qtp1422005164-206] p.c.a.a.service.EmpresaService : Empresa: Empresa [idEmpresa=2, ruc=10000766742, razonSocial=PALACIOS SALAS YURI ABEL, direccion=Direccion [idDireccion=2, descripcion=CAL.ORION MZA.D LOTE 19 ASC.PQUE.IND.ASESOR I  LIMA - ATE], nombreComercial=null]
+2020-11-11 09:59:49.419 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:49.433 DEBUG [qtp1422005164-211] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 09:59:51.322 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:51.341 DEBUG [qtp1422005164-211] p.c.a.a.service.ClienteService : Página 1 de: 125
+2020-11-11 09:59:57.997 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 09:59:58.016 DEBUG [qtp1422005164-206] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 10:00:02.296 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:02.316 DEBUG [qtp1422005164-211] p.c.a.a.service.PersonaService : Página 1 de: 3
+2020-11-11 10:00:08.449 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:08.457 DEBUG [qtp1422005164-211] p.c.a.a.service.VendedorService : Total Vendedores: 5
+2020-11-11 10:00:15.821 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:15.827 DEBUG [qtp1422005164-206] p.c.a.a.service.VendedorService : Total Vendedores: 5
+2020-11-11 10:00:16.685 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:16.691 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.AreaService : Total áreas: 31
+2020-11-11 10:00:22.196 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:22.200 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.AreaService : Area: Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S]
+2020-11-11 10:00:22.215 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:22.225 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : Ubicacion by id Area: []
+2020-11-11 10:00:37.197 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:37.207 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : idArea: 31
+2020-11-11 10:00:37.207 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : nombre: Callao1
+2020-11-11 10:00:37.207 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : abreviatura: CA1
+2020-11-11 10:00:37.208 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : numeroRack: 0
+2020-11-11 10:00:37.208 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : activo: S
+2020-11-11 10:00:37.210 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : Area: Optional[Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S]]
+2020-11-11 10:00:37.271 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:37.276 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=622, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao1, abreviatura=CA1, numeroRack=0, activo=S]]
+2020-11-11 10:00:48.849 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:48.853 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : idArea: 31
+2020-11-11 10:00:48.853 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : nombre: Callao2
+2020-11-11 10:00:48.853 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : abreviatura: CA2
+2020-11-11 10:00:48.853 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : numeroRack: 0
+2020-11-11 10:00:48.853 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : activo: S
+2020-11-11 10:00:48.856 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : Area: Optional[Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S]]
+2020-11-11 10:00:48.872 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:48.876 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=622, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao1, abreviatura=CA1, numeroRack=0, activo=S], Ubicacion [idUbicacion=623, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao2, abreviatura=CA2, numeroRack=0, activo=S]]
+2020-11-11 10:00:55.368 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:55.373 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.AreaService : Total áreas: 31
+2020-11-11 10:00:57.378 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:57.382 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : Area: Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S]
+2020-11-11 10:00:57.388 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:00:57.394 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=622, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao1, abreviatura=CA1, numeroRack=0, activo=S], Ubicacion [idUbicacion=623, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao2, abreviatura=CA2, numeroRack=0, activo=S]]
+2020-11-11 10:01:00.131 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:00.133 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : id: 31
+2020-11-11 10:01:00.134 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : nombre: Callao
+2020-11-11 10:01:00.134 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : abreviatura: CA
+2020-11-11 10:01:00.134 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : activo: N
+2020-11-11 10:01:00.141 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : Existe Area? true
+2020-11-11 10:01:00.169 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : Area actualizada
+2020-11-11 10:01:02.826 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:02.831 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.AreaService : Total áreas: 31
+2020-11-11 10:01:06.239 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:06.243 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : Area: Area [idArea=31, nombre=Callao, abreviatura=CA, activo=N]
+2020-11-11 10:01:06.251 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:06.256 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=622, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=N], nombre=Callao1, abreviatura=CA1, numeroRack=0, activo=S], Ubicacion [idUbicacion=623, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=N], nombre=Callao2, abreviatura=CA2, numeroRack=0, activo=S]]
+2020-11-11 10:01:08.180 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:08.182 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : id: 31
+2020-11-11 10:01:08.182 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : nombre: Callao
+2020-11-11 10:01:08.182 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : abreviatura: CA
+2020-11-11 10:01:08.182 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : activo: S
+2020-11-11 10:01:08.184 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : Existe Area? true
+2020-11-11 10:01:08.192 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : Area actualizada
+2020-11-11 10:01:09.880 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:09.884 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.AreaService : Total áreas: 31
+2020-11-11 10:01:12.288 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:12.291 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AreaService : Area: Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S]
+2020-11-11 10:01:12.299 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:12.304 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=622, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao1, abreviatura=CA1, numeroRack=0, activo=S], Ubicacion [idUbicacion=623, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao2, abreviatura=CA2, numeroRack=0, activo=S]]
+2020-11-11 10:01:16.445 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:16.447 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : id: 622
+2020-11-11 10:01:16.447 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : idArea: 31
+2020-11-11 10:01:16.447 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : nombre: Callao1
+2020-11-11 10:01:16.447 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : abreviatura: CA1
+2020-11-11 10:01:16.447 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : numeroRack: 0
+2020-11-11 10:01:16.447 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : activo: N
+2020-11-11 10:01:16.450 DEBUG [qtp1422005164-211] p.c.a.a.service.UbicacionService : Area: Optional[Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S]]
+2020-11-11 10:01:16.463 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:16.467 DEBUG [qtp1422005164-206] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=622, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao1, abreviatura=CA1, numeroRack=0, activo=N], Ubicacion [idUbicacion=623, area=Area [idArea=31, nombre=Callao, abreviatura=CA, activo=S], nombre=Callao2, abreviatura=CA2, numeroRack=0, activo=S]]
+2020-11-11 10:01:20.757 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:20.762 DEBUG [qtp1422005164-206] p.c.a.a.s.AgenciaAduanasService : Total AgenciaAduanas: 6
+2020-11-11 10:01:22.596 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:22.600 DEBUG [qtp1422005164-206] p.c.a.a.s.AgenciaAduanasService : Agencia: AgenciaAduanas [codigoAduana=125]
+2020-11-11 10:01:26.378 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:26.382 DEBUG [qtp1422005164-211] p.c.a.a.s.AgenciaAduanasService : Total AgenciaAduanas: 6
+2020-11-11 10:01:44.757 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:44.761 DEBUG [qtp1422005164-206] p.c.a.a.s.AgenciaAduanasService : Total AgenciaAduanas: 6
+2020-11-11 10:01:45.623 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:01:45.628 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.AduanaService : Total Aduanas: 2
+2020-11-11 10:02:07.278 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:07.282 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AduanaService : Total Aduanas: 2
+2020-11-11 10:02:11.434 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:11.439 DEBUG [qtp1422005164-211] p.c.a.a.service.RegimenService : Total Regimen: 10
+2020-11-11 10:02:14.674 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:14.677 DEBUG [qtp1422005164-211] p.c.a.a.service.RegimenService : Regimen: Regimen [idRegimen=7, nombre=DEPÓSITO, codigoAduana=70]
+2020-11-11 10:02:17.247 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:17.251 DEBUG [qtp1422005164-206] p.c.a.a.service.RegimenService : Total Regimen: 10
+2020-11-11 10:02:20.730 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:20.735 DEBUG [qtp1422005164-211] p.c.a.a.service.RegimenService : Total Regimen: 10
+2020-11-11 10:02:21.423 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:21.452 DEBUG [qtp1422005164-211] p.c.a.a.s.DepositoTemporalService : Total DepositoTemporal: 35
+2020-11-11 10:02:39.280 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:39.295 DEBUG [qtp1422005164-206] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 10:02:40.910 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:40.913 DEBUG [qtp1422005164-211] p.c.a.a.service.EmpresaService : Empresa: Empresa [idEmpresa=2, ruc=10000766742, razonSocial=PALACIOS SALAS YURI ABEL, direccion=Direccion [idDireccion=2, descripcion=CAL.ORION MZA.D LOTE 19 ASC.PQUE.IND.ASESOR I  LIMA - ATE], nombreComercial=null]
+2020-11-11 10:02:44.765 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:44.787 DEBUG [qtp1422005164-206] p.c.a.a.s.DepositoTemporalService : Total DepositoTemporal: 35
+2020-11-11 10:02:45.733 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:45.738 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.ChoferService : Página 1 de: 1
+2020-11-11 10:02:51.074 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:51.079 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.ChoferService : Página 1 de: 1
+2020-11-11 10:02:52.129 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:52.136 DEBUG [qtp1422005164-211] p.c.a.a.service.VehiculoService : Total Vehiculos: 3
+2020-11-11 10:02:56.497 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:56.499 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:02:56.502 DEBUG [qtp1422005164-211] p.c.a.a.service.VehiculoService : Vehiculo: Vehiculo [idVehiculo=3, tipoVehiculo=TipoVehiculo [idTipoVehiculo=1, nombre=Camión Grúa, abreviatura=null], placa=pl345, marca=toyota, certificado=cer123, largo=1.25, ancho=2.36, alto=1.36, peso=13.0, eje=S]
+2020-11-11 10:02:56.505 DEBUG [qtp1422005164-206] p.c.a.a.service.TipoVehiculoService : Total Tipos camiones: 7
+2020-11-11 10:03:08.169 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:08.175 DEBUG [qtp1422005164-207] p.c.a.a.service.VehiculoService : Total Vehiculos: 3
+2020-11-11 10:03:09.183 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:09.189 DEBUG [qtp1422005164-207] p.c.a.a.service.TipoBultoService : Total Tipo de bultos: 29
+2020-11-11 10:03:11.862 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:11.865 DEBUG [qtp1422005164-207] p.c.a.a.service.TipoBultoService : Tipo bulto: TipoBulto [idTipoBulto=29, nombre=KILO, abreviatura=KL]
+2020-11-11 10:03:13.719 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:13.723 DEBUG [qtp1422005164-206] p.c.a.a.service.TipoBultoService : Total Tipo de bultos: 29
+2020-11-11 10:03:17.855 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:17.859 DEBUG [qtp1422005164-207] p.c.a.a.service.TipoBultoService : Total Tipo de bultos: 29
+2020-11-11 10:03:18.873 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:18.878 DEBUG [qtp1422005164-207] p.c.a.a.service.TipoMercanciaService : Total TipoMercancia: 42
+2020-11-11 10:03:21.964 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:21.968 DEBUG [qtp1422005164-207] p.c.a.a.service.TipoMercanciaService : TipoMercancia: TipoMercancia [idTipoMercancia=42, nombre=mercancia de prueba 1]
+2020-11-11 10:03:23.407 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:23.410 DEBUG [qtp1422005164-206] p.c.a.a.service.TipoMercanciaService : Total TipoMercancia: 42
+2020-11-11 10:03:24.555 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:24.563 DEBUG [qtp1422005164-206] p.c.a.a.service.ServicioService : Total Servicio: 19
+2020-11-11 10:03:28.369 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:28.371 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:28.378 DEBUG [qtp1422005164-211] p.c.a.a.service.GrupoServicioService : Total GrupoServicio: 8
+2020-11-11 10:03:28.377 DEBUG [qtp1422005164-207] p.c.a.a.service.ServicioService : Servicio: Servicio [idServicio=19, grupoServicio=GrupoServicio [idGrupoServicio=1, nombre=Almacenaje], nombre=Nuevo servicio de almacenaje 2, pct=N, precioMonedaNacional=23.0, precioMonedaExtranjera=0.0]
+2020-11-11 10:03:29.371 DEBUG [qtp1422005164-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:29.381 DEBUG [qtp1422005164-209] p.c.a.a.service.ServicioService : Total Servicio: 19
+2020-11-11 10:03:30.825 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:30.827 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:30.828 DEBUG [qtp1422005164-207] p.c.a.a.service.GrupoServicioService : Total GrupoServicio: 8
+2020-11-11 10:03:30.829 DEBUG [qtp1422005164-211] p.c.a.a.service.ServicioService : Servicio: Servicio [idServicio=14, grupoServicio=GrupoServicio [idGrupoServicio=6, nombre=Movilización de Carga], nombre=Movilización Carga de 40M3 hasta 60M3 + IGV, pct=N, precioMonedaNacional=264.0, precioMonedaExtranjera=0.0]
+2020-11-11 10:03:33.201 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:33.208 DEBUG [qtp1422005164-205] p.c.a.a.service.ServicioService : Total Servicio: 19
+2020-11-11 10:03:39.091 DEBUG [qtp1422005164-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:39.094 DEBUG [qtp1422005164-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:39.096 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:39.098 DEBUG [qtp1422005164-211] p.c.a.aduanero.service.AduanaService : Total Aduanas: 2
+2020-11-11 10:03:39.098 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:03:39.103 DEBUG [qtp1422005164-210] p.c.a.a.service.RegimenService : Total Regimen: 10
+2020-11-11 10:03:39.104 DEBUG [qtp1422005164-206] p.c.a.a.service.TipoBultoService : Total Tipo de bultos: 29
+2020-11-11 10:03:39.123 DEBUG [qtp1422005164-209] p.c.a.a.s.DepositoTemporalService : Total DepositoTemporal: 35
+2020-11-11 10:04:07.852 DEBUG [qtp1422005164-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:07.870 DEBUG [qtp1422005164-209] p.c.a.a.service.CotizacionService : Total Cotizaciones: 1
+2020-11-11 10:04:08.931 DEBUG [qtp1422005164-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:08.937 DEBUG [qtp1422005164-209] p.c.a.aduanero.service.MonedaService : Total monedas: 2
+2020-11-11 10:04:08.938 DEBUG [qtp1422005164-226] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:08.940 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:08.942 DEBUG [qtp1422005164-204] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:08.945 DEBUG [qtp1422005164-207] p.c.a.a.service.VendedorService : Total Vendedores: 5
+2020-11-11 10:04:08.948 DEBUG [qtp1422005164-204] p.c.a.a.s.AgenciaAduanasService : Total AgenciaAduanas: 6
+2020-11-11 10:04:08.952 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:08.955 DEBUG [qtp1422005164-210] p.c.a.a.service.GrupoServicioService : Total GrupoServicio: 8
+2020-11-11 10:04:08.956 DEBUG [qtp1422005164-226] p.c.a.a.service.ClienteService : Página 1 de: 125
+2020-11-11 10:04:46.981 DEBUG [qtp1422005164-204] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:46.994 DEBUG [qtp1422005164-204] p.c.a.a.service.UsuarioService : Total Usuarios: 7
+2020-11-11 10:04:49.238 DEBUG [qtp1422005164-226] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:49.241 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:49.242 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:04:49.242 DEBUG [qtp1422005164-226] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 10:04:49.255 DEBUG [qtp1422005164-210] p.c.a.a.service.UsuarioService : Usuario found: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]
+2020-11-11 10:04:49.257 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:04:49.257 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:04:49.257 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:04:49.257 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:04:49.257 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:04:49.257 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:04:49.257 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:04:49.257 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:04:49.258 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:04:49.258 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:04:49.258 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:04:49.258 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:04:49.258 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:05:02.965 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:02.980 DEBUG [qtp1422005164-205] p.c.a.a.service.UsuarioService : Total Usuarios: 7
+2020-11-11 10:05:03.898 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:03.900 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:03.903 DEBUG [qtp1422005164-206] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]]]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]]]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:05:03.912 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:05:09.329 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:09.340 DEBUG [qtp1422005164-210] p.c.a.a.service.UsuarioService : Total Usuarios: 7
+2020-11-11 10:05:10.055 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]]]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:05:10.069 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:05:11.728 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:11.742 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.MenuService : Total Menus: 7
+2020-11-11 10:05:25.212 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:25.214 DEBUG [qtp1422005164-210] p.c.a.aduanero.service.RolService : nombre: nuevo rol
+2020-11-11 10:05:25.222 DEBUG [qtp1422005164-210] p.c.a.aduanero.service.RolService : idMenu: null
+2020-11-11 10:05:25.232 WARN  [qtp1422005164-210] org.eclipse.jetty.server.HttpChannel : /core-aldesa/v1/roles
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:523)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:763)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1631)
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:226)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at pe.com.aldesa.aduanero.security.auth.jwt.JwtTokenAuthenticationProcessingFilter.successfulAuthentication(JwtTokenAuthenticationProcessingFilter.java:63)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:240)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:549)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:602)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1610)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1369)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:489)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1284)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:501)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:556)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:273)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:129)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:375)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.springframework.dao.InvalidDataAccessApiUsageException: The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
+	at org.springframework.orm.jpa.EntityManagerFactoryUtils.convertJpaAccessExceptionIfPossible(EntityManagerFactoryUtils.java:374)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:257)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:528)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:153)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:178)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:95)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy206.findById(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor177.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:205)
+	at com.sun.proxy.$Proxy118.findById(Unknown Source)
+	at pe.com.aldesa.aduanero.service.RolService.save(RolService.java:134)
+	at pe.com.aldesa.aduanero.rest.RolRestController.create(RolRestController.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	... 86 common frames omitted
+Caused by: java.lang.IllegalArgumentException: The given id must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:198)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:269)
+	at sun.reflect.GeneratedMethodAccessor178.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.data.repository.core.support.ImplementationInvocationMetadata.invoke(ImplementationInvocationMetadata.java:72)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:382)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:205)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:549)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:155)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:367)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:118)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	... 114 common frames omitted
+2020-11-11 10:05:25.234 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:32.366 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:32.378 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:05:32.379 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:05:34.471 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:34.484 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.MenuService : Total Menus: 7
+2020-11-11 10:05:53.043 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:05:53.045 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : nombre: operador
+2020-11-11 10:05:53.046 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : idMenu: null
+2020-11-11 10:05:53.049 WARN  [qtp1422005164-205] org.eclipse.jetty.server.HttpChannel : /core-aldesa/v1/roles
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:523)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:763)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1631)
+	at org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:226)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at pe.com.aldesa.aduanero.security.auth.jwt.JwtTokenAuthenticationProcessingFilter.successfulAuthentication(JwtTokenAuthenticationProcessingFilter.java:63)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:240)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1618)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:549)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:602)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:235)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1610)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1369)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:489)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1284)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:501)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:383)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:556)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:375)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:273)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:336)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:313)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:171)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:129)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:375)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:806)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:938)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.springframework.dao.InvalidDataAccessApiUsageException: The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
+	at org.springframework.orm.jpa.EntityManagerFactoryUtils.convertJpaAccessExceptionIfPossible(EntityManagerFactoryUtils.java:374)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:257)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:528)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:153)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:178)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:95)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy206.findById(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor177.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:205)
+	at com.sun.proxy.$Proxy118.findById(Unknown Source)
+	at pe.com.aldesa.aduanero.service.RolService.save(RolService.java:134)
+	at pe.com.aldesa.aduanero.rest.RolRestController.create(RolRestController.java:51)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	... 86 common frames omitted
+Caused by: java.lang.IllegalArgumentException: The given id must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:198)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:269)
+	at sun.reflect.GeneratedMethodAccessor178.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.data.repository.core.support.ImplementationInvocationMetadata.invoke(ImplementationInvocationMetadata.java:72)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:382)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:205)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:549)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:155)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:367)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:118)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	... 114 common frames omitted
+2020-11-11 10:05:53.051 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:19.086 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:19.098 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:24.142 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:24.143 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:24.154 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Rol: Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]]]
+2020-11-11 10:06:24.154 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:06:24.154 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:06:24.154 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:06:24.154 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:24.154 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:24.154 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:24.154 DEBUG [qtp1422005164-207] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:06:24.157 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.MenuService : Total Menus: 7
+2020-11-11 10:06:29.494 DEBUG [qtp1422005164-204] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:29.508 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]]]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]]]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:29.509 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:30.893 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:30.893 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:30.901 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Rol: Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:06:30.902 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:06:30.902 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:06:30.902 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:30.902 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:30.902 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:06:30.902 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:06:30.902 DEBUG [qtp1422005164-206] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:30.906 DEBUG [qtp1422005164-227] p.c.a.aduanero.service.MenuService : Total Menus: 7
+2020-11-11 10:06:36.874 DEBUG [qtp1422005164-204] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:36.886 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:06:36.886 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]]]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]]]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:36.887 DEBUG [qtp1422005164-204] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:38.296 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:38.306 DEBUG [qtp1422005164-227] p.c.a.a.service.UsuarioService : Total Usuarios: 7
+2020-11-11 10:06:40.866 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:40.867 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:40.868 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:40.869 DEBUG [qtp1422005164-207] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]]]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]]]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:40.877 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:40.878 DEBUG [qtp1422005164-227] p.c.a.a.service.UsuarioService : Usuario found: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]]], username=mhuiza, password=$2a$10$g17JWC3ODix2bgR6kmKYIOVFYchzM0VZtEDfx.ENsRDIEM8cqKfEy, imagen=, activo=S]
+2020-11-11 10:06:47.892 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:47.893 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : username: mhuiza
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : idPersona: 14
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : idRol: 1
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : idTipoDocumento: 1
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : numeroDocumento: 74136952
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : nombres: Milton
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : apellidoPaterno: Huiza
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : apellidoMaterno: 
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : sexo: M
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : fechaNacimiento: 2020-08-01
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : email: mhuiza@wollcorp.com
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : imagen: 
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : idDireccion: 0
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : activo: S
+2020-11-11 10:06:47.894 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : Buscando tipo de documento 1
+2020-11-11 10:06:47.896 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : Tipo de documento 1 encontrado
+2020-11-11 10:06:47.896 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : Buscando rol 1
+2020-11-11 10:06:47.901 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : Rol 1 encontrado
+2020-11-11 10:06:47.901 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : Encontró dirección 0 ? false
+2020-11-11 10:06:47.903 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : Usuario existe? true
+2020-11-11 10:06:47.927 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : Usuario actualizado
+2020-11-11 10:06:47.927 DEBUG [qtp1422005164-229] p.c.a.a.service.UsuarioService : Obteniendo usuario actualizado
+2020-11-11 10:06:51.595 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:51.608 DEBUG [qtp1422005164-227] p.c.a.a.service.UsuarioService : Total Usuarios: 7
+2020-11-11 10:06:55.191 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:55.192 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:55.192 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:55.196 DEBUG [qtp1422005164-229] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Total Roles: 2
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-206] p.c.a.a.service.UsuarioService : Usuario found: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]]], username=mhuiza, password=$2a$10$g17JWC3ODix2bgR6kmKYIOVFYchzM0VZtEDfx.ENsRDIEM8cqKfEy, imagen=, activo=S]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]]]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Rol [idRol=2, nombre=ADMINISTRADOR, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]]
+2020-11-11 10:06:55.204 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 10:06:55.205 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 10:06:55.205 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.RolService : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 10:06:57.558 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:06:57.569 DEBUG [qtp1422005164-205] p.c.a.a.service.UsuarioService : Total Usuarios: 7
+2020-11-11 10:07:02.231 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:07:02.240 DEBUG [qtp1422005164-230] p.c.a.a.service.CotizacionService : Total Cotizaciones: 1
+2020-11-11 10:07:12.897 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:07:12.898 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:07:12.900 DEBUG [qtp1422005164-205] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 10:07:12.907 DEBUG [qtp1422005164-207] p.c.a.a.service.UsuarioService : Usuario found: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]
+2020-11-11 10:07:16.557 DEBUG [qtp1422005164-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:07:16.558 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 10:07:16.560 DEBUG [qtp1422005164-206] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 10:07:16.569 DEBUG [qtp1422005164-230] p.c.a.a.service.UsuarioService : Usuario found: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]
+2020-11-11 11:35:06.695 DEBUG [qtp1422005164-204] p.c.a.a.s.a.w.WebLoginProcessingFilter : Request is to process authentication
+2020-11-11 11:35:06.696 INFO  [qtp1422005164-204] p.c.a.a.s.a.w.WebAuthenticationProvider : Username: supervisor
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Total de Menus: 7
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 0
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=7, idSubmenu=1], nombre=Usuarios, numeroOrden=100, ruta=/usuarios]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=7, idSubmenu=2], nombre=Roles, numeroOrden=200, ruta=/roles]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=2, idSubmenu=2], nombre=DAM, numeroOrden=50, ruta=/dams]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=2, idSubmenu=1], nombre=Tarjetas, numeroOrden=100, ruta=/tarjetas]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 1
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=5, idSubmenu=1], nombre=Cotizaciones, numeroOrden=100, ruta=/cotizaciones]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 4
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=3], nombre=Notas de Crédito, numeroOrden=300, ruta=/notas-credito]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=2], nombre=Boletas, numeroOrden=200, ruta=/boletas]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=1], nombre=Facturas, numeroOrden=100, ruta=/facturas]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=4], nombre=Notas de Débito, numeroOrden=400, ruta=/notas-debito]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=3, idSubmenu=2], nombre=Tickets de Pesaje, numeroOrden=200, ruta=/tickets-pesaje]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=3, idSubmenu=1], nombre=Ingresos / Salidas, numeroOrden=100, ruta=/ingresos-salidas]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-11 11:35:06.769 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 14
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=4], nombre=Agencias de Aduana, numeroOrden=400, ruta=/agencias-aduana]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=2], nombre=Comercial, numeroOrden=200, ruta=/vendedores]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=1], nombre=Clientes, numeroOrden=100, ruta=/clientes]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=8], nombre=Choferes, numeroOrden=800, ruta=/choferes]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=10], nombre=Tipos de Bulto, numeroOrden=1000, ruta=/tipos-bulto]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=11], nombre=Tipos de Mercancía, numeroOrden=1100, ruta=/tipos-mercancia]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=9], nombre=Vehículos, numeroOrden=900, ruta=/vehiculos]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=7], nombre=Depósitos Temporales, numeroOrden=700, ruta=/depositos-temporales]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=6], nombre=Regímenes, numeroOrden=600, ruta=/regimenes]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=13], nombre=Personas, numeroOrden=10, ruta=/personas]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=12], nombre=Servicios, numeroOrden=1200, ruta=/servicios]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=3], nombre=Almacenes, numeroOrden=300, ruta=/almacenes]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=5], nombre=Aduanas, numeroOrden=500, ruta=/aduanas]
+2020-11-11 11:35:06.770 DEBUG [qtp1422005164-204] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=14], nombre=Empresas, numeroOrden=20, ruta=/empresas]
+2020-11-11 11:35:06.771 INFO  [qtp1422005164-204] p.c.a.a.s.m.token.JwtTokenFactory : Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXBlcnZpc29yIiwic2NvcGVzIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9hbGRlc2EuY29tLnBlIiwiaWF0IjoxNjA1MTEyNTA2LCJleHAiOjE2MDUxMTYxMDZ9.6XQmLeYQ0Dzu_7sbgY25k9FKYZHDFFSPBp6hojSEpvp8uVhRX5rHwwDSRdv4vWkSUVfh0S-cTGiSj6fsPd7gmw
+2020-11-11 11:35:17.303 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:35:17.304 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:35:17.311 DEBUG [qtp1422005164-210] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 11:35:17.324 DEBUG [qtp1422005164-207] p.c.a.a.service.UsuarioService : Usuario found: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]
+2020-11-11 11:35:41.055 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:35:41.079 DEBUG [qtp1422005164-230] p.c.a.a.service.PersonaService : Página 1 de: 3
+2020-11-11 11:35:44.749 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:35:44.754 DEBUG [qtp1422005164-230] p.c.a.a.service.PersonaService : Persona by Numero Documento: Optional.empty
+2020-11-11 11:35:50.848 DEBUG [qtp1422005164-207] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:35:50.860 DEBUG [qtp1422005164-207] p.c.a.a.service.PersonaService : Personas by Name: [Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S], Persona [idPersona=5, idDireccion=Direccion [idDireccion=1, descripcion=AV. DOS DE MAYO NRO. 647 PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - CALLAO], numeroDocumento=481135663, nombres=David, apellidoPaterno=Vargas, apellidoMaterno=Alvarado, sexo=null, fechaNacimiento=null, email=pparker@gmail.com, tipoDocumento=TipoDocumento [idTipoDocumento=1, nombre=Documento Nacional de Identidad, abreviatura=DNI]]]
+2020-11-11 11:35:52.777 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:35:52.778 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:35:52.783 DEBUG [qtp1422005164-210] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-11 11:35:52.794 DEBUG [qtp1422005164-227] p.c.a.a.service.PersonaService : Persona: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]
+2020-11-11 11:35:54.722 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:35:54.734 DEBUG [qtp1422005164-229] p.c.a.a.service.PersonaService : Página 1 de: 3
+2020-11-11 11:36:05.999 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:36:06.112 DEBUG [qtp1422005164-227] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 11:36:25.679 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:36:25.682 DEBUG [qtp1422005164-210] p.c.a.a.service.EmpresaService : Empresa: Empresa [idEmpresa=1, ruc=20100392403, razonSocial=ALMACENES DE DEPOSITO S.A., direccion=Direccion [idDireccion=1, descripcion=AV. DOS DE MAYO NRO. 647 PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - CALLAO], nombreComercial=ALDESA]
+2020-11-11 11:36:27.943 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:36:27.952 DEBUG [qtp1422005164-229] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 11:36:29.621 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:36:29.734 DEBUG [qtp1422005164-210] p.c.a.a.service.ClienteService : Página 1 de: 125
+2020-11-11 11:36:39.373 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:36:39.383 DEBUG [qtp1422005164-229] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 11:36:48.476 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:36:48.489 DEBUG [qtp1422005164-210] p.c.a.a.service.PersonaService : Página 1 de: 3
+2020-11-11 11:36:53.620 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:36:53.627 DEBUG [qtp1422005164-229] p.c.a.a.service.VendedorService : Total Vendedores: 5
+2020-11-11 11:37:04.924 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:37:04.931 DEBUG [qtp1422005164-210] p.c.a.a.service.VendedorService : Total Vendedores: 5
+2020-11-11 11:37:06.452 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:37:06.456 DEBUG [qtp1422005164-210] p.c.a.a.service.VendedorService : Vendedor: Persona [idPersona=5, idDireccion=Direccion [idDireccion=1, descripcion=AV. DOS DE MAYO NRO. 647 PROV. CONST. DEL CALLAO - PROV. CONST. DEL CALLAO - CALLAO], numeroDocumento=481135663, nombres=David, apellidoPaterno=Vargas, apellidoMaterno=Alvarado, sexo=null, fechaNacimiento=null, email=pparker@gmail.com, tipoDocumento=TipoDocumento [idTipoDocumento=1, nombre=Documento Nacional de Identidad, abreviatura=DNI]]
+2020-11-11 11:37:09.717 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:37:09.722 DEBUG [qtp1422005164-229] p.c.a.a.service.VendedorService : Total Vendedores: 5
+2020-11-11 11:37:11.142 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:37:11.149 DEBUG [qtp1422005164-210] p.c.a.aduanero.service.AreaService : Total áreas: 31
+2020-11-11 11:37:42.186 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:37:42.190 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.AreaService : nombre: ALMACEN34
+2020-11-11 11:37:42.190 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.AreaService : abreviatura: AL34
+2020-11-11 11:37:42.191 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.AreaService : activo: S
+2020-11-11 11:37:42.204 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.AreaService : Area guardada
+2020-11-11 11:37:42.226 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:37:42.229 DEBUG [qtp1422005164-205] p.c.a.aduanero.service.AreaService : Area: Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S]
+2020-11-11 11:37:42.236 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:37:42.242 DEBUG [qtp1422005164-205] p.c.a.a.service.UbicacionService : Ubicacion by id Area: []
+2020-11-11 11:38:14.146 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:14.149 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : idArea: 32
+2020-11-11 11:38:14.149 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : nombre: AL34-1
+2020-11-11 11:38:14.149 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : abreviatura: UBICACION1
+2020-11-11 11:38:14.149 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : numeroRack: 0
+2020-11-11 11:38:14.149 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : activo: S
+2020-11-11 11:38:14.153 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : Area: Optional[Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S]]
+2020-11-11 11:38:14.170 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:14.173 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=624, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S], nombre=AL34-1, abreviatura=UBICACION1, numeroRack=0, activo=S]]
+2020-11-11 11:38:31.198 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:31.200 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : idArea: 32
+2020-11-11 11:38:31.200 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : nombre: AL34-2
+2020-11-11 11:38:31.200 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : abreviatura: UBICACION2
+2020-11-11 11:38:31.200 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : numeroRack: 0
+2020-11-11 11:38:31.200 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : activo: S
+2020-11-11 11:38:31.202 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : Area: Optional[Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S]]
+2020-11-11 11:38:31.212 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:31.219 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=624, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S], nombre=AL34-1, abreviatura=UBICACION1, numeroRack=0, activo=S], Ubicacion [idUbicacion=625, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S], nombre=AL34-2, abreviatura=UBICACION2, numeroRack=0, activo=S]]
+2020-11-11 11:38:34.450 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:34.454 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.AreaService : Total áreas: 32
+2020-11-11 11:38:37.799 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:37.803 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : Area: Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S]
+2020-11-11 11:38:37.810 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:37.815 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=624, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S], nombre=AL34-1, abreviatura=UBICACION1, numeroRack=0, activo=S], Ubicacion [idUbicacion=625, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=S], nombre=AL34-2, abreviatura=UBICACION2, numeroRack=0, activo=S]]
+2020-11-11 11:38:55.470 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:55.472 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : id: 32
+2020-11-11 11:38:55.472 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : nombre: ALMACEN34
+2020-11-11 11:38:55.472 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : abreviatura: AL34
+2020-11-11 11:38:55.472 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : activo: N
+2020-11-11 11:38:55.476 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : Existe Area? true
+2020-11-11 11:38:55.485 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : Area actualizada
+2020-11-11 11:38:57.681 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:38:57.685 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.AreaService : Total áreas: 32
+2020-11-11 11:39:19.436 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:19.441 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : Area: Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=N]
+2020-11-11 11:39:19.451 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:19.458 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=624, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=N], nombre=AL34-1, abreviatura=UBICACION1, numeroRack=0, activo=S], Ubicacion [idUbicacion=625, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=N], nombre=AL34-2, abreviatura=UBICACION2, numeroRack=0, activo=S]]
+2020-11-11 11:39:25.247 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:25.248 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : id: 624
+2020-11-11 11:39:25.248 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : idArea: 32
+2020-11-11 11:39:25.248 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : nombre: AL34-1
+2020-11-11 11:39:25.248 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : abreviatura: UBICACION1
+2020-11-11 11:39:25.248 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : numeroRack: 0
+2020-11-11 11:39:25.248 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : activo: N
+2020-11-11 11:39:25.250 DEBUG [qtp1422005164-229] p.c.a.a.service.UbicacionService : Area: Optional[Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=N]]
+2020-11-11 11:39:25.262 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:25.268 DEBUG [qtp1422005164-230] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=624, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=N], nombre=AL34-1, abreviatura=UBICACION1, numeroRack=0, activo=N], Ubicacion [idUbicacion=625, area=Area [idArea=32, nombre=ALMACEN34, abreviatura=AL34, activo=N], nombre=AL34-2, abreviatura=UBICACION2, numeroRack=0, activo=S]]
+2020-11-11 11:39:28.652 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:28.656 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AreaService : Total áreas: 32
+2020-11-11 11:39:33.964 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:33.968 DEBUG [qtp1422005164-230] p.c.a.a.s.AgenciaAduanasService : Total AgenciaAduanas: 6
+2020-11-11 11:39:42.291 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:42.295 DEBUG [qtp1422005164-229] p.c.a.a.s.AgenciaAduanasService : Total AgenciaAduanas: 6
+2020-11-11 11:39:43.779 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:43.784 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.AduanaService : Total Aduanas: 2
+2020-11-11 11:39:48.353 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:39:48.357 DEBUG [qtp1422005164-229] p.c.a.a.service.RegimenService : Total Regimen: 10
+2020-11-11 11:40:03.318 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:40:03.344 DEBUG [qtp1422005164-230] p.c.a.a.s.DepositoTemporalService : Total DepositoTemporal: 35
+2020-11-11 11:40:32.851 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:40:32.864 DEBUG [qtp1422005164-229] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-11 11:40:36.050 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:40:36.064 DEBUG [qtp1422005164-230] p.c.a.a.s.DepositoTemporalService : Total DepositoTemporal: 35
+2020-11-11 11:40:37.755 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:40:37.763 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.ChoferService : Página 1 de: 1
+2020-11-11 11:40:45.381 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:40:45.387 DEBUG [qtp1422005164-230] p.c.a.aduanero.service.ChoferService : Página 1 de: 1
+2020-11-11 11:40:54.378 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:40:54.386 DEBUG [qtp1422005164-229] p.c.a.a.service.VehiculoService : Total Vehiculos: 3
+2020-11-11 11:40:57.228 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:40:57.237 DEBUG [qtp1422005164-230] p.c.a.a.service.TipoVehiculoService : Total Tipos camiones: 7
+2020-11-11 11:41:21.870 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:41:21.878 DEBUG [qtp1422005164-229] p.c.a.a.service.VehiculoService : Total Vehiculos: 3
+2020-11-11 11:41:31.601 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:41:31.603 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:41:31.607 DEBUG [qtp1422005164-230] p.c.a.a.service.VehiculoService : Vehiculo: Vehiculo [idVehiculo=3, tipoVehiculo=TipoVehiculo [idTipoVehiculo=1, nombre=Camión Grúa, abreviatura=null], placa=pl345, marca=toyota, certificado=cer123, largo=1.25, ancho=2.36, alto=1.36, peso=13.0, eje=S]
+2020-11-11 11:41:31.607 DEBUG [qtp1422005164-227] p.c.a.a.service.TipoVehiculoService : Total Tipos camiones: 7
+2020-11-11 11:42:03.898 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:42:03.905 DEBUG [qtp1422005164-210] p.c.a.a.service.VehiculoService : Total Vehiculos: 3
+2020-11-11 11:42:37.522 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:42:37.526 DEBUG [qtp1422005164-205] p.c.a.a.service.TipoBultoService : Total Tipo de bultos: 29
+2020-11-11 11:42:43.228 DEBUG [qtp1422005164-249] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:42:43.232 DEBUG [qtp1422005164-249] p.c.a.a.service.TipoMercanciaService : Total TipoMercancia: 42
+2020-11-11 11:42:45.835 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:42:45.846 DEBUG [qtp1422005164-205] p.c.a.a.service.ServicioService : Total Servicio: 19
+2020-11-11 11:42:58.251 DEBUG [qtp1422005164-249] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:42:58.255 DEBUG [qtp1422005164-249] p.c.a.a.service.GrupoServicioService : Total GrupoServicio: 8
+2020-11-11 11:43:00.050 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:43:00.058 DEBUG [qtp1422005164-205] p.c.a.a.service.ServicioService : Total Servicio: 19
+2020-11-11 11:43:01.443 DEBUG [qtp1422005164-249] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:43:01.446 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:43:01.446 DEBUG [qtp1422005164-249] p.c.a.a.service.GrupoServicioService : Total GrupoServicio: 8
+2020-11-11 11:43:01.449 DEBUG [qtp1422005164-229] p.c.a.a.service.ServicioService : Servicio: Servicio [idServicio=8, grupoServicio=GrupoServicio [idGrupoServicio=3, nombre=Personal de Estiba], nombre=Estiba Cont. 20' + IGV, pct=N, precioMonedaNacional=165.0, precioMonedaExtranjera=0.0]
+2020-11-11 11:43:02.811 DEBUG [qtp1422005164-227] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:43:02.817 DEBUG [qtp1422005164-227] p.c.a.a.service.ServicioService : Total Servicio: 19
+2020-11-11 11:43:19.194 DEBUG [qtp1422005164-229] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:43:19.194 DEBUG [qtp1422005164-205] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:43:19.196 DEBUG [qtp1422005164-230] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:43:19.196 DEBUG [qtp1422005164-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-11 11:43:19.198 DEBUG [qtp1422005164-229] p.c.a.aduanero.service.AduanaService : Total Aduanas: 2
+2020-11-11 11:43:19.200 DEBUG [qtp1422005164-230] p.c.a.a.service.RegimenService : Total Regimen: 10
+2020-11-11 11:43:19.201 DEBUG [qtp1422005164-210] p.c.a.a.service.TipoBultoService : Total Tipo de bultos: 29
+2020-11-11 11:43:19.219 DEBUG [qtp1422005164-205] p.c.a.a.s.DepositoTemporalService : Total DepositoTemporal: 35

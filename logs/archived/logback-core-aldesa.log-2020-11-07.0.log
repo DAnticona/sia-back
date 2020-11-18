@@ -1,0 +1,3 @@
+2020-11-07 10:24:49.438 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Starting CoreAldesaApplication on WCSIL8003 with PID 12500 (D:\workspaces\eclipse\core-aldesa\target\classes started by danticona in D:\workspaces\eclipse\core-aldesa)
+2020-11-07 10:24:49.442 DEBUG [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2020-11-07 10:24:49.442 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : No active profile set, falling back to default profiles: default

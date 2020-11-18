@@ -1,0 +1,5 @@
+2020-11-09 10:55:25.764 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Starting CoreAldesaApplication on WCSIL8003 with PID 19324 (D:\workspaces\eclipse\core-aldesa\target\classes started by danticona in D:\workspaces\eclipse\core-aldesa)
+2020-11-09 10:55:25.769 DEBUG [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2020-11-09 10:55:25.770 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : No active profile set, falling back to default profiles: default
+2020-11-09 10:55:28.693 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-09 10:55:33.877 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Started CoreAldesaApplication in 8.529 seconds (JVM running for 9.077)

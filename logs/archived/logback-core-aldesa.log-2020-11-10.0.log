@@ -1,0 +1,94 @@
+2020-11-10 17:34:37.777 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Starting CoreAldesaApplication on WCSIL8003 with PID 3856 (D:\workspaces\eclipse\core-aldesa\target\classes started by danticona in D:\workspaces\eclipse\core-aldesa)
+2020-11-10 17:34:37.784 DEBUG [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+2020-11-10 17:34:37.785 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : No active profile set, falling back to default profiles: default
+2020-11-10 17:34:40.489 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-10 17:34:45.332 INFO  [restartedMain] p.c.a.aduanero.CoreAldesaApplication : Started CoreAldesaApplication in 7.96 seconds (JVM running for 8.383)
+2020-11-10 17:34:50.906 DEBUG [qtp1055229872-211] p.c.a.a.s.a.w.WebLoginProcessingFilter : Request is to process authentication
+2020-11-10 17:34:50.954 INFO  [qtp1055229872-211] p.c.a.a.s.a.w.WebAuthenticationProvider : Username: supervisor
+2020-11-10 17:34:51.159 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Menus: 7
+2020-11-10 17:34:51.160 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline]
+2020-11-10 17:34:51.160 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 0
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=7, idSubmenu=1], nombre=Usuarios, numeroOrden=100, ruta=/usuarios]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=7, idSubmenu=2], nombre=Roles, numeroOrden=200, ruta=/roles]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 1
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=5, idSubmenu=1], nombre=Cotizaciones, numeroOrden=100, ruta=/cotizaciones]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 14
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=14], nombre=Empresas, numeroOrden=20, ruta=/empresas]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=3], nombre=Almacenes, numeroOrden=300, ruta=/almacenes]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=8], nombre=Choferes, numeroOrden=800, ruta=/choferes]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=11], nombre=Tipos de Mercancía, numeroOrden=1100, ruta=/tipos-mercancia]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=1], nombre=Clientes, numeroOrden=100, ruta=/clientes]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=7], nombre=Depósitos Temporales, numeroOrden=700, ruta=/depositos-temporales]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=9], nombre=Vehículos, numeroOrden=900, ruta=/vehiculos]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=13], nombre=Personas, numeroOrden=10, ruta=/personas]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=4], nombre=Agencias de Aduana, numeroOrden=400, ruta=/agencias-aduana]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=12], nombre=Servicios, numeroOrden=1200, ruta=/servicios]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=5], nombre=Aduanas, numeroOrden=500, ruta=/aduanas]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=2], nombre=Comercial, numeroOrden=200, ruta=/vendedores]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=6], nombre=Regímenes, numeroOrden=600, ruta=/regimenes]
+2020-11-10 17:34:51.161 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=1, idSubmenu=10], nombre=Tipos de Bulto, numeroOrden=1000, ruta=/tipos-bulto]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=3, idSubmenu=2], nombre=Tickets de Pesaje, numeroOrden=200, ruta=/tickets-pesaje]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=3, idSubmenu=1], nombre=Ingresos / Salidas, numeroOrden=100, ruta=/ingresos-salidas]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 4
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=2], nombre=Boletas, numeroOrden=200, ruta=/boletas]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=4], nombre=Notas de Débito, numeroOrden=400, ruta=/notas-debito]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=1], nombre=Facturas, numeroOrden=100, ruta=/facturas]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=4, idSubmenu=3], nombre=Notas de Crédito, numeroOrden=300, ruta=/notas-credito]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : Total de Submenus: 2
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=2, idSubmenu=1], nombre=Tarjetas, numeroOrden=100, ruta=/tarjetas]
+2020-11-10 17:34:51.162 DEBUG [qtp1055229872-211] pe.com.aldesa.aduanero.util.WebUtil : SubMenu [submenuId=SubmenuId [idMenu=2, idSubmenu=2], nombre=DAM, numeroOrden=50, ruta=/dams]
+2020-11-10 17:34:51.506 INFO  [qtp1055229872-211] p.c.a.a.s.m.token.JwtTokenFactory : Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXBlcnZpc29yIiwic2NvcGVzIjpbIkFETUlOIl0sImlzcyI6Imh0dHA6Ly9hbGRlc2EuY29tLnBlIiwiaWF0IjoxNjA1MDQ3NjkxLCJleHAiOjE2MDUwNTEyOTF9.vHPiAUF-63RkqVEjApwafD34yhiBdAYFBjxh8CDKb6lFOHZV8ujfLp2bBSSiV98uyCy-YjZRpY-b8jyvoWkDiA
+2020-11-10 17:34:54.430 DEBUG [qtp1055229872-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:34:54.432 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:34:54.513 DEBUG [qtp1055229872-210] p.c.a.a.service.TipoDocumentoService : Total Tipo de documentos: 4
+2020-11-10 17:34:54.562 DEBUG [qtp1055229872-209] p.c.a.a.service.UsuarioService : Usuario found: Usuario [rol=Rol [idRol=1, nombre=ADMIN, menus=[Menu [idMenu=4, nombre=Facturación, numeroOrden=400, icono=mdi mdi-file-document], Menu [idMenu=6, nombre=Reportes, numeroOrden=600, icono=mdi mdi-chart-areaspline], Menu [idMenu=7, nombre=Sistema, numeroOrden=700, icono=fa fa-cogs], Menu [idMenu=3, nombre=Mantenimiento, numeroOrden=300, icono=fa fa-wrench], Menu [idMenu=5, nombre=Clientes, numeroOrden=500, icono=icon-people], Menu [idMenu=1, nombre=Maestros, numeroOrden=100, icono=mdi mdi-table-large], Menu [idMenu=2, nombre=Almacén, numeroOrden=200, icono=fa fa-cubes]]], username=supervisor, password=$2a$10$sqgCkv40fElFsPIeIRxr5egGp7hhZUvR8yd3KotkRVOEIChJnOGYC, imagen=, activo=S]
+2020-11-10 17:34:58.499 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:34:58.544 DEBUG [qtp1055229872-209] p.c.a.a.service.PersonaService : Página 1 de: 3
+2020-11-10 17:34:59.699 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:34:59.863 DEBUG [qtp1055229872-209] p.c.a.a.service.EmpresaService : Empresa 1 de: 129
+2020-11-10 17:35:00.448 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:00.579 DEBUG [qtp1055229872-209] p.c.a.a.service.ClienteService : Página 1 de: 125
+2020-11-10 17:35:02.469 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:02.479 DEBUG [qtp1055229872-209] p.c.a.a.service.VendedorService : Total Vendedores: 5
+2020-11-10 17:35:05.469 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:05.484 DEBUG [qtp1055229872-209] p.c.a.aduanero.service.AreaService : Total áreas: 31
+2020-11-10 17:35:08.095 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:08.101 DEBUG [qtp1055229872-209] p.c.a.aduanero.service.AreaService : Area: Area [idArea=1, nombre=ALDESA 1, abreviatura=AL-01, activo=S]
+2020-11-10 17:35:08.113 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:08.133 DEBUG [qtp1055229872-209] p.c.a.a.service.UbicacionService : Ubicacion by id Area: [Ubicacion [idUbicacion=1, area=Area [idArea=1, nombre=ALDESA 1, abreviatura=AL-01, activo=S], nombre=ALDESA N0.1, abreviatura=AL-01, numeroRack=null, activo=S]]
+2020-11-10 17:35:12.202 DEBUG [qtp1055229872-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:12.209 DEBUG [qtp1055229872-206] p.c.a.aduanero.service.AreaService : Total áreas: 31
+2020-11-10 17:35:13.541 DEBUG [qtp1055229872-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:13.548 DEBUG [qtp1055229872-206] p.c.a.a.s.AgenciaAduanasService : Total AgenciaAduanas: 6
+2020-11-10 17:35:15.419 DEBUG [qtp1055229872-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:15.429 DEBUG [qtp1055229872-206] p.c.a.aduanero.service.AduanaService : Total Aduanas: 2
+2020-11-10 17:35:21.030 DEBUG [qtp1055229872-206] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:21.037 DEBUG [qtp1055229872-206] p.c.a.a.service.RegimenService : Total Regimen: 10
+2020-11-10 17:35:32.256 DEBUG [qtp1055229872-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:32.302 DEBUG [qtp1055229872-210] p.c.a.a.s.DepositoTemporalService : Total DepositoTemporal: 35
+2020-11-10 17:35:35.974 DEBUG [qtp1055229872-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:35.987 DEBUG [qtp1055229872-210] p.c.a.aduanero.service.ChoferService : Página 1 de: 1
+2020-11-10 17:35:39.500 DEBUG [qtp1055229872-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:35:39.529 DEBUG [qtp1055229872-210] p.c.a.a.service.VehiculoService : Total Vehiculos: 3
+2020-11-10 17:36:11.426 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:36:11.440 DEBUG [qtp1055229872-209] p.c.a.a.service.TipoBultoService : Total Tipo de bultos: 29
+2020-11-10 17:36:18.011 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:36:18.027 DEBUG [qtp1055229872-209] p.c.a.a.service.TipoMercanciaService : Total TipoMercancia: 42
+2020-11-10 17:36:24.526 DEBUG [qtp1055229872-209] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:36:24.544 DEBUG [qtp1055229872-209] p.c.a.a.service.ServicioService : Total Servicio: 19
+2020-11-10 17:36:36.626 DEBUG [qtp1055229872-211] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:36:36.629 DEBUG [qtp1055229872-204] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:36:36.631 DEBUG [qtp1055229872-210] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:36:36.631 DEBUG [qtp1055229872-226] p.c.a.a.s.a.j.JwtTokenAuthenticationProcessingFilter : Request is to process authentication
+2020-11-10 17:36:36.632 DEBUG [qtp1055229872-211] p.c.a.aduanero.service.AduanaService : Total Aduanas: 2
+2020-11-10 17:36:36.641 DEBUG [qtp1055229872-210] p.c.a.a.service.TipoBultoService : Total Tipo de bultos: 29
+2020-11-10 17:36:36.641 DEBUG [qtp1055229872-226] p.c.a.a.service.RegimenService : Total Regimen: 10
+2020-11-10 17:36:36.667 DEBUG [qtp1055229872-204] p.c.a.a.s.DepositoTemporalService : Total DepositoTemporal: 35
